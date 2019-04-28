@@ -1,0 +1,13 @@
+#Generate CAs
+cryptogen generate --config=./crypto-config.yaml
+
+#Generate Genesis Block Artifacts (config)
+./configtxgen -profile $GENESIS_PROFILE_NAME -outputBlock ./channel-artifacts/genesis.block
+
+#Generate Channel Artifacts
+./configtxgen -profile $CHANNEL_PROFILE_NAME -outputCreateChannelTx ./channel-artifacts/channel.tx -channelID $CHANNEL_NAME
+
+
+
+
+
