@@ -5,14 +5,14 @@ SPDX-License-Identifier: Apache-2.0
 */
 package org.hyperledger.fabric.example;
 
-import java.util.List;
-
 import com.google.protobuf.ByteString;
 import io.netty.handler.ssl.OpenSsl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hyperledger.fabric.shim.ChaincodeBase;
 import org.hyperledger.fabric.shim.ChaincodeStub;
+
+import java.util.List;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
@@ -133,7 +133,7 @@ public class SimpleChaincode extends ChaincodeBase {
         //
         String key = args.get(0);
         //byte[] stateBytes
-        String val	= stub.getStringState(key);
+        String val = stub.getStringState(key);
         //
         if (val == null) {
             return newErrorResponse(String.format("Error: state for %s is null", key));

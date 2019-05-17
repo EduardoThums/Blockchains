@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+
+  zookeeper:
+    image: hyperledger/fabric-zookeeper
+    environment:
+      - ZOO_SERVERS=server.1=zookeeper0.example.com:2888:3888 server.2=zookeeper1.example.com:2888:3888 server.3=zookeeper2.example.com:2888:3888
+    restart: always
