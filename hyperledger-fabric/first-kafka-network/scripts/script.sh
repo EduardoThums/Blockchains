@@ -16,21 +16,14 @@ TIMEOUT="$4"
 VERBOSE="$5"
 : ${CHANNEL_NAME:="mychannel"}
 : ${DELAY:="3"}
-: ${LANGUAGE:="golang"}
+: ${LANGUAGE:="java"}
 : ${TIMEOUT:="10"}
 : ${VERBOSE:="false"}
 LANGUAGE=`echo "$LANGUAGE" | tr [:upper:] [:lower:]`
 COUNTER=1
 MAX_RETRY=10
 
-CC_SRC_PATH="github.com/chaincode/java/"
-if [ "$LANGUAGE" = "node" ]; then
-	CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/chaincode_example02/node/"
-fi
-
-if [ "$LANGUAGE" = "java" ]; then
-	CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/chaincode_example02/java/"
-fi
+CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/java/"
 
 echo "Channel name : "$CHANNEL_NAME
 
@@ -58,8 +51,8 @@ createChannel() {
 }
 
 joinChannel () {
-	for org in 1 2; do
-	    for peer in 0 1; do
+	for org in 1; do
+	    for peer in 0 1 2 4; do
 		joinChannelWithRetry $peer $org
 		echo "===================== peer${peer}.org${org} joined channel '$CHANNEL_NAME' ===================== "
 		sleep $DELAY
@@ -67,6 +60,14 @@ joinChannel () {
 	    done
 	done
 }
+
+## Create channel
+echo "Creating channel..."
+createChannel
+
+## Join all the peers to the channel
+echo "Having all peers join the channel..."
+joinChannel
 
 ## Install chaincode on peer0.org1
 echo "Installing chaincode on peer0.org1..."
@@ -78,7 +79,7 @@ instantiateChaincode 0 1
 
 # Query chaincode on peer0.org1
 echo "Querying chaincode on peer0.org1..."
-chaincodeQuery 0 1 200
+chaincodeQuery 0 1 100
 
 # Invoke chaincode on peer0.org1 and peer1.org1
 echo "Sending invoke transaction on peer0.org1 peer1.org1..."

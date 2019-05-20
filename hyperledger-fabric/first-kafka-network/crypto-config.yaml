@@ -1,6 +1,6 @@
 OrdererOrgs:
   - Name: Orderer
-    Domain: example.com    
+    Domain: example.com
     Specs:
       - Hostname: orderer0
       - Hostname: orderer1

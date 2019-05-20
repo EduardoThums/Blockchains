@@ -1,27 +1,61 @@
-Organizations:    
-    - &OrdererOrg        
+Organizations:
+    - &OrdererOrg
         Name: OrdererOrg
         ID: OrdererMSP
         MSPDir: crypto-config/ordererOrganizations/example.com/msp
-        
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('OrdererMSP.member')"
+            Writers:
+                Type: Signature
+                Rule: "OR('OrdererMSP.member')"
+            Admins:
+                Type: Signature
+                Rule: "OR('OrdererMSP.admin')"
+
     - &Org1
         Name: Org1MSP
         ID: Org1MSP
         MSPDir: crypto-config/peerOrganizations/org1.example.com/msp
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('Org1MSP.member')"
+            Writers:
+                Type: Signature
+                Rule: "OR('Org1MSP.member')"
+            Admins:
+                Type: Signature
+                Rule: "OR('Org1MSP.admin')"
         AnchorPeers:
             - Host: peer0.org1.example.com
               Port: 7051
 
 Capabilities:
-    Global: &ChannelCapabilities
-        V1_1: true
+    Channel: &ChannelCapabilities
+        V1_3: true
     Orderer: &OrdererCapabilities
         V1_1: true
     Application: &ApplicationCapabilities
-        V1_2: true
+        V1_3: true
+        V1_2: false
+        V1_1: false
 
 Application: &ApplicationDefaults
     Organizations:
+    Policies:
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins" 
+    Capabilities:
+        <<: *ApplicationCapabilities
 
 Orderer: &OrdererDefaults
     OrdererType: kafka
@@ -40,11 +74,37 @@ Orderer: &OrdererDefaults
               - kafka2.example.com:9092
               - kafka3.example.com:9092
     Organizations:
+    Policies:
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+        BlockValidation:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+
+Channel: &ChannelDefaults
+    Policies:
+        Readers:
+            Type: ImplicitMeta
+            Rule: "ANY Readers"
+        Writers:
+            Type: ImplicitMeta
+            Rule: "ANY Writers"
+        Admins:
+            Type: ImplicitMeta
+            Rule: "MAJORITY Admins"
+    Capabilities:
+        <<: *ChannelCapabilities
 
 Profiles:
-    TwoOrgsOrdererGenesis:
-        Capabilities:
-            <<: *ChannelCapabilities
+    OneOrgOrdererGenesis:
+        <<: *ChannelDefaults
         Orderer:
             <<: *OrdererDefaults
             Organizations:
@@ -56,8 +116,9 @@ Profiles:
                 Organizations:
                     - *Org1
 
-    TwoOrgsChannel:
+    OneOrgChannel:
         Consortium: SampleConsortium
+        <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
             Organizations:
