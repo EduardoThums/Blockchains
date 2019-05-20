@@ -52,7 +52,7 @@ createChannel() {
 
 joinChannel () {
 	for org in 1; do
-	    for peer in 0 1 2 4; do
+	    for peer in 0 1 2 3; do
 		joinChannelWithRetry $peer $org
 		echo "===================== peer${peer}.org${org} joined channel '$CHANNEL_NAME' ===================== "
 		sleep $DELAY
@@ -73,6 +73,10 @@ joinChannel
 echo "Installing chaincode on peer0.org1..."
 installChaincode 0 1
 
+## Install chaincode on peer0.org1
+echo "Installing chaincode on peer0.org1..."
+installChaincode 1 1
+
 # Instantiate chaincode on peer0.org1
 echo "Instantiating chaincode on peer0.org1..."
 instantiateChaincode 0 1
@@ -91,7 +95,7 @@ installChaincode 2 1
 
 # Query on chaincode on peer2.org1, check if the result is 210
 echo "Querying chaincode on peer2.org1..."
-chaincodeQuery 2 1 210
+chaincodeQuery 2 1 90
 
 echo
 echo "========= All GOOD, BYFN execution completed =========== "
