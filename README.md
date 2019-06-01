@@ -15,7 +15,7 @@ Projeto com foco no estudo e implementação da tecnologia blockchain com foco n
 Este projeto tem origem proveniente do Trabalho de Conclusão de Curso realizado entre Janeiro e Dezembro de 2019. No Instituto Federal de Educação, Ciência e Tecnologia - Campus Sapucaia do Sul, realizado pelos alunos formandos do curso Técnico em Informática Eduardo Cristiano Thums e Leonardo Silveira Berlatto. Com orientação do Professor Doutor Alex Mulattieri Suarez Orozco.
 
 ## Contribuidores
-Eduardo Cristiano Thums
-Leonardo Silveira Berllato
+Eduardo Cristiano Thums\
+Leonardo Silveira Berllato\
 Alex Mulattieri Suarez Orozco
 
