@@ -1,0 +1,1 @@
+/home/eduardo/Desktop/study/Blockchains/hyperledger-fabric/first-kafka-network/scripts/script.sh: line 38: peer: command not found

@@ -1,3 +1,0 @@
-List all running c ontainers: docker ps
-List all containers: docker ps -a
-Check if docker is running: systemctl is-active docker
