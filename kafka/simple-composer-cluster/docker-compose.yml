@@ -35,7 +35,7 @@ services:
     hostname: zookeeper-3
     environment:
       ZOOKEEPER_SERVER_ID: 3
-      ZOOKEEPER_CLIENT_PORT: 42181
+      ZOOKEEPER_CLIENT_PORT: 42181localhost
       ZOOKEEPER_TICK_TIME: 2000
       ZOOKEEPER_INIT_LIMIT: 5
       ZOOKEEPER_SYNC_LIMIT: 2
@@ -45,7 +45,6 @@ services:
 
   kafka-1:
     image: confluentinc/cp-kafka:latest
-    hostname: kafka-1
     restart: always
     depends_on:
       - zookeeper-1
@@ -55,7 +54,7 @@ services:
       - 19092:19092
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1:19092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:19092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:22181,zookeeper-2:22181,zookeeper-3:22181
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
@@ -68,7 +67,6 @@ services:
   
   kafka-2:
     image: confluentinc/cp-kafka:latest
-    hostname: kafka-2
     restart: always
     depends_on:
       - zookeeper-1
@@ -78,7 +76,7 @@ services:
       - 29092:29092
     environment:
       KAFKA_BROKER_ID: 2
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-2:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:22181,zookeeper-2:22181,zookeeper-3:22181      
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
@@ -94,7 +92,6 @@ services:
   
   kafka-3:
     image: confluentinc/cp-kafka:latest
-    hostname: kafka-3
     restart: always
     depends_on:
       - zookeeper-1
@@ -104,7 +101,7 @@ services:
       - 39092:39092
     environment:
       KAFKA_BROKER_ID: 3
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-3:39092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:39092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:22181,zookeeper-2:22181,zookeeper-3:22181
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT

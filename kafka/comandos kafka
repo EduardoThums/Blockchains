@@ -1,0 +1,5 @@
+docker-compose exec kafka-1 kafka-topics --create --topic producer-topic --partitions 1 --replication-factor 1 --if-not-exists --zookeeper localhost:22181
+
+docker-compose exec kafka kafka-topics --describe --topic meu-topico-legal --zookeeper localhost:22181
+
+docker-compose exec kafka-1 kafka-console-consumer --bootstrap-server localhost:19092 --topic producer-topic --from-beginning --max-messages 100
