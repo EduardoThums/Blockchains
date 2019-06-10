@@ -20,6 +20,8 @@ public class SampleProducer extends Thread {
 
         final Properties props = new Properties();
 
+//      ======================================= SERVER CONFIG ================================================
+
         //Assign localhost id
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:19092");
 
@@ -38,15 +40,16 @@ public class SampleProducer extends Thread {
         //The buffer.memory controls the total amount of memory available to the producer for buffering.
         props.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
 
-        props.put(ProducerConfig.MAX_REQUEST_SIZE_CONFIG, 1200000);
+        props.put(ProducerConfig.MAX_REQUEST_SIZE_CONFIG, 15728640);
 
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class.getName());
+//      ====================================================================================================
 
         final Producer<String, byte[]> producer = new KafkaProducer<>(props);
 
-        final File file = new File((Objects.requireNonNull(SampleProducer.class.getClassLoader().getResource("video.mp4"))).getFile());
+        File file = new File(Objects.requireNonNull("/home/alunoinfo/alunoinfo/video.mp4"));
 
         final byte[] array = Files.readAllBytes(file.toPath());
 
