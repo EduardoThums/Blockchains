@@ -15,12 +15,12 @@ import java.util.concurrent.ExecutionException;
 @Slf4j
 public class SampleProducer extends Thread {
     private static final String TOPIC_NAME = "producer-topic";
+    private static final String VIDEO_PATH = "/home/alunoinfo/alunoinfo/video.mp4";
 
     public static void main(String[] args) throws IOException {
 
-        final Properties props = new Properties();
-
 //      ======================================= SERVER CONFIG ================================================
+        final Properties props = new Properties();
 
         //Assign localhost id
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:19092");
@@ -40,6 +40,7 @@ public class SampleProducer extends Thread {
         //The buffer.memory controls the total amount of memory available to the producer for buffering.
         props.put(ProducerConfig.BUFFER_MEMORY_CONFIG, 33554432);
 
+        //Tamanho maximo da request em Bytes, 15MB aqui
         props.put(ProducerConfig.MAX_REQUEST_SIZE_CONFIG, 15728640);
 
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
@@ -49,7 +50,7 @@ public class SampleProducer extends Thread {
 
         final Producer<String, byte[]> producer = new KafkaProducer<>(props);
 
-        File file = new File(Objects.requireNonNull("/home/alunoinfo/alunoinfo/video.mp4"));
+        final File file = new File(Objects.requireNonNull(VIDEO_PATH));
 
         final byte[] array = Files.readAllBytes(file.toPath());
 
@@ -57,33 +58,12 @@ public class SampleProducer extends Thread {
 
         try {
             final RecordMetadata metadata = producer.send(record).get();
-
             log.info("Record sent with key {} to partition {}", metadata.serializedKeySize(), metadata.partition());
 
-        } catch (ExecutionException | InterruptedException e) {
-            System.out.println("Error in sending record");
-            System.out.println(e);
+        } catch (ExecutionException | InterruptedException exception) {
+            log.info("Error in sending record");
+            log.info("{}", exception);
         }
-
-//        for (int index = 0; index < 10; index++) {
-//            final String value = Integer.toString(index);
-//            final ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME, value);
-//
-//            try {
-//                RecordMetadata metadata = producer.send(record).get();
-////                System.out.println("Record sent with key " + index + " to partition " + metadata.partition());
-//
-//                Logger logger = LoggerFactory.getLogger(SampleProducer.class);
-//                logger.info("Record sent with key {} to partition {}", index, metadata.partition());
-//
-//            } catch (ExecutionException | InterruptedException e) {
-//                System.out.println("Error in sending record");
-//                System.out.println(e);
-//            }
-//
-//            System.out.println("Message sent successfully");
-//        }
-
 
         producer.close();
     }
