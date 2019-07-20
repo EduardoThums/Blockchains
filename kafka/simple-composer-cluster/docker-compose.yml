@@ -12,7 +12,7 @@ services:
       ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
     network_mode: host
     extra_hosts:
-      - "moby:127.0.0.1"
+      - "kafka-host:127.0.0.1"
 
   zookeeper-2:
     image: confluentinc/cp-zookeeper:latest
@@ -25,7 +25,7 @@ services:
       ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
     network_mode: host
     extra_hosts:
-      - "moby:127.0.0.1"
+      - "kafka-host:127.0.0.1"
 
   zookeeper-3:
     image: confluentinc/cp-zookeeper:latest
@@ -38,23 +38,25 @@ services:
       ZOOKEEPER_SERVERS: localhost:22888:23888;localhost:32888:33888;localhost:42888:43888
     network_mode: host
     extra_hosts:
-      - "moby:127.0.0.1"
+      - "kafka-host:127.0.0.1"
 
   kafka-1:
     image: confluentinc/cp-kafka:latest
-    network_mode: host
     depends_on:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
+    ports:
+      - 19092:19092
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: localhost:22181,localhost:32181,localhost:42181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:19092
       KAFKA_REPLICA_FETCH_MAX_BYTES: 15728640
       KAFKA_MESSAGE_MAX_BYTES: 15728640
+    network_mode: host
     extra_hosts:
-      - "moby:127.0.0.1"
+      - "kafka-host:127.0.0.1"
 
   kafka-2:
     image: confluentinc/cp-kafka:latest
@@ -63,6 +65,8 @@ services:
       - zookeeper-1
       - zookeeper-2
       - zookeeper-3
+    ports:
+      - 29092:29092
     environment:
       KAFKA_BROKER_ID: 2
       KAFKA_ZOOKEEPER_CONNECT: localhost:22181,localhost:32181,localhost:42181
@@ -70,11 +74,13 @@ services:
       KAFKA_REPLICA_FETCH_MAX_BYTES: 15728640
       KAFKA_MESSAGE_MAX_BYTES: 15728640
     extra_hosts:
-      - "moby:127.0.0.1"
+      - "kafka-host:127.0.0.1"
 
   kafka-3:
     image: confluentinc/cp-kafka:latest
     network_mode: host
+    ports:
+      - 39092:39092
     depends_on:
       - zookeeper-1
       - zookeeper-2
@@ -86,4 +92,13 @@ services:
       KAFKA_REPLICA_FETCH_MAX_BYTES: 15728640
       KAFKA_MESSAGE_MAX_BYTES: 15728640
     extra_hosts:
-      - "moby:127.0.0.1"
+      - "kafka-host:127.0.0.1"
+  
+  ipfs-daemon:
+    image: 'ipfs/go-ipfs:v0.4.16'
+    ports:
+      - 4001:4001
+      - 5001:5001
+      - 9090:9090
+    user: "ipfs"
+    command: [ "daemon", "--enable-pubsub-experiment" ]
