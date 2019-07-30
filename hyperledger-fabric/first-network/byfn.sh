@@ -356,6 +356,14 @@ while getopts "h?c:t:d:f:s:l:i:o:v" opt; do
   esac
 done
 
+destroyNetwork(){
+  echo "Stop all running containers"
+  docker stop $(docker ps -aq)
+
+  echo "Remove all containers"
+  docker rm $(docker ps -aq)
+}
+
 
 if [ "${IF_COUCHDB}" == "couchdb" ]; then
   echo
@@ -369,7 +377,8 @@ askProceed
 if [ "${MODE}" == "up" ]; then # Start the network
   networkUp
 elif [ "${MODE}" == "down" ]; then ## Clear the network
-  networkDown
+  # networkDown
+  destroyNetwork
 elif [ "${MODE}" == "generate" ]; then ## Generate Artifacts
   generateCerts
   generateChannelArtifacts

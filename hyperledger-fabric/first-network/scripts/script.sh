@@ -62,20 +62,21 @@ joinChannel () {
 }
 
 # ## Create channel
-# echo "Creating channel..."
-# createChannel
+echo "Creating channel..."
+createChannel
 
 # ## Join all the peers to the channel
-# echo "Having all peers join the channel..."
-# joinChannel
+echo "Having all peers join the channel..."
+joinChannel
 
 # ## Set the anchor peers for each org in the channel
-# echo "Updating anchor peers for org1..."
-# updateAnchorPeers 0 1
+echo "Updating anchor peers for org1..."
+updateAnchorPeers 0 1
 
 # ## Install chaincode on peer0.org1 and peer1.org1
-# echo "Installing chaincode on peer0.org1..."
-# installChaincode 0 1
+echo "Installing chaincode on peer0.org1..."
+installChaincode 0 1
+
 # echo "Install chaincode on peer1.org1..."
 # installChaincode 1 1
 # echo "Installing chaincode on peer2.org1..."
