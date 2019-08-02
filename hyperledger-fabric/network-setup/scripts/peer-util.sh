@@ -64,9 +64,10 @@ installChaincode() {
   PEER=$1
   setGlobals $PEER
   
-  echo "${CC_SRC_PATH}"
+  set -x
   peer chaincode install -n mycc -v 1.0 -l java -p ${CC_SRC_PATH} >&log.txt
   res=$?
+  set +x
   cat log.txt
   
   verifyResult $res "Chaincode installation on peer${PEER}.org1 has failed"
@@ -78,9 +79,10 @@ instantiateChaincode() {
   PEER=$1
   setGlobals $PEER
 
-  echo "${CC_SRC_PATH}"
-  peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n mycc -l java -v 1.0 -c '{"Args":["init"]}' -P "AND ('Org1MSP.peer')" >&log.txt
+  set -x
+  peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n mycc -l java -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "AND ('Org1MSP.peer')" >&log.txt
   res=$?
+  set +x
   cat log.txt
 
   verifyResult $res "Chaincode instantiation on peer${PEER}.org1 on channel '$CHANNEL_NAME' failed"

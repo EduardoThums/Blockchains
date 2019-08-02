@@ -2,7 +2,7 @@
 
 CHANNEL_NAME="$1"
 # Path to java new fabcar chaincode
-CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/java/"
+CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/java"
 
 COUNTER=1
 MAX_RETRY=10
