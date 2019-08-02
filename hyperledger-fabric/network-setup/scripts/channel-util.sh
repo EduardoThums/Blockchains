@@ -1,14 +1,8 @@
 #!/bin/bash
 
 CHANNEL_NAME="$1"
-# Path to golang chaincode
-# CC_SRC_PATH="github.com/chaincode/go/"
-
-# Path to java simple chaincode
-CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/java"
-
-# Path to java fabcar chaincode
-# CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/java/fabcar"
+# Path to java new fabcar chaincode
+CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/java/"
 
 COUNTER=1
 MAX_RETRY=10
@@ -21,7 +15,7 @@ TIMEOUT=10
 createChannel() {
 	setGlobals 0
 
-	peer channel create -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/channel.tx --tls true --cafile $ORDERER_CA >&log.txt
+	peer channel create -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/channel.tx >&log.txt
 	res=$?
 
 	cat log.txt

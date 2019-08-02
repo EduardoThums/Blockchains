@@ -2,7 +2,7 @@
 
 CHANNEL_NAME=mychannel
 
-# Import crypto-config util 
+# Import crypto-config ustil 
 . scripts/crypto-util.sh
 
 #Stop and remove previous containers
@@ -14,7 +14,7 @@ generateCerts
 generateChannelArtifacts
 
 # Export private ca key
-# exportPrivateCaKey
+exportPrivateCaKey
 
 #Start network
 docker-compose up -d

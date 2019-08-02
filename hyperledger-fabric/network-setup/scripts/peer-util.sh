@@ -51,7 +51,7 @@ updateAnchorPeers() {
   PEER=$1
   setGlobals $PEER
 
-  peer channel update -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/${CORE_PEER_LOCALMSPID}anchors.tx --tls true --cafile $ORDERER_CA >&log.txt
+  peer channel update -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/${CORE_PEER_LOCALMSPID}anchors.tx  >&log.txt
   res=$?
   cat log.txt
 
@@ -64,7 +64,7 @@ installChaincode() {
   PEER=$1
   setGlobals $PEER
   
-  echo ${CC_SRC_PATH}
+  echo "${CC_SRC_PATH}"
   peer chaincode install -n mycc -v 1.0 -l java -p ${CC_SRC_PATH} >&log.txt
   res=$?
   cat log.txt
@@ -78,7 +78,8 @@ instantiateChaincode() {
   PEER=$1
   setGlobals $PEER
 
-  peer chaincode instantiate -o orderer.example.com:7050 --tls true --cafile $ORDERER_CA -C $CHANNEL_NAME -n mycc -l java -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "AND ('Org1MSP.peer')" >&log.txt
+  echo "${CC_SRC_PATH}"
+  peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n mycc -l java -v 1.0 -c '{"Args":["init"]}' -P "AND ('Org1MSP.peer')" >&log.txt
   res=$?
   cat log.txt
 
