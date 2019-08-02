@@ -80,7 +80,7 @@ instantiateChaincode() {
   setGlobals $PEER
 
   set -x
-  peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n mycc -l java -v 1.0 -c '{"Args":["init","a","100","b","200"]}' -P "AND ('Org1MSP.peer')" >&log.txt
+  peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n mycc -l java -v 1.0 -c '{"Args":["init"]}' -P "AND ('Org1MSP.peer')" >&log.txt
   res=$?
   set +x
   cat log.txt

@@ -102,7 +102,7 @@
 							<finalName>chaincode</finalName>
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>chaincode.example.SimpleChaincode</mainClass>
+									<mainClass>chaincode.example.FabCar</mainClass>
 								</transformer>
 							</transformers>
 							<filters>
