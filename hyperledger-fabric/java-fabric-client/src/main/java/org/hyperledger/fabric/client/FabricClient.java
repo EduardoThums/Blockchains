@@ -9,6 +9,7 @@ import org.hyperledger.fabric.sdk.security.CryptoSuite;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,17 +19,15 @@ public class FabricClient {
 
 	private HFClient instance;
 
-	public FabricClient(User context) throws CryptoException, InvalidArgumentException {
+	public FabricClient(final User user) throws CryptoException, InvalidArgumentException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 		instance = HFClient.createNewInstance();
 		instance.setCryptoSuite(CryptoSuite.Factory.getCryptoSuite());
-		instance.setUserContext(context);
+		instance.setUserContext(user);
 	}
 
-
-	public ChannelClient createChannelClient(String name) throws InvalidArgumentException {
-		Channel channel = instance.newChannel(name);
-		ChannelClient client = new ChannelClient(name, channel, this);
-		return client;
+	public ChannelClient createChannelClient(final String channelName) throws InvalidArgumentException {
+		final Channel channel = instance.newChannel(channelName);
+		return new ChannelClient(channel, this);
 	}
 
 
@@ -54,5 +53,4 @@ public class FabricClient {
 		Collection<ProposalResponse> responses = instance.sendInstallProposal(request, peers);
 		return responses;
 	}
-
 }

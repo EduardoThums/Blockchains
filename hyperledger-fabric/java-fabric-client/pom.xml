@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.hyperledger.fabric</groupId>
-    <artifactId>fabric-java-sdk</artifactId>
+    <artifactId>java-fabric-client</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <build>
         <plugins>
@@ -21,11 +21,11 @@
     </build>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.hyperledger.fabric-sdk-java/fabric-sdk-java -->
         <dependency>
-            <!-- TODO: Update fabric java sdk version to a new one -->
             <groupId>org.hyperledger.fabric-sdk-java</groupId>
             <artifactId>fabric-sdk-java</artifactId>
-            <version>1.0.0</version>
+            <version>1.4.4</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
         <dependency>
@@ -46,12 +46,5 @@
             <artifactId>slf4j-api</artifactId>
             <version>2.0.0-alpha0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.5</version>
-        </dependency>
     </dependencies>
-
 </project>

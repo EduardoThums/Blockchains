@@ -1,6 +1,7 @@
 package org.hyperledger.fabric.user;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hyperledger.fabric.sdk.Enrollment;
 import org.hyperledger.fabric.sdk.User;
@@ -10,9 +11,12 @@ import java.util.Set;
 
 @Getter
 @Setter
-public class UserContext implements User, Serializable {
+@NoArgsConstructor
+public class FabricUser implements User, Serializable {
 
 	private String name;
+
+	private String password;
 
 	private Set<String> roles;
 
