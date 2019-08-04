@@ -1,36 +1,16 @@
 #!/bin/bash
 
 CHANNEL_NAME=mychannel
+SYS_CHANNEL=byfn-sys-channel
 
-# Import crypto-config ustil 
+# Import crypto-util functions 
 . scripts/crypto-util.sh
 
-clearContainers() {
-  CONTAINER_IDS=$(docker ps -a | awk '($2 ~ /dev-peer.*.mycc.*/) {print $1}')
-  if [ -z "$CONTAINER_IDS" -o "$CONTAINER_IDS" == " " ]; then
-    echo "---- No containers available for deletion ----"
-  else
-    docker rm -f $CONTAINER_IDS
-  fi
-}
-
-
-
-removeContainers(){
-    docker-compose down --volumes --remove-orphan
-
-    #Cleanup the chaincode containers
-    clearContainers
-
-    #Cleanup images
-    removeUnwantedImages
-
-    # remove orderer block and other channel configuration transactions and certs
-    rm -rf channel-artifacts/*.block channel-artifacts/*.tx crypto-config ./org3-artifacts/crypto-config/ channel-artifacts/org3.json
-}
+# Import clean-util functions
+. scripts/clean-util.sh
 
 #Stop and remove previous containers
-echo -e "\nRemove previous networks"
+echo -e "Remove previous networks"
 removeContainers
 
 # Generate general crypto config

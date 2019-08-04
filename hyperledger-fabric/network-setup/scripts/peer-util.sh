@@ -65,7 +65,7 @@ installChaincode() {
   setGlobals $PEER
   
   set -x
-  peer chaincode install -n mycc -v 1.0 -l java -p ${CC_SRC_PATH} >&log.txt
+  peer chaincode install -n $CHAINCODE_NAME -v 1.0 -l $CHAINCODE_LANGUAGE -p ${CC_SRC_PATH} >&log.txt
   res=$?
   set +x
   cat log.txt
@@ -80,7 +80,7 @@ instantiateChaincode() {
   setGlobals $PEER
 
   set -x
-  peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n mycc -l java -v 1.0 -c '{"Args":["init"]}' -P "AND ('Org1MSP.peer')" >&log.txt
+  peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n $CHAINCODE_NAME -l $CHAINCODE_LANGUAGE -v 1.0 -c '{"Args":["init"]}' -P "AND ('Org1MSP.peer')" >&log.txt
   res=$?
   set +x
   cat log.txt

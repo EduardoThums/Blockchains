@@ -2,8 +2,14 @@ package org.hyperledger.fabric;
 
 import lombok.extern.slf4j.Slf4j;
 import org.hyperledger.fabric.chaincode.BaseChaincode;
+import org.hyperledger.fabric.chaincode.BaseChaincodeFunction;
 import org.hyperledger.fabric.chaincode.fabcar.FabCarChaincode;
 import org.hyperledger.fabric.chaincode.fabcar.function.CreateCarFunction;
+import org.hyperledger.fabric.chaincode.fabcar.function.QueryAllCarsFunction;
+import org.hyperledger.fabric.chaincode.fabcar.function.QueryCarFunction;
+import org.hyperledger.fabric.chaincode.videoasset.VideoAssetChaincode;
+import org.hyperledger.fabric.chaincode.videoasset.function.CreateVideoAssetFunction;
+import org.hyperledger.fabric.chaincode.videoasset.function.QueryByHashFunction;
 import org.hyperledger.fabric.client.CAClient;
 import org.hyperledger.fabric.client.ChannelClient;
 import org.hyperledger.fabric.client.FabricClient;
@@ -44,13 +50,20 @@ public class MainApplication {
 			channel.addOrderer(orderer);
 			channel.initialize();
 
-			//Create car chaincode
-			final CreateCarFunction createCarFunction = new CreateCarFunction();
-			final BaseChaincode fabCarChaincode = new FabCarChaincode(createCarFunction);
+			//Fabcar chaincode
+//			final BaseChaincodeFunction baseChaincodeFunction = new CreateCarFunction();
+//			final BaseChaincodeFunction baseChaincodeFunction = new QueryCarFunction();
+//			final BaseChaincodeFunction baseChaincodeFunction = new QueryAllCarsFunction();
+//			final BaseChaincode baseChaincode = new FabCarChaincode(baseChaincodeFunction);
+
+			//VideoAsset chaincode
+//			final BaseChaincodeFunction baseChaincodeFunction = new CreateVideoAssetFunction();
+			final BaseChaincodeFunction baseChaincodeFunction = new QueryByHashFunction();
+			final BaseChaincode baseChaincode = new VideoAssetChaincode(baseChaincodeFunction);
 
 			// Send transaction proposal
-			final Collection<ProposalResponse> responses = channelClient.queryByChainCode(fabCarChaincode);
-			responses.forEach(proposalResponse -> log.info(String.valueOf(proposalResponse.getStatus())));
+			final Collection<ProposalResponse> responses = channelClient.sendTransactionProposal(baseChaincode);
+			responses.forEach(proposalResponse -> System.out.printf("%s\n",proposalResponse.getMessage()));
 
 		} catch (Exception e) {
 			e.printStackTrace();

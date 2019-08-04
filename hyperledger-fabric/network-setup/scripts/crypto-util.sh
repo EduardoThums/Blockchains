@@ -24,7 +24,7 @@ function generateChannelArtifacts() {
   echo "#########  Generating Orderer Genesis block ##############"
   echo "##########################################################"
 
-  ./bin/configtxgen -profile OneOrgOrdererGenesis -channelID byfn-sys-channel -outputBlock ./channel-artifacts/genesis.block
+  ./bin/configtxgen -profile OneOrgOrdererGenesis -channelID $SYS_CHANNEL -outputBlock ./channel-artifacts/genesis.block
   res=$?
 
   if [ $res -ne 0 ]; then

@@ -19,7 +19,7 @@ public enum Config {
 	ORG1_PEER_0_URL("grpc://localhost:7051"),
 	CHAINCODE_NAME("mycc"),
 	EVENT_HUB_NAME("eventhub01"),
-	EVENT_HUB_URL("grpc://localhost:7051"),
+	EVENT_HUB_URL("grpc://localhost:7053"),
 	USERS_DIRECTORY_PATH("user/");
 
 	final String value;

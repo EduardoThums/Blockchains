@@ -2,7 +2,14 @@
 
 CHANNEL_NAME="$1"
 # Path to java new fabcar chaincode
-CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/java"
+CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/java/"
+CHAINCODE_LANGUAGE="java"
+
+# Path to golang new fabcar chaincode
+# CC_SRC_PATH="github.com/chaincode/go/"
+# CHAINCODE_LANGUAGE="golang"
+
+CHAINCODE_NAME="videoassetcc"
 
 COUNTER=1
 MAX_RETRY=10
@@ -32,6 +39,12 @@ joinChannel () {
 	done
 }
 
+installChaincodeOnAllPeers () {
+	for peer in 0 1 2 3; do
+	installChaincode $peer
+	done
+}
+
 ## Create channel
 echo "Creating channel..."
 createChannel
@@ -45,8 +58,8 @@ echo "Updating anchor peers for org1..."
 updateAnchorPeers 0
 
 ## Install chaincode on peer0.org1
-echo "Installing chaincode on peer0.org1..."
-installChaincode 0
+echo "Installing chaincode on all peers"
+installChaincodeOnAllPeers
 
 # Instantiate chaincode on peer0.org1
 echo "Instantiating chaincode on peer0.org1..."

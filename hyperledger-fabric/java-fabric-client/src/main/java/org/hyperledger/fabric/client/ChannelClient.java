@@ -8,7 +8,8 @@ import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
 import org.hyperledger.fabric.sdk.exception.ProposalException;
 
 import java.util.Collection;
-import java.util.concurrent.CompletableFuture;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Getter
 @AllArgsConstructor
@@ -18,46 +19,40 @@ public class ChannelClient {
 
 	private FabricClient fabricClient;
 
-	public Collection<ProposalResponse> sendTransactionProposal(final TransactionProposalRequest request) throws ProposalException, InvalidArgumentException {
-		final Collection<ProposalResponse> response = channel.sendTransactionProposal(request, channel.getPeers());
-		for (final ProposalResponse proposalResponse : response) {
-			final String stringResponse = new String(proposalResponse.getChaincodeActionResponsePayload());
+	private static final byte[] EXPECTED_EVENT_DATA = "!".getBytes(UTF_8);
 
-			System.out.printf("Transaction proposal on channel %s %s %s with transaction id: %s\n",
-					channel.getName(),
-					proposalResponse.getMessage(),
-					proposalResponse.getStatus().toString(),
-					proposalResponse.getTransactionID());
-			System.out.printf("%s\n", stringResponse);
-		}
+	private static final String EXPECTED_EVENT_NAME = "event";
 
-		final CompletableFuture<BlockEvent.TransactionEvent> transactionEventCompletableFuture = channel.sendTransaction(response);
-
-		return response;
-	}
-
-	public Collection<ProposalResponse> queryByChainCode(BaseChaincode baseChaincode) throws InvalidArgumentException, ProposalException {
-		final QueryByChaincodeRequest request = fabricClient.getInstance().newQueryProposalRequest();
+	public Collection<ProposalResponse> sendTransactionProposal(final BaseChaincode baseChaincode) throws ProposalException, InvalidArgumentException {
+		final TransactionProposalRequest request = fabricClient.getInstance().newTransactionProposalRequest();
 		request.setChaincodeID(ChaincodeID
 				.newBuilder()
 				.setName(baseChaincode.getName())
-				.setVersion(baseChaincode.getVersion())
 				.build());
 		request.setFcn(baseChaincode.getFunction().getName());
 		request.setArgs(baseChaincode.getFunction().getArguments());
 		request.setChaincodeLanguage(TransactionRequest.Type.JAVA);
 		request.setProposalWaitTime(1000);
 
-		final Collection<ProposalResponse> response = channel.queryByChaincode(request);
-
-		for (final ProposalResponse proposalResponse : response) {
-			System.out.printf("Transaction proposal on channel %s %s %s with transaction id: %s\n",
-					channel.getName(),
-					proposalResponse.getMessage(),
-					proposalResponse.getStatus().toString(),
-					proposalResponse.getTransactionID());
-		}
+		final Collection<ProposalResponse> response = channel.sendTransactionProposal(request, channel.getPeers());
+		channel.sendTransaction(response);
 
 		return response;
 	}
+//
+//	public Collection<ProposalResponse> queryByChainCode(final BaseChaincode baseChaincode) throws InvalidArgumentException, ProposalException {
+//
+//
+//		final Collection<ProposalResponse> response = channel.queryByChaincode(request);
+//
+//		for (final ProposalResponse proposalResponse : response) {
+//			System.out.printf("Transaction proposal on channel %s %s %s with transaction id: %s\n",
+//					channel.getName(),
+//					proposalResponse.getMessage(),
+//					proposalResponse.getStatus().toString(),
+//					proposalResponse.getTransactionID());
+//		}
+//
+//		return response;
+//	}
 }

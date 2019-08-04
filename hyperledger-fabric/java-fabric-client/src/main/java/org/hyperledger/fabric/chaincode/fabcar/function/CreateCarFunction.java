@@ -10,7 +10,7 @@ public class CreateCarFunction extends BaseChaincodeFunction {
 
 	private static final String NAME = "createCar";
 
-	private static final String[] ARGUMENTS = {"CAR1", "Chevy", "Volt", "Red", "Nick"};
+	private static final String[] ARGUMENTS = {"CAR2", "Chevy", "Volt", "Red", "Nick"};
 
 	public CreateCarFunction() {
 		super(NAME, ARGUMENTS);
