@@ -1,14 +1,16 @@
 # Blockchain
 
-Projeto com foco no estudo e implementação da tecnologia blockchain com foco no framework Hyperledger Fabric. Além de um estudo integrado com tecnologias como Apache Kafka e IPFS, para a realização de infraestrutura capaz de administrar milhares de dados produzidos por camêras de segurança.
+Projeto com foco no estudo e implementação de um modelo de armazenamento robusto capaz de processar dados provenientes de câmeras de seguranças, armazena-los em um sistema de armazenamento distribuído. Juntamente com seu hash que será armazenando na blockchain para maior segurança. 
 
 ## Tecnologias a serem usadas
 
 * Blockchain
 * Hypeledger Fabric
+* BigchainDB
 * Apache Kafka
 * Docker e Docker Compose
 * IPFS
+* Swarm
 
 ## Origem
 
