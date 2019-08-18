@@ -3,8 +3,8 @@
 # Import util scrips
 . scripts/clean-util.sh
 
-# Remove old ipfs containers
+# Remove old bigchaindb network
 removeContainers
 
-# Build new ipfs network
+# Build new bigchaindb network
 docker-compose up -d
