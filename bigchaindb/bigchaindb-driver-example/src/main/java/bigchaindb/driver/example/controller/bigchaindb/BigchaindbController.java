@@ -2,9 +2,12 @@ package bigchaindb.driver.example.controller.bigchaindb;
 
 import bigchaindb.driver.example.controller.bigchaindb.request.CreateTransactionRequest;
 import bigchaindb.driver.example.service.bigchaindb.BigchaindbService;
+import com.bigchaindb.model.Asset;
 import com.bigchaindb.model.Transaction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/bigchaindb")
@@ -26,8 +29,6 @@ public class BigchaindbController {
 		return ResponseEntity.ok(createTransaction.getId());
 	}
 
-//	String transactionID, String ownerPublicKeyParam, String ownerPrivateKeyParam, String newOwnerPublicKeyParam
-
 	@PostMapping("/transfer")
 	public ResponseEntity<String> transfer(
 			@RequestParam("transactionID") String transactionID,
@@ -37,5 +38,12 @@ public class BigchaindbController {
 		final Transaction transferTransaction = bigchaindbService.transferTransaction(transactionID, ownerPublicKeyParam, ownerPrivateKeyParam, newOwnerPublicKeyParam);
 
 		return ResponseEntity.ok(transferTransaction.getId());
+	}
+
+	@GetMapping("/find-by-id/{transactionID}")
+	public ResponseEntity<Asset> findByID(@PathVariable("transactionID") String transactionID) throws IOException {
+		final Transaction transaction = bigchaindbService.findTransactionByID(transactionID);
+
+		return ResponseEntity.ok(transaction.getAsset());
 	}
 }

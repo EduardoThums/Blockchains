@@ -11,11 +11,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateTransactionRequest {
 
-	private String name;
-
-	private String author;
-
-	private String place;
-
-	private String year;
+	private String hash;
 }

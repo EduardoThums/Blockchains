@@ -15,6 +15,8 @@ import java.util.Base64;
 @Service
 public class KeyPairServiceImpl implements KeyPairService {
 
+	//TODO: Use bigchaindb KeyPairUtils class
+
 	@Override
 	public KeyPairResponse createKeyPair() {
 		final KeyPairGenerator keyPairGenerator = new KeyPairGenerator();

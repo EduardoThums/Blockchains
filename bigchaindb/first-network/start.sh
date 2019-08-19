@@ -6,5 +6,8 @@
 # Remove old bigchaindb network
 removeContainers
 
+# Remove old volumes
+# removeVolumes
+
 # Build new bigchaindb network
 docker-compose up -d
