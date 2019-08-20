@@ -8,13 +8,14 @@ import com.bigchaindb.builders.BigchainDbTransactionBuilder;
 import com.bigchaindb.constants.Operations;
 import com.bigchaindb.model.FulFill;
 import com.bigchaindb.model.Transaction;
-import com.bigchaindb.model.Transactions;
 import net.i2p.crypto.eddsa.EdDSAPrivateKey;
 import net.i2p.crypto.eddsa.EdDSAPublicKey;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -27,17 +28,26 @@ public class BigchaindbServiceImpl implements BigchaindbService {
 		this.keyPairService = keyPairService;
 	}
 
-	public Transaction createTransaction(String publicKeyParam, String privateKeyParam, CreateTransactionRequest request) throws Exception {
+	public List<Transaction> createTransaction(String publicKeyParam, String privateKeyParam, CreateTransactionRequest request) throws Exception {
 		final EdDSAPublicKey publicKey = keyPairService.mapPublicKey(publicKeyParam);
 		final EdDSAPrivateKey privateKey = keyPairService.mapPrivateKey(privateKeyParam);
-		final Map<String, String> assetData = mapAssetData(request);
+		Map<String, String> assetData;
 
-		return BigchainDbTransactionBuilder
-				.init()
-				.addAssets(assetData, TreeMap.class)
-				.operation(Operations.CREATE)
-				.buildAndSign(publicKey, privateKey)
-				.sendTransaction();
+		final List<Transaction> transactions = new ArrayList<>();
+
+		for (int index = 0; index <= 10; index++) {
+			assetData = mapAssetData(request, index);
+			final Transaction transaction = BigchainDbTransactionBuilder
+					.init()
+					.addAssets(assetData, TreeMap.class)
+					.operation(Operations.CREATE)
+					.buildAndSign(publicKey, privateKey)
+					.sendTransaction();
+
+			transactions.add(transaction);
+		}
+
+		return transactions;
 	}
 
 	public Transaction transferTransaction(String transactionID, String ownerPublicKeyParam, String ownerPrivateKeyParam, String newOwnerPublicKeyParam) throws Exception {
@@ -60,16 +70,21 @@ public class BigchaindbServiceImpl implements BigchaindbService {
 	}
 
 	@Override
-	public Transaction findTransactionByID(String transactionID) throws IOException {
-		final Transactions transactions = TransactionsApi.getTransactionsByAssetId(transactionID, Operations.CREATE);
+	public List<Transaction> findTransactionByID(List<String> transactionIds) throws IOException {
+		final List<Transaction> transactions = new ArrayList<>();
 
-		return transactions.getTransactions().stream().findFirst().orElse(null);
+		for (String transactionId : transactionIds) {
+			final Transaction transaction = TransactionsApi.getTransactionById(transactionId);
+			transactions.add(transaction);
+		}
+
+		return transactions;
 	}
 
-	private Map<String, String> mapAssetData(CreateTransactionRequest request) {
+	private Map<String, String> mapAssetData(CreateTransactionRequest request, int index) {
 		return new TreeMap<String, String>() {
 			{
-				put("hash", request.getHash());
+				put("hash", request.getHash() + index);
 				put("timestamp", String.valueOf(Instant.now()));
 			}
 		};

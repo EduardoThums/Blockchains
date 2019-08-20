@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/bigchaindb")
@@ -20,13 +22,13 @@ public class BigchaindbController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<String> create(
+	public ResponseEntity<List<String>> create(
 			@RequestParam("publicKey") String publicKey,
 			@RequestParam("privateKey") String privateKey,
 			@RequestBody CreateTransactionRequest request) throws Exception {
-		final Transaction createTransaction = bigchaindbService.createTransaction(publicKey, privateKey, request);
+		final List<Transaction> transactions = bigchaindbService.createTransaction(publicKey, privateKey, request);
 
-		return ResponseEntity.ok(createTransaction.getId());
+		return ResponseEntity.ok(transactions.stream().map(Transaction::getId).collect(Collectors.toList()));
 	}
 
 	@PostMapping("/transfer")
@@ -40,10 +42,10 @@ public class BigchaindbController {
 		return ResponseEntity.ok(transferTransaction.getId());
 	}
 
-	@GetMapping("/find-by-id/{transactionID}")
-	public ResponseEntity<Asset> findByID(@PathVariable("transactionID") String transactionID) throws IOException {
-		final Transaction transaction = bigchaindbService.findTransactionByID(transactionID);
+	@GetMapping("/find-all-by-id")
+	public ResponseEntity<List<Asset>> findByID(@RequestParam("transactionsIds") List<String> transactionsIds) throws IOException {
+		final List<Transaction> transactions = bigchaindbService.findTransactionByID(transactionsIds);
 
-		return ResponseEntity.ok(transaction.getAsset());
+		return ResponseEntity.ok(transactions.stream().map(Transaction::getAsset).collect(Collectors.toList()));
 	}
 }

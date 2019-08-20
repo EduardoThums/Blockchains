@@ -4,12 +4,13 @@ import bigchaindb.driver.example.controller.bigchaindb.request.CreateTransaction
 import com.bigchaindb.model.Transaction;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface BigchaindbService {
 
-	Transaction createTransaction(String publicKeyParam, String privateKeyParam, CreateTransactionRequest request) throws Exception;
+	List<Transaction> createTransaction(String publicKeyParam, String privateKeyParam, CreateTransactionRequest request) throws Exception;
 
 	Transaction transferTransaction(String transactionID, String ownerPublicKeyParam, String ownerPrivateKeyParam, String newOwnerPublicKeyParam) throws Exception;
 
-	Transaction findTransactionByID(String transactionID) throws IOException;
+	List<Transaction> findTransactionByID(List<String> transactionIds) throws IOException;
 }
