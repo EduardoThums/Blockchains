@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public interface KafkaService {
 
-	void startConsumer();
+	void startConsumer() throws Exception;
 
 	void startProducer() throws IOException;
 }

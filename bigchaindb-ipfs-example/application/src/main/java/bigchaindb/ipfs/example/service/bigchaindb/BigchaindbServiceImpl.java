@@ -1,5 +1,6 @@
 package bigchaindb.ipfs.example.service.bigchaindb;
 
+import com.bigchaindb.api.TransactionsApi;
 import com.bigchaindb.builders.BigchainDbTransactionBuilder;
 import com.bigchaindb.constants.Operations;
 import com.bigchaindb.model.Transaction;
@@ -8,6 +9,7 @@ import net.i2p.crypto.eddsa.EdDSAPrivateKey;
 import net.i2p.crypto.eddsa.EdDSAPublicKey;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.security.KeyPair;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -38,6 +40,11 @@ public class BigchaindbServiceImpl implements BigchaindbService {
 		}
 
 		return transactionsHashes;
+	}
+
+	@Override
+	public Transaction findTransactionById(String transactionId) throws IOException {
+		return TransactionsApi.getTransactionById(transactionId);
 	}
 
 	private Map<String, String> mapAssetData(String hash) {

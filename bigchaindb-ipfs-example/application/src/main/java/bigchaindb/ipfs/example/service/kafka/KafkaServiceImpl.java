@@ -1,52 +1,93 @@
 package bigchaindb.ipfs.example.service.kafka;
 
 import bigchaindb.ipfs.example.config.KafkaConfig;
-import org.apache.kafka.clients.consumer.Consumer;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
+import bigchaindb.ipfs.example.service.bigchaindb.BigchaindbService;
+import bigchaindb.ipfs.example.service.ipfs.IPFSService;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.LongDeserializer;
 import org.apache.kafka.common.serialization.LongSerializer;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.Duration;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
+@Slf4j
+@Service
 public class KafkaServiceImpl implements KafkaService {
 
-	private static final String VIDEO_PATH = "/home/eduardo/Downloads/video.mp4";
+	private static final String VIDEO_PATH = "/home/eduardo/Downloads/10mb_video_file.mp4";
 
-	@Override
+	private IPFSService ipfsService;
+
+	private BigchaindbService bigchaindbService;
+
+	private Producer<Long, byte[]> kafkaProducer;
+
+	private Consumer<Long, byte[]> kafkaConsumer;
+
+	public KafkaServiceImpl(IPFSService ipfsService, BigchaindbService bigchaindbService) {
+		this.ipfsService = ipfsService;
+		this.bigchaindbService = bigchaindbService;
+		this.kafkaProducer = createByteArrayProducer();
+		this.kafkaConsumer = createByteArrayConsumer();
+		this.kafkaConsumer.subscribe(Collections.singletonList(KafkaConfig.TOPIC_NAME.getValue()));
+	}
+
 	@PostConstruct
-	public void startConsumer() {
+	public void initConsumer() {
+		Thread kafkaConsumerThread = new Thread(() -> {
+			try {
+				startConsumer();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 
+		kafkaConsumerThread.start();
 	}
 
 	@Override
-	@PostConstruct
-	public void startProducer() throws IOException {
-		final Producer<Long, byte[]> producer = createByteArrayProducer();
+	public void startConsumer() throws Exception {
+		while (true) {
+			final ConsumerRecords<Long, byte[]> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(1000));
 
+			for (final ConsumerRecord<Long, byte[]> record : consumerRecords) {
+				final List<String> hashList = ipfsService.insert(record.value());
+
+				bigchaindbService.createTransaction(hashList)
+						.forEach(transactionHash -> log.info("Transaction completed with {} hash", transactionHash));
+			}
+
+			kafkaConsumer.commitAsync();
+		}
+	}
+
+	@Override
+	public void startProducer() throws IOException {
 		final File file = new File(Objects.requireNonNull(VIDEO_PATH));
 		final byte[] array = Files.readAllBytes(file.toPath());
 
 		final ProducerRecord<Long, byte[]> record = new ProducerRecord<>(KafkaConfig.TOPIC_NAME.getValue(), array);
 
 		try {
-			final RecordMetadata metadata = producer.send(record).get();
-			System.out.printf("Record sent to %s on the partition %d\n", metadata.topic(), metadata.partition());
+			final RecordMetadata metadata = kafkaProducer.send(record).get();
+			log.info("Record sent to {} on the partition {}", metadata.topic(), metadata.partition());
 
 		} catch (ExecutionException | InterruptedException exception) {
-			System.out.printf("Exception message: %s", exception.getMessage());
+			log.error(exception.getMessage());
 		}
-
-		producer.close();
 	}
 
 	private Consumer<Long, byte[]> createByteArrayConsumer() {
@@ -63,7 +104,7 @@ public class KafkaServiceImpl implements KafkaService {
 		return new KafkaConsumer<>(properties);
 	}
 
-	Producer<Long, byte[]> createByteArrayProducer() {
+	private Producer<Long, byte[]> createByteArrayProducer() {
 		final Properties properties = new Properties();
 		properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConfig.KAFKA_BROKERS.getValue());
 		properties.put(ProducerConfig.ACKS_CONFIG, KafkaConfig.ACKS_CONFIG.getValue());

@@ -6,4 +6,6 @@ import java.util.List;
 public interface IPFSService {
 
 	List<String> insert(byte[] record) throws IOException;
+
+	void findFileByHash(String hash) throws IOException;
 }

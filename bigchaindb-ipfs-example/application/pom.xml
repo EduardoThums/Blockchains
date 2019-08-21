@@ -15,6 +15,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
     <properties>
         <!-- Lombok -->
         <lombok.version>1.18.8</lombok.version>
@@ -27,13 +34,10 @@
 
         <!-- BigchainDB -->
         <bigchaindb.version>1.2</bigchaindb.version>
-
-        <!-- Jaxb -->
-        <jaxb.version>2.4.0-b180830.0359</jaxb.version>
     </properties>
 
     <dependencies>
-        <!-- Spring Boot-->
+        <!-- Spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -66,23 +70,6 @@
             <groupId>com.bigchaindb</groupId>
             <artifactId>bigchaindb-driver</artifactId>
             <version>${bigchaindb.version}</version>
-        </dependency>
-
-        <!-- Jaxb -->
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>${jaxb.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.multiformats</groupId>
-            <artifactId>java-multiaddr</artifactId>
-            <version>v1.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.multiformats</groupId>
-            <artifactId>java-multihash</artifactId>
-            <version>v1.1.0</version>
         </dependency>
     </dependencies>
 </project>
