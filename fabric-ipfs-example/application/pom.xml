@@ -4,21 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>basic.network.application</groupId>
-    <artifactId>application</artifactId>
+    <groupId>fabric.ipfs.example</groupId>
+    <artifactId>fabric.ipfs.example</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.7.RELEASE</version>
+        <relativePath/>
+    </parent>
 
     <repositories>
         <repository>
@@ -28,9 +23,6 @@
     </repositories>
 
     <properties>
-        <!-- Java -->
-        <java.version>11</java.version>
-
         <!-- Lombok -->
         <lombok.version>1.18.8</lombok.version>
 
@@ -45,12 +37,15 @@
 
         <!-- Jaxb -->
         <jaxb.version>2.4.0-b180830.0359</jaxb.version>
-
-        <!-- Spring Auto Configure -->
-        <spring-auto-configure.version>2.1.7.RELEASE</spring-auto-configure.version>
     </properties>
 
     <dependencies>
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -85,17 +80,6 @@
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>${jaxb.version}</version>
-        </dependency>
-
-        <!-- Spring -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-            <version>${spring-auto-configure.version}</version>
         </dependency>
     </dependencies>
 </project>

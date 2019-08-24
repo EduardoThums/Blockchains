@@ -21,8 +21,18 @@ services:
       - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
       - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
+       # CouchDB settings
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=couchdb_username
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=couchdb_password
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
+
+  couchdb-base:
+    image: hyperledger/fabric-couchdb:$IMAGE_TAG
+    environment:
+      - COUCHDB_USER=couchdb_username
+      - COUCHDB_PASSWORD=couchdb_password
 
   orderer-base:
     image: hyperledger/fabric-orderer:$IMAGE_TAG

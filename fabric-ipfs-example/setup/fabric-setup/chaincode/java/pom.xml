@@ -1,27 +1,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>my_java_chaincode</groupId>
-    <artifactId>my_java_chaincode</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <properties>
+    <groupId>chaincode</groupId>
+    <artifactId>chaincode</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 
-        <!-- Generic properties -->
+    <properties>
+        <!-- Generic Properties -->
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <!-- fabric-chaincode-java -->
+        <!-- Fabric Chaincode -->
         <fabric-chaincode-java.version>1.4.2</fabric-chaincode-java.version>
 
         <!-- Lombok -->
         <lombok.version>1.18.8</lombok.version>
 
-        <!-- Lombok -->
+        <!-- Genson -->
         <genson.version>1.6</genson.version>
 
         <!-- Log -->
         <log.version>1.8.0-beta4</log.version>
+
+        <!-- Chaincode path location -->
+        <chaincode.path.location>chaincode.VideoAssetChaincode</chaincode.path.location>
 
     </properties>
 
@@ -38,7 +41,7 @@
 
     <dependencies>
 
-        <!-- lombok -->
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -46,21 +49,21 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- log -->
+        <!-- Log -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${log.version}</version>
         </dependency>
 
-        <!-- genson -->
+        <!-- Genson -->
         <dependency>
             <groupId>com.owlike</groupId>
             <artifactId>genson</artifactId>
             <version>${genson.version}</version>
         </dependency>
 
-        <!-- fabric-chaincode-java -->
+        <!-- Fabric Chaincode -->
         <dependency>
             <groupId>org.hyperledger.fabric-chaincode-java</groupId>
             <artifactId>fabric-chaincode-shim</artifactId>
@@ -101,7 +104,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>chaincode.videoasset.VideoAssetChaincode</mainClass>
+                                    <mainClass>${chaincode.path.location}</mainClass>
                                 </transformer>
                             </transformers>
                             <filters>

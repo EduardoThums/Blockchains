@@ -7,11 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="my_java_chaincode" />
+        <module name="chaincode" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="my_java_chaincode" target="1.8" />
+      <module name="chaincode" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

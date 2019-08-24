@@ -31,6 +31,38 @@ services:
     volumes:
       - ../crypto-config/peerOrganizations/org1.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
   
+  couchdb0.org1.example.com:
+    container_name: couchdb0.org1.example.com
+    extends:
+      file: peer-base.yaml
+      service: couchdb-base
+    ports:
+      - 5984:5984
+
+  couchdb1.org1.example.com:
+    container_name: couchdb1.org1.example.com
+    extends:
+      file: peer-base.yaml
+      service: couchdb-base
+    ports:
+      - 6984:5984
+
+  couchdb2.org1.example.com:
+    container_name: couchdb2.org1.example.com
+    extends:
+      file: peer-base.yaml
+      service: couchdb-base
+    ports:
+      - 7984:5984
+
+  couchdb3.org1.example.com:
+    container_name: couchdb3.org1.example.com
+    extends:
+      file: peer-base.yaml
+      service: couchdb-base
+    ports:
+      - 8984:8984
+  
   peer0.org1.example.com:
     container_name: peer0.org1.example.com
     extends:
@@ -45,6 +77,7 @@ services:
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org1.example.com:8051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.example.com:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0.org1.example.com:5984
     volumes:
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/fabric/msp
@@ -52,6 +85,7 @@ services:
         - peer0.org1.example.com:/var/hyperledger/production
     ports:
       - 7051:7051
+      - 7053:7053
 
   peer1.org1.example.com:
     container_name: peer1.org1.example.com
@@ -67,14 +101,15 @@ services:
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1.example.com:8051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb1.org1.example.com:5984
     volumes:
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls:/etc/hyperledger/fabric/tls
         - peer1.org1.example.com:/var/hyperledger/production
-
     ports:
       - 8051:8051
+      - 8053:7053
 
   peer2.org1.example.com:
     container_name: peer2.org1.example.com
@@ -90,6 +125,7 @@ services:
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.org1.example.com:9051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer3.org1.example.com:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb2.org1.example.com:5984
     volumes:
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/msp:/etc/hyperledger/fabric/msp
@@ -97,6 +133,7 @@ services:
         - peer2.org1.example.com:/var/hyperledger/production
     ports:
       - 9051:9051
+      - 9053:7053
 
   peer3.org1.example.com:
     container_name: peer3.org1.example.com
@@ -112,6 +149,7 @@ services:
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer3.org1.example.com:10051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb3.org1.example.com:5984
     volumes:
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/msp:/etc/hyperledger/fabric/msp
@@ -119,3 +157,4 @@ services:
         - peer3.org1.example.com:/var/hyperledger/production
     ports:
       - 10051:10051
+      - 10053:7053
