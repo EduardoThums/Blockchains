@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/kafka")
@@ -18,7 +19,7 @@ public class KafkaController {
 	}
 
 	@PostMapping("/produce")
-	public void produce() throws IOException {
+	public void produce() throws IOException, ExecutionException, InterruptedException {
 		kafkaService.startProducer();
 	}
 }

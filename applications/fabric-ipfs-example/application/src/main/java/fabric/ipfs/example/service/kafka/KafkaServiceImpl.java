@@ -84,17 +84,13 @@ public class KafkaServiceImpl implements KafkaService {
 	}
 
 	@Override
-	public void startProducer() throws IOException {
+	public void startProducer() throws IOException, ExecutionException, InterruptedException {
 		final File file = new File(Objects.requireNonNull(VIDEO_PATH));
 		final byte[] array = Files.readAllBytes(file.toPath());
 
 		final ProducerRecord<Long, byte[]> record = new ProducerRecord<>(KafkaConfig.TOPIC_NAME.getValue(), array);
 
-		try {
-			kafkaProducer.send(record).get();
-		} catch (ExecutionException | InterruptedException exception) {
-			log.error(exception.getMessage());
-		}
+		kafkaProducer.send(record).get();
 	}
 
 	private Consumer<Long, byte[]> createByteArrayConsumer() {

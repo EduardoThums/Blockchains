@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum KafkaConfig {
 
-	KAFKA_BROKERS("localhost:19092,localhost:29092,localhost:39092"),
+	KAFKA_BROKERS("localhost:19092"),
 
 	ACKS_CONFIG("all"),
 

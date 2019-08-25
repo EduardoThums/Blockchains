@@ -19,4 +19,3 @@ Este projeto tem origem proveniente do Trabalho de Conclusão de Curso realizado
 ## Contribuidores
 Eduardo Cristiano Thums\
 Leonardo Silveira Berllato
-
