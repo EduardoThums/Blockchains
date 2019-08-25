@@ -9,7 +9,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class VideoAssetModel {
 
-	private String hash;
+	private String ipfsHash;
 
-	private Integer year;
+	private String contentHash;
+
 }

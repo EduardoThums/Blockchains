@@ -2,16 +2,20 @@ package org.hyperledger.fabric.client;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hyperledger.fabric.chaincode.BaseChaincode;
 import org.hyperledger.fabric.sdk.*;
 import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
 import org.hyperledger.fabric.sdk.exception.ProposalException;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Getter
+@Component
+@NoArgsConstructor
 @AllArgsConstructor
 public class ChannelClient {
 

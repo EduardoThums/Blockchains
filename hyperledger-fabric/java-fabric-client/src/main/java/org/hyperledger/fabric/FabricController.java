@@ -1,15 +1,11 @@
 package org.hyperledger.fabric;
 
-import org.hyperledger.fabric.chaincode.BaseChaincodeFunction;
-import org.hyperledger.fabric.chaincode.videoasset.function.QueryByTimestampRangeFunction;
 import org.hyperledger.fabric.model.VideoAssetModel;
-import org.hyperledger.fabric.service.FabricService;
+import org.hyperledger.fabric.service.fabric.FabricService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/fabric-controller")
+@RequestMapping("/fabric")
 public class FabricController {
 
 	private FabricService fabricService;
@@ -18,21 +14,13 @@ public class FabricController {
 		this.fabricService = fabricService;
 	}
 
-	@PostMapping("/create-video-asset")
-	public VideoAssetModel createVideoAsset(@RequestParam String hash, @RequestParam Integer year) {
-		return fabricService.createVideoAsset(hash, year);
+	@PostMapping("/create")
+	public VideoAssetModel createVideoAsset(@RequestParam String hash) {
+		return fabricService.createVideoAsset(hash);
 	}
 
 	@GetMapping("/query-by-hash")
-	public VideoAssetModel queryByHash(@RequestParam final String hash) {
+	public VideoAssetModel queryByHash(@RequestParam String hash) {
 		return fabricService.queryByHash(hash);
-	}
-
-	@GetMapping("/query-by-timestamp-range")
-	public List<VideoAssetModel> queryByTimestampRange(@RequestParam final Integer year) {
-		final String[] arguments = {String.valueOf(year)};
-		final BaseChaincodeFunction baseChaincodeFunction = new QueryByTimestampRangeFunction(arguments);
-
-		return fabricService.queryByYearRange(year);
 	}
 }

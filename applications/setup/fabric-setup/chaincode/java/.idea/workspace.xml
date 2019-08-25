@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b52601ec-3b82-4e8f-b939-b5443f926bd5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../../application/src/main/java/fabric/ipfs/example/controller/ipfs/IPFSController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../bigchaindb-ipfs-example/application/src/main/java/bigchaindb/ipfs/example/service/bigchaindb/BigchaindbServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../bigchaindb-ipfs-example/application/src/main/java/bigchaindb/ipfs/example/service/bigchaindb/BigchaindbServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../bigchaindb-ipfs-example/application/src/main/java/bigchaindb/ipfs/example/service/ipfs/IPFSServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../bigchaindb-ipfs-example/application/src/main/java/bigchaindb/ipfs/example/service/ipfs/IPFSServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../bigchaindb-ipfs-example/application/src/main/java/bigchaindb/ipfs/example/service/kafka/KafkaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../bigchaindb-ipfs-example/application/src/main/java/bigchaindb/ipfs/example/service/kafka/KafkaServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../application/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../application/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../application/src/main/java/fabric/ipfs/example/config/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../application/src/main/java/fabric/ipfs/example/config/KafkaConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../application/src/main/java/fabric/ipfs/example/service/fabric/FabricServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../application/src/main/java/fabric/ipfs/example/service/fabric/FabricServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../application/src/main/java/fabric/ipfs/example/service/ipfs/IPFSService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../application/src/main/java/fabric/ipfs/example/service/ipfs/IPFSService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../application/src/main/java/fabric/ipfs/example/service/ipfs/IPFSServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../application/src/main/java/fabric/ipfs/example/service/ipfs/IPFSServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../application/src/main/java/fabric/ipfs/example/service/kafka/KafkaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../application/src/main/java/fabric/ipfs/example/service/kafka/KafkaServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../application/user/org1/admin.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../application/user/org1/admin.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../channel-artifacts/channel.tx" beforeDir="false" afterPath="$PROJECT_DIR$/../../channel-artifacts/channel.tx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../channel-artifacts/genesis.block" beforeDir="false" afterPath="$PROJECT_DIR$/../../channel-artifacts/genesis.block" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/ca/53552104903705629c0cc2fc4efa98285053f71e30a3fc9d998fa6f3d0bfd0eb_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/ca/ca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/ca/ca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/msp/admincerts/Admin@example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/msp/admincerts/Admin@example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/msp/cacerts/ca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/msp/cacerts/ca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/admincerts/Admin@example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/admincerts/Admin@example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/cacerts/ca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/cacerts/ca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/keystore/78a036ddfc080ca0696aabfe8d604c08af4e6363e7f1bc7801b078a10e180e66_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/signcerts/orderer.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/signcerts/orderer.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/admincerts/Admin@example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/admincerts/Admin@example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/cacerts/ca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/cacerts/ca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/keystore/fed0e4cd11ec87aad5bfe9e488a8eebc549eb87e4e172fbd57468fd450b1bd78_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/signcerts/orderer2.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/signcerts/orderer2.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp/admincerts/Admin@example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp/admincerts/Admin@example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp/cacerts/ca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp/cacerts/ca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp/keystore/110e6dcbe6485580c487796a668a14627a1ccd8d854bd82aae7b4ea2b860a92b_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp/signcerts/orderer3.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp/signcerts/orderer3.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp/admincerts/Admin@example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp/admincerts/Admin@example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp/cacerts/ca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp/cacerts/ca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp/keystore/35d1612908a2010d492ed924406e2449baf4021e05e8f6172c5f1ac019af934c_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp/signcerts/orderer4.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp/signcerts/orderer4.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp/admincerts/Admin@example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp/admincerts/Admin@example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp/cacerts/ca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp/cacerts/ca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp/keystore/08b4e1b166894e25a04ea7b07ec87562bf584dc3d8384924978ebd5cca17cc85_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp/signcerts/orderer5.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp/signcerts/orderer5.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/tlsca/86baa4a414ce06307a8719205337d89bd311b1deb4bbc0e3e7a9639a2c9f6ede_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/admincerts/Admin@example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/admincerts/Admin@example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/cacerts/ca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/cacerts/ca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/keystore/2158681648c317a7c278cfc1b45144917a3c7a5f66e689db06dbcab77c03694d_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/signcerts/Admin@example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/signcerts/Admin@example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/tlscacerts/tlsca.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/tlscacerts/tlsca.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/tls/client.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/tls/client.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/tls/client.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/ordererOrganizations/example.com/users/Admin@example.com/tls/client.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/ca/2f991a42a48c6bb966b6915f233c776854af840a64df8359e47eadf8ac889f2b_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/keystore/1b136e92515b322f7914e273fd1880b62947038dc7a80766a652c58643904590_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/signcerts/peer0.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/signcerts/peer0.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/keystore/46ca482f62d27f61088a08e93fe9915fe094360d0a2938dd76a097f8ace84c22_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/signcerts/peer1.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/signcerts/peer1.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/msp/keystore/6b5e4106cf9539756c867f5aee0f9a95ed16295ecb53f943d9ecf5402f16b306_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/msp/signcerts/peer2.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/msp/signcerts/peer2.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/tls/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/tls/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/tls/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/tls/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/msp/keystore/219d145539fd00d254435f506c69ab6f4167aef3f32dfdac35761ef4a78073de_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/msp/signcerts/peer3.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/msp/signcerts/peer3.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/tls/server.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/tls/server.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/tls/server.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/peers/peer3.org1.example.com/tls/server.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/tlsca/934f4ef01f72212391beb7c13a05df55618280285195a19cfebdc0f87866a4f8_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/admincerts/Admin@org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/017f6801dda56b856930e1425fb97d2223d77034cd89fa772e5bde72bd540375_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/client.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/client.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/client.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/tls/client.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/admincerts/User1@org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/admincerts/User1@org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/cacerts/ca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/9958cf34ed785b4afa9e62b2243fefdc3834d57fb0e5479cbcd53ac63e5f5347_sk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/tls/ca.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/tls/ca.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/tls/client.crt" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/tls/client.crt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/tls/client.key" beforeDir="false" afterPath="$PROJECT_DIR$/../../crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/tls/client.key" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../kafka-setup/base/kafka-base.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../kafka-setup/base/kafka-base.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../hyperledger-fabric/java-fabric-client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../hyperledger-fabric/java-fabric-client/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../hyperledger-fabric/java-fabric-client/src/main/java/org/hyperledger/fabric/FabricController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../hyperledger-fabric/java-fabric-client/src/main/java/org/hyperledger/fabric/FabricController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../hyperledger-fabric/java-fabric-client/src/main/java/org/hyperledger/fabric/client/ChannelClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../hyperledger-fabric/java-fabric-client/src/main/java/org/hyperledger/fabric/client/ChannelClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../hyperledger-fabric/java-fabric-client/src/main/java/org/hyperledger/fabric/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../hyperledger-fabric/java-fabric-client/src/main/java/org/hyperledger/fabric/config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../hyperledger-fabric/java-fabric-client/src/main/java/org/hyperledger/fabric/model/VideoAssetModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../hyperledger-fabric/java-fabric-client/src/main/java/org/hyperledger/fabric/model/VideoAssetModel.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/classes/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/chaincode/VideoAssetChaincode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>my_java_chaincode</find>
+      <find>Transaction id</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/chaincode/VideoAssetChaincode.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="downloadSourcesAutomatically" value="true" />
+        <option name="importAutomatically" value="true" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="683" />
+    <option name="width" value="679" />
+    <option name="height" value="732" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="chaincode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chaincode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chaincode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="chaincode" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b52601ec-3b82-4e8f-b939-b5443f926bd5" name="Default Changelist" comment="" />
+      <created>1566605133907</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1566605133907</updated>
+      <workItem from="1566605136238" duration="1600000" />
+      <workItem from="1566663601080" duration="329000" />
+      <workItem from="1566671945463" duration="3683000" />
+      <workItem from="1566698729717" duration="73000" />
+      <workItem from="1566698826583" duration="1704000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="7389000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-3" y="0" width="1372" height="738" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1719697" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3105691" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../../../../application/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="107" column="46" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hyperledger/fabric-chaincode-java/fabric-chaincode-shim/1.4.2/fabric-chaincode-shim-1.4.2-sources.jar!/org/hyperledger/fabric/shim/ResponseUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+          <folding>
+            <element signature="e#794#795#0" expanded="true" />
+            <element signature="e#850#851#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hyperledger/fabric-chaincode-java/fabric-chaincode-shim/1.4.2/fabric-chaincode-shim-1.4.2-sources.jar!/org/hyperledger/fabric/shim/ChaincodeStub.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="331" lean-forward="true" selection-start-line="331" selection-end-line="331" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chaincode/VideoAssetChaincode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="48" column="16" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
