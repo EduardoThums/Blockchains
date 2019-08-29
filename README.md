@@ -1,21 +1,22 @@
-# Blockchain
+# About
 
-Projeto com foco no estudo e implementação de um modelo de armazenamento robusto capaz de processar dados provenientes de câmeras de seguranças, armazena-los em um sistema de armazenamento distribuído. Juntamente com seu hash que será armazenando na blockchain para maior segurança. 
+Project to study and implement the best video storage model, using distribuited system, Blockchain and streaming platform. 
 
-## Tecnologias a serem usadas
+## Tecnologies
 
 * Blockchain
 * Hypeledger Fabric
 * BigchainDB
 * Apache Kafka
-* Docker e Docker Compose
+* Docker and Docker Compose
 * IPFS
 * Swarm
 
-## Origem
+## Origin
 
-Este projeto tem origem proveniente do Trabalho de Conclusão de Curso realizado entre Janeiro e Dezembro de 2019. No Instituto Federal de Educação, Ciência e Tecnologia - Campus Sapucaia do Sul, realizado pelos alunos formandos do curso Técnico em Informática Eduardo Cristiano Thums e Leonardo Silveira Berlatto. Com orientação do Professor Doutor Alex Mulattieri Suarez Orozco.
+This project have source from the Final Course Assignmen, by the students Eduardo Cristiano Thums and Leonardo Silveira Berlatto, on the Instituto Federal de Educação, Ciência e Tecnologia - Campus Sapucaia do Sul, 
+between January and November of 2019. With the guidance of the Professor Alex Mulattieri Suarez Orozco.
 
-## Contribuidores
+## Contributors
 Eduardo Cristiano Thums\
 Leonardo Silveira Berllato
