@@ -3,9 +3,13 @@ package bigchaindb.ipfs.example.service.kafka;
 import bigchaindb.ipfs.example.config.KafkaConfig;
 import bigchaindb.ipfs.example.service.bigchaindb.BigchaindbService;
 import bigchaindb.ipfs.example.service.ipfs.IPFSService;
+import bigchaindb.ipfs.example.util.HashGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.*;
-import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.ByteArrayDeserializer;
 import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.LongDeserializer;
@@ -18,10 +22,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.time.Duration;
 import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
-import java.util.concurrent.ExecutionException;
 
 @Slf4j
 @Service
@@ -33,13 +35,16 @@ public class KafkaServiceImpl implements KafkaService {
 
     private BigchaindbService bigchaindbService;
 
+    private HashGenerator hashGenerator;
+
     private Producer<Long, byte[]> kafkaProducer;
 
     private Consumer<Long, byte[]> kafkaConsumer;
 
-    public KafkaServiceImpl(IPFSService ipfsService, BigchaindbService bigchaindbService) {
+    public KafkaServiceImpl(IPFSService ipfsService, BigchaindbService bigchaindbService, HashGenerator hashGenerator) {
         this.ipfsService = ipfsService;
         this.bigchaindbService = bigchaindbService;
+        this.hashGenerator = hashGenerator;
         this.kafkaProducer = createByteArrayProducer();
         this.kafkaConsumer = createByteArrayConsumer();
         this.kafkaConsumer.subscribe(Collections.singletonList(KafkaConfig.TOPIC_NAME.getValue()));
@@ -64,10 +69,11 @@ public class KafkaServiceImpl implements KafkaService {
             final ConsumerRecords<Long, byte[]> consumerRecords = kafkaConsumer.poll(Duration.ofMillis(1000));
 
             for (final ConsumerRecord<Long, byte[]> record : consumerRecords) {
-                final List<String> hashList = ipfsService.insert(record.value());
+                final String ipfsHash = ipfsService.insert(record.value());
+                final String contentHash = hashGenerator.generate(record.value());
 
-                bigchaindbService.createTransaction(hashList)
-                        .forEach(transactionHash -> log.info("Transaction completed with {} hash", transactionHash));
+                bigchaindbService.createTransaction(ipfsHash, contentHash)
+                        .forEach(log::info);
             }
 
             kafkaConsumer.commitAsync();
@@ -81,13 +87,7 @@ public class KafkaServiceImpl implements KafkaService {
 
         final ProducerRecord<Long, byte[]> record = new ProducerRecord<>(KafkaConfig.TOPIC_NAME.getValue(), array);
 
-        try {
-            final RecordMetadata metadata = kafkaProducer.send(record).get();
-            log.info("Record sent to {} on the partition {}", metadata.topic(), metadata.partition());
-
-        } catch (ExecutionException | InterruptedException exception) {
-            log.error(exception.getMessage());
-        }
+        kafkaProducer.send(record);
     }
 
     private Consumer<Long, byte[]> createByteArrayConsumer() {

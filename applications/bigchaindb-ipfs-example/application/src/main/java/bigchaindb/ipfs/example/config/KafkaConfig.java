@@ -7,31 +7,39 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum KafkaConfig {
 
-	KAFKA_BROKERS("localhost:19092,localhost:29092,localhost:39092"),
+    /**
+     * List of the Kafka brokers hosts on multi-node network setup
+     */
+//	KAFKA_BROKERS("localhost:19092,localhost:29092,localhost:39092"),
 
-	ACKS_CONFIG("all"),
+    /**
+     * Kafka host for one node setup
+     */
+    KAFKA_BROKERS("localhost:9092"),
 
-	RETRIES_CONFIG("0"),
+    ACKS_CONFIG("all"),
 
-	BATCH_SIZE_CONFIG("16384"),
+    RETRIES_CONFIG("0"),
 
-	LINGER_MS_CONFIG("1"),
+    BATCH_SIZE_CONFIG("16384"),
 
-	BUFFER_MEMORY_CONFIG("33554432"),
+    LINGER_MS_CONFIG("1"),
 
-	MAX_REQUEST_SIZE_CONFIG("15728640"),
+    BUFFER_MEMORY_CONFIG("33554432"),
 
-	TOPIC_NAME("producer-topic"),
+    MAX_REQUEST_SIZE_CONFIG("15728640"),
 
-	GROUP_ID_CONFIG("consumerGroup10"),
+    TOPIC_NAME("producer-topic"),
 
-	MAX_NO_MESSAGE_FOUND_COUNT("100"),
+    GROUP_ID_CONFIG("consumerGroup10"),
 
-	OFFSET_RESET_EARLIER("earliest"),
+    MAX_NO_MESSAGE_FOUND_COUNT("100"),
 
-	MAX_POLL_RECORDS("1"),
+    OFFSET_RESET_EARLIER("earliest"),
 
-	ENABLE_AUTO_COMMIT_CONFIG("false");
+    MAX_POLL_RECORDS("1"),
 
-	private String value;
+    ENABLE_AUTO_COMMIT_CONFIG("false");
+
+    private String value;
 }

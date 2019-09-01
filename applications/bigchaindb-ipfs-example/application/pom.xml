@@ -34,6 +34,9 @@
 
         <!-- BigchainDB -->
         <bigchaindb.version>1.2</bigchaindb.version>
+
+        <!-- Guava -->
+        <guava.version>28.0-jre</guava.version>
     </properties>
 
     <dependencies>
@@ -70,6 +73,13 @@
             <groupId>com.bigchaindb</groupId>
             <artifactId>bigchaindb-driver</artifactId>
             <version>${bigchaindb.version}</version>
+        </dependency>
+
+        <!-- Guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
         </dependency>
     </dependencies>
 </project>

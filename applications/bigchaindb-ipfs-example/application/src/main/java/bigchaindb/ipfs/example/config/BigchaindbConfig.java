@@ -7,14 +7,13 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum BigchaindbConfig {
 
-    //TODO: Change this configs to application.yml
-    PEER0_URL("http://localhost:32917"),
+    PEER0_URL("http://localhost:33193"),
 
-    PEER1_URL("http://localhost:32851"),
+    PEER1_URL("http://localhost:33199"),
 
-    PEER2_URL("http://localhost:32857"),
+    PEER2_URL("http://localhost:33205"),
 
-    PEER3_URL("http://localhost:32863"),
+    PEER3_URL("http://localhost:33211"),
 
     DEFAULT_OUTPUT_AMOUNT("1");
 

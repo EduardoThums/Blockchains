@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BigchaindbService {
 
-	List<String> createTransaction(List<String> hashes) throws Exception;
+    List<String> createTransaction(String ipfsHash, String contentHash) throws Exception;
 
-	Transaction findTransactionById(String transactionId) throws IOException;
+    Transaction findTransactionById(String transactionId) throws IOException;
 }

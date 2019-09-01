@@ -12,14 +12,14 @@ import java.io.IOException;
 @RequestMapping("/ipfs")
 public class IPFSController {
 
-	private IPFSService ipfsService;
+    private IPFSService ipfsService;
 
-	public IPFSController(IPFSService ipfsService) {
-		this.ipfsService = ipfsService;
-	}
+    public IPFSController(IPFSService ipfsService) {
+        this.ipfsService = ipfsService;
+    }
 
-	@GetMapping("/find-file-by-hash/{hash}")
-	public void findFileByHash(@PathVariable("hash") String hash) throws IOException {
-		this.ipfsService.findFileByHash(hash);
-	}
+    @GetMapping("/find-file-by-hash/{hash}")
+    public String findFileByHash(@PathVariable("hash") String hash) throws IOException {
+        return this.ipfsService.findFileByHash(hash);
+    }
 }

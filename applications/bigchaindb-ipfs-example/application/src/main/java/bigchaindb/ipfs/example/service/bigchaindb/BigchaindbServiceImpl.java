@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.security.KeyPair;
-import java.time.Instant;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -20,40 +19,31 @@ import java.util.TreeMap;
 @Service
 public class BigchaindbServiceImpl implements BigchaindbService {
 
-	@Override
-	public List<String> createTransaction(List<String> hashes) throws Exception {
-		final KeyPair keyPair = KeyPairUtils.generateNewKeyPair();
-		final List<String> transactionsHashes = new ArrayList<>();
-		Map<String, String> assetData;
+    @Override
+    public List<String> createTransaction(final String ipfsHash, final String contentHash) throws Exception {
+        final KeyPair keyPair = KeyPairUtils.generateNewKeyPair();
+        final Map<String, String> assetData = mapAssetData(ipfsHash, contentHash);
 
-		for (String hash : hashes) {
-			assetData = mapAssetData(hash);
+        return Collections.singletonList(BigchainDbTransactionBuilder
+                .init()
+                .addAssets(assetData, TreeMap.class)
+                .operation(Operations.CREATE)
+                .buildAndSign((EdDSAPublicKey) keyPair.getPublic(), (EdDSAPrivateKey) keyPair.getPrivate())
+                .sendTransaction()
+                .getId());
+    }
 
-			final Transaction transaction = BigchainDbTransactionBuilder
-					.init()
-					.addAssets(assetData, TreeMap.class)
-					.operation(Operations.CREATE)
-					.buildAndSign((EdDSAPublicKey) keyPair.getPublic(), (EdDSAPrivateKey) keyPair.getPrivate())
-					.sendTransaction();
+    @Override
+    public Transaction findTransactionById(String transactionId) throws IOException {
+        return TransactionsApi.getTransactionById(transactionId);
+    }
 
-			transactionsHashes.add(transaction.getId());
-		}
-
-		return transactionsHashes;
-	}
-
-	@Override
-	public Transaction findTransactionById(String transactionId) throws IOException {
-		return TransactionsApi.getTransactionById(transactionId);
-	}
-
-	private Map<String, String> mapAssetData(String hash) {
-		return new TreeMap<String, String>() {
-			{
-				put("hash", hash);
-				put("timestampInicio", String.valueOf(Instant.now()));
-				put("timestampFim", String.valueOf(Instant.now()));
-			}
-		};
-	}
+    private Map<String, String> mapAssetData(final String ipfsHash, final String contentHash) {
+        return new TreeMap<String, String>() {
+            {
+                put("ipfsHash", ipfsHash);
+                put("contentHash", contentHash);
+            }
+        };
+    }
 }
