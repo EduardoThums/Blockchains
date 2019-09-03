@@ -11,14 +11,14 @@ import java.io.IOException;
 @RequestMapping("/kafka")
 public class KakfaController {
 
-	private KafkaService kafkaService;
+    private KafkaService kafkaService;
 
-	public KakfaController(KafkaService kafkaService) {
-		this.kafkaService = kafkaService;
-	}
+    public KakfaController(KafkaService kafkaService) {
+        this.kafkaService = kafkaService;
+    }
 
-	@PostMapping("/producer")
-	public void produce() throws IOException {
-		this.kafkaService.startProducer();
-	}
+    @PostMapping("/produce")
+    public void produce() throws IOException {
+        this.kafkaService.produceRecord();
+    }
 }

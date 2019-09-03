@@ -5,7 +5,7 @@ import com.bigchaindb.model.Transaction;
 import java.io.IOException;
 import java.util.List;
 
-public interface BigchaindbService {
+public interface BigchainDbService {
 
     List<String> createTransaction(String ipfsHash, String contentHash) throws Exception;
 

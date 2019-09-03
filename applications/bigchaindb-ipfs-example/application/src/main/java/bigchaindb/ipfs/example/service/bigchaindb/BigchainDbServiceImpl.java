@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 @Service
-public class BigchaindbServiceImpl implements BigchaindbService {
+public class BigchainDbServiceImpl implements BigchainDbService {
 
     @Override
     public List<String> createTransaction(final String ipfsHash, final String contentHash) throws Exception {
