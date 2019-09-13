@@ -1,4 +1,4 @@
-# :video_camera: About
+#  About
 
 Project to study and implement the best video storage model, using distribuited system, Blockchain and streaming platform. 
 
