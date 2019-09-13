@@ -343,5 +343,5 @@ setup/fabric-setup/chaincode/java/.idea
 setup/fabric-setup/crypto-config/.*
 setup/fabric-setup/channel-artifacts/.*
 
-applications/fabric-ipfs-example/setup/fabric-setup/channel-artifacts/
-applications/fabric-ipfs-example/setup/fabric-setup/crypto-config/
+applications/setup/fabric-setup/channel-artifacts/
+applications/setup/fabric-setup/crypto-config/
