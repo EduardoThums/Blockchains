@@ -11,5 +11,5 @@ STANDARD_DIMENSIONS = {
 VIDEO_TYPES = {
     'avi': 'XVID',
     #'mp4': 'H264',
-    'mp4': 'XVID',
+    'mp4': 'mp4v',
 }

@@ -2,28 +2,27 @@ import cv2
 import time
 from constants.video_recorder_constants import STANDARD_DIMENSIONS, VIDEO_TYPES
 
+from splitter.video_splitter import VideoSplitter
 
-class VideoRecorder:
+class VideoRecorder(VideoSplitter):
 
     def __init__(
             self,
             base_filename='video',
             file_extension='avi',
-            time_interval_in_seconds=10,
+            fragments_time_interval_in_seconds=10,
             video_fps=30,
             number_of_records=1,
             resolution='480p'):
+        super().__init__(fragments_time_interval_in_seconds, cv2.VideoCapture(0), video_fps)
         self.base_filename = base_filename
         self.file_extension = file_extension
-        self.time_interval_in_seconds = time_interval_in_seconds
-        self.video_fps = video_fps
         self.number_of_records = number_of_records
-        self.video_capture = cv2.VideoCapture(0)
         self.resolution = resolution
 
-    def get_output(self, out=None):
-        if out:
-            out.release()
+    def get_output(self, output=None):
+        if output:
+            super().release_output(output)
         # Specify the path and name of the video file as well as the encoding, fps and resolution
         return cv2.VideoWriter(
             self.get_full_filename(time.time()),
@@ -32,19 +31,19 @@ class VideoRecorder:
             self.get_dimensions(self.resolution))
 
     def get_full_filename(self, starting_datime):
-        final_datetime = starting_datime + self.time_interval_in_seconds;
+        final_datetime = starting_datime + self.fragments_time_interval_in_seconds;
 
-        starting_datime_text = str(time.strftime('%d-%m-%Y - %H.%M.%S', time.localtime(starting_datime)))
-        final_datime_text = str(time.strftime('%d-%m-%Y - %H.%M.%S', time.localtime(final_datetime)))
+        starting_datetime_text = str(time.strftime('%d-%m-%Y - %H.%M.%S', time.localtime(starting_datime)))
+        final_datetime_text = str(time.strftime('%d-%m-%Y - %H.%M.%S', time.localtime(final_datetime)))
 
-        formated_filename = str.format(
+        formatted_filename = str.format(
             "{} from {} to {}.{}",
             self.base_filename,
-            starting_datime_text,
-            final_datime_text,
+            starting_datetime_text,
+            final_datetime_text,
             self.file_extension)
 
-        return formated_filename
+        return formatted_filename
 
     def get_encoding(self, extension):
         return cv2.VideoWriter_fourcc(*VIDEO_TYPES[extension])
@@ -67,7 +66,7 @@ class VideoRecorder:
 
     def record_video(self):
         output = self.get_output()
-        next_time = time.time() + self.time_interval_in_seconds
+        next_time = time.time() + self.fragments_time_interval_in_seconds
         counter = 1
 
         while True:
@@ -76,7 +75,7 @@ class VideoRecorder:
                     break
 
                 counter += 1
-                next_time += self.time_interval_in_seconds
+                next_time += self.fragments_time_interval_in_seconds
                 output = self.get_output(output)
 
             # Capture frame-by-frame
@@ -85,6 +84,6 @@ class VideoRecorder:
             if ret:
                 output.write(frame)
 
-        output.release()
+        super().release_output(output)
         self.video_capture.release()
         cv2.destroyAllWindows()

@@ -1,5 +1,4 @@
-from recorder.video_recorder import VideoRecorder
-from splitter.video_splitter import VideoSplitter
+from splitter.file_splitter.file_splitter import FileSplitter
 
 if __name__ == '__main__':
-    VideoSplitter('sample_test.avi', 10).split()
+    FileSplitter('test.mp4', 10).split()
