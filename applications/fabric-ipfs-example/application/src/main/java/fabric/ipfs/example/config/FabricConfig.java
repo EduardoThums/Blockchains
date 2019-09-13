@@ -34,7 +34,7 @@ public enum FabricConfig {
 	ORG1_PEER_3("peer3.org1.example.com"),
 	ORG1_PEER_3_URL("grpc://localhost:10051"),
 
-	CHAINCODE_NAME("mycc"),
+	CHAINCODE_NAME("video"),
 
 	EVENT_HUB_NAME("eventhub01"),
 
