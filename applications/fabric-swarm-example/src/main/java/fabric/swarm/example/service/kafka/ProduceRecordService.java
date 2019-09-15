@@ -20,9 +20,10 @@ public class ProduceRecordService {
 
 	private KafkaTemplate<String, byte[]> kafkaTemplate;
 
-	public ProduceRecordService(final KafkaTemplate<String, byte[]> kafkaTemplate, @Value("${default.video.path") final String defaultVideoPath, @Value("${kafka.topic}") final String kafkaTopic) {
-		this.kafkaTemplate = kafkaTemplate;
+	public ProduceRecordService(final KafkaTemplate<String, byte[]> kafkaTemplate, @Value("${default.video.path}") final String defaultVideoPath, @Value("${kafka.topic}") final String kafkaTopic) {
 		this.defaultVideoPath = defaultVideoPath;
+		this.kafkaTopic = kafkaTopic;
+		this.kafkaTemplate = kafkaTemplate;
 	}
 
 	public void produceRecord() throws IOException {

@@ -5,7 +5,9 @@ import fabric.swarm.example.service.swarm.UploadFileService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 /**
  * @author eduardo.thums
@@ -30,6 +32,9 @@ public class SwarmController {
 
 	@PostMapping
 	public ResponseEntity<String> uploadFile(@RequestParam("filePath") String filePath) throws IOException {
-		return ResponseEntity.ok(uploadFileService.uploadFile(filePath));
+		final File file = new File(filePath);
+		final byte[] byteFile = Files.readAllBytes(file.toPath());
+
+		return ResponseEntity.ok(uploadFileService.uploadFile(byteFile));
 	}
 }

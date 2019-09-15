@@ -21,22 +21,22 @@ import java.util.Map;
 @Configuration
 public class KafkaConsumerConfig {
 
-	@Value("${spring.kafka.bootstrapServers}")
+	@Value("${kafka.bootstrapServers}")
 	private String bootstrapServers;
 
-	@Value("${spring.kafka.consumer.groupId}")
+	@Value("${kafka.consumer.groupId}")
 	private String groupId;
 
-	@Value("${spring.kafka.consumer.autoOffsetReset}")
+	@Value("${kafka.consumer.autoOffsetReset}")
 	private String autoOffsetReset;
 
-	@Value("${spring.kafka.consumer.maxPollRecords}")
+	@Value("${kafka.consumer.maxPollRecords}")
 	private String maxPollRecords;
 
-	@Value("${spring.kafka.consumer.enableAutoCommit}")
+	@Value("${kafka.consumer.enableAutoCommit}")
 	private String enableAutoCommit;
 
-	@Value("${spring.kafka.consumer.fetchMaxBytes}")
+	@Value("${kafka.consumer.fetchMaxBytes}")
 	private String fetchMaxBytes;
 
 	@Bean

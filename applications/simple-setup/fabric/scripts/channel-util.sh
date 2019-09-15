@@ -1,13 +1,8 @@
 #!/bin/bash
 
 CHANNEL_NAME="$1"
-# Path to java new fabcar chaincode
 CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/java/"
 CHAINCODE_LANGUAGE="java"
-
-# Path to golang new fabcar chaincode
-# CC_SRC_PATH="github.com/chaincode/go/"
-# CHAINCODE_LANGUAGE="golang"
 
 CHAINCODE_NAME="videoassetcc"
 
@@ -32,7 +27,7 @@ createChannel() {
 
 joinChannel () {
 	joinChannelWithRetry 0
-	echo "===================== peer${peer}.org1 joined channel '$CHANNEL_NAME' ===================== "
+	echo "===================== peer0.org1 joined channel '$CHANNEL_NAME' ===================== "
 	sleep $DELAY
 	echo
 }

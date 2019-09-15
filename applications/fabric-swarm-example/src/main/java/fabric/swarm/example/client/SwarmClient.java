@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @FeignClient(
 		value = "${swarm.value}",
-		url = "${swarm.url}",
+		url = "${swarm.url}:",
 		configuration = SwarmFeignConfig.class
 )
 public interface SwarmClient {

@@ -1,9 +1,7 @@
 package fabric.swarm.example.component.fabric;
 
 import fabric.swarm.example.component.chaincode.BaseChaincode;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.hyperledger.fabric.sdk.*;
 import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
 import org.hyperledger.fabric.sdk.exception.ProposalException;
@@ -16,13 +14,20 @@ import java.util.Collection;
  */
 @Component
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public class ChannelClient {
 
 	private Channel channel;
 
 	private FabricClient fabricClient;
+
+	public ChannelClient() {
+	}
+
+	ChannelClient(Channel channel, FabricClient fabricClient) {
+		this.channel = channel;
+		this.fabricClient = fabricClient;
+	}
+
 
 	public Collection<ProposalResponse> sendTransactionProposal(final BaseChaincode baseChaincode) throws ProposalException, InvalidArgumentException {
 		final TransactionProposalRequest request = fabricClient.getInstance().newTransactionProposalRequest();

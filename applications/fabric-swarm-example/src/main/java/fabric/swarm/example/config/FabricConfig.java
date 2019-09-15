@@ -8,24 +8,15 @@ import fabric.swarm.example.util.DirectoryCleaner;
 import org.hyperledger.fabric.sdk.Channel;
 import org.hyperledger.fabric.sdk.Orderer;
 import org.hyperledger.fabric.sdk.Peer;
-import org.hyperledger.fabric.sdk.exception.CryptoException;
-import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
-import org.hyperledger.fabric.sdk.security.CryptoSuite;
-import org.hyperledger.fabric_ca.sdk.HFCAClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
 
 /**
  * @author eduardo.thums
  */
 @Configuration
 public class FabricConfig {
-
-	private String caOrg1Url;
 
 	private String channelName;
 
@@ -53,21 +44,19 @@ public class FabricConfig {
 
 	private DirectoryCleaner directoryCleaner;
 
-	private FabricConfig(@Value("${fabric.ca.org1.url}") String caOrg1Url,
-						 @Value("${fabric.channel.name}") String channelName,
-						 @Value("${fabric.org1.peer0}") String org1Peer0,
-						 @Value("${fabric.org1.peer0.url}") String org1Peer0Url,
-						 @Value("${fabric.org1.peer1}") String org1Peer1,
-						 @Value("${fabric.org1.peer1.url}") String org1Peer1Url,
-						 @Value("${fabric.org1.peer2}") String org1Peer2,
-						 @Value("${fabric.org1.peer2.url}") String org1Peer2Url,
-						 @Value("${fabric.org1.peer3}") String org1Peer3,
-						 @Value("${fabric.org1.peer3.url}") String org1Peer3Url,
-						 @Value("${fabric.org1.orderer.name}") String ordererName,
-						 @Value("${fabric.org1.orderer.url}") String ordererUrl,
-						 CaClient caClient,
-						 DirectoryCleaner directoryCleaner) {
-		this.caOrg1Url = caOrg1Url;
+	public FabricConfig(@Value("${fabric.channel.name}") String channelName,
+						@Value("${fabric.org1.peer0.name}") String org1Peer0,
+						@Value("${fabric.org1.peer0.url}") String org1Peer0Url,
+						@Value("${fabric.org1.peer1.name}") String org1Peer1,
+						@Value("${fabric.org1.peer1.url}") String org1Peer1Url,
+						@Value("${fabric.org1.peer2.name}") String org1Peer2,
+						@Value("${fabric.org1.peer2.url}") String org1Peer2Url,
+						@Value("${fabric.org1.peer3.name}") String org1Peer3,
+						@Value("${fabric.org1.peer3.url}") String org1Peer3Url,
+						@Value("${fabric.orderer.name}") String ordererName,
+						@Value("${fabric.orderer.url}") String ordererUrl,
+						CaClient caClient,
+						DirectoryCleaner directoryCleaner) {
 		this.channelName = channelName;
 		this.org1Peer0 = org1Peer0;
 		this.org1Peer0Url = org1Peer0Url;
@@ -84,15 +73,7 @@ public class FabricConfig {
 	}
 
 	@Bean
-	public HFCAClient fabricHfcaClient() throws MalformedURLException, IllegalAccessException, InvocationTargetException, InvalidArgumentException, InstantiationException, NoSuchMethodException, CryptoException, ClassNotFoundException {
-		final HFCAClient hfcaClient = HFCAClient.createNewInstance(caOrg1Url, null);
-		hfcaClient.setCryptoSuite(CryptoSuite.Factory.getCryptoSuite());
-
-		return hfcaClient;
-	}
-
-	@Bean
-	public ChannelClient fabricChannelClient() throws Exception {
+	public ChannelClient channelClient() throws Exception {
 		directoryCleaner.cleanUp();
 
 		final FabricUserModel adminFabricUser = caClient.registerAdminUser();
@@ -102,15 +83,15 @@ public class FabricConfig {
 
 		final Channel channel = channelClient.getChannel();
 		final Peer peer0 = fabricClient.getInstance().newPeer(org1Peer0, org1Peer0Url);
-		final Peer peer1 = fabricClient.getInstance().newPeer(org1Peer1, org1Peer1Url);
-		final Peer peer2 = fabricClient.getInstance().newPeer(org1Peer2, org1Peer2Url);
-		final Peer peer3 = fabricClient.getInstance().newPeer(org1Peer3, org1Peer3Url);
+//		final Peer peer1 = fabricClient.getInstance().newPeer(org1Peer1, org1Peer1Url);
+//		final Peer peer2 = fabricClient.getInstance().newPeer(org1Peer2, org1Peer2Url);
+//		final Peer peer3 = fabricClient.getInstance().newPeer(org1Peer3, org1Peer3Url);
 
 		final Orderer orderer = fabricClient.getInstance().newOrderer(ordererName, ordererUrl);
 		channel.addPeer(peer0);
-		channel.addPeer(peer1);
-		channel.addPeer(peer2);
-		channel.addPeer(peer3);
+//		channel.addPeer(peer1);
+//		channel.addPeer(peer2);
+//		channel.addPeer(peer3);
 
 		channel.addOrderer(orderer);
 		channel.initialize();
