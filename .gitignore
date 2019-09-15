@@ -339,9 +339,9 @@ dmypy.json
 
 src/main/webapp/WEB-INF/jboss-web.xml
 
-setup/fabric-setup/chaincode/java/.idea
-setup/fabric-setup/crypto-config/.*
-setup/fabric-setup/channel-artifacts/.*
+# Exclude fabric certificates and keys
+applications/setup/fabric-setup/channel-artifacts/.*
+applications/setup/fabric-setup/crypto-config/.*
 
-applications/setup/fabric-setup/channel-artifacts/
-applications/setup/fabric-setup/crypto-config/
+applications/simple-setup/fabric/channel-artifacts/.*
+applications/simple-setup/fabric/crypto-config/.*
