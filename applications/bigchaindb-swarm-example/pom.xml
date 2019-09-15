@@ -4,9 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>fabric.swarm.example</groupId>
-    <artifactId>fabric-swarm-example</artifactId>
+    <groupId>bigchaindb.swarm.example</groupId>
+    <artifactId>bigchaindb-swarm-example</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,36 +31,47 @@
         <!-- Lombok -->
         <lombok.version>1.18.8</lombok.version>
 
-        <!-- Kafka -->
-        <kafka.version>2.2.1</kafka.version>
+        <!-- Spring Kafka -->
+        <spring-cloud.version>Finchley.SR2</spring-cloud.version>
+
+        <!-- BigchainDB -->
+        <bigchaindb.version>1.2</bigchaindb.version>
+
+        <!-- Guava -->
+        <guava.version>28.0-jre</guava.version>
 
         <!-- Spring Kafka -->
         <spring-kafka.version>2.2.7.RELEASE</spring-kafka.version>
 
-        <!-- Spring Cloud OpenFeign -->
-        <spring-cloud.version>Finchley.SR2</spring-cloud.version>
-
-        <!-- Fabric -->
-        <fabric.version>1.4.4</fabric.version>
-
         <!-- Jaxb -->
         <jaxb.version>2.4.0-b180830.0359</jaxb.version>
-
-        <!-- Guava -->
-        <guava.version>28.0-jre</guava.version>
     </properties>
 
     <dependencies>
-        <!-- Spring -->
+        <!-- Spring Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Kafka -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>${spring-kafka.version}</version>
         </dependency>
 
         <!-- Spring Cloud OpenFeign -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <!-- BigchainDB -->
+        <dependency>
+            <groupId>com.bigchaindb</groupId>
+            <artifactId>bigchaindb-driver</artifactId>
+            <version>${bigchaindb.version}</version>
         </dependency>
 
         <!-- Lombok -->
@@ -59,25 +82,11 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Kafka -->
+        <!-- Guava -->
         <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-            <version>${kafka.version}</version>
-        </dependency>
-
-        <!-- Spring Kafka -->
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-            <version>${spring-kafka.version}</version>
-        </dependency>
-
-        <!-- Fabric -->
-        <dependency>
-            <groupId>org.hyperledger.fabric-sdk-java</groupId>
-            <artifactId>fabric-sdk-java</artifactId>
-            <version>${fabric.version}</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
         </dependency>
 
         <!-- Jaxb -->
@@ -85,13 +94,6 @@
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>${jaxb.version}</version>
-        </dependency>
-
-        <!-- Guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
         </dependency>
     </dependencies>
 
