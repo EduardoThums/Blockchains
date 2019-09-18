@@ -1,4 +1,4 @@
-package bigchaindb.swarm.example.service.kafka;
+package bigchaindb.ipfs.example.service.kafka;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;

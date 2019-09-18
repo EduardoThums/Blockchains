@@ -7,6 +7,18 @@
     <groupId>bigchaindb.ipfs.example</groupId>
     <artifactId>bigchaindb-ipfs-example</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -38,15 +50,22 @@
         <!-- Spring Kafka -->
         <spring-kafka.version>2.2.7.RELEASE</spring-kafka.version>
 
-        <!-- Apache Commons -->
-        <apache-commons.version>1.11</apache-commons.version>
+        <!-- Apache Commons IO -->
+        <commons-io.version>2.6</commons-io.version>
     </properties>
 
     <dependencies>
-        <!-- Spring -->
+        <!-- Spring Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Kafka -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>${spring-kafka.version}</version>
         </dependency>
 
         <!-- Lombok -->
@@ -78,18 +97,11 @@
             <version>${bigchaindb.version}</version>
         </dependency>
 
-        <!-- Spring Kafka -->
+        <!-- Apache Commons IO -->
         <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-            <version>${spring-kafka.version}</version>
-        </dependency>
-
-        <!-- Apache Commons -->
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>${apache-commons.version}</version>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
         </dependency>
     </dependencies>
 </project>

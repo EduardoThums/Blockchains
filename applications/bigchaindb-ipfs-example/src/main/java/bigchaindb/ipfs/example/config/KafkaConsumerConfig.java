@@ -22,43 +22,52 @@ import java.util.Map;
 @Configuration
 public class KafkaConsumerConfig {
 
-    @Value("${spring.kafka.bootstrapServers}")
-    private String bootstrapServers;
+	private String bootstrapServers;
 
-    @Value("${spring.kafka.consumer.groupId}")
-    private String groupId;
+	private String groupId;
 
-    @Value("${spring.kafka.consumer.autoOffsetReset}")
-    private String autoOffsetReset;
+	private String autoOffsetReset;
 
-    @Value("${spring.kafka.consumer.maxPollRecords}")
-    private String maxPollRecords;
+	private String maxPollRecords;
 
-    @Value("${spring.kafka.consumer.enableAutoCommit}")
-    private String enableAutoCommit;
+	private String enableAutoCommit;
 
-    @Value("${spring.kafka.consumer.fetchMaxBytes}")
-    private String fetchMaxBytes;
+	private String fetchMaxBytes;
 
-    @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, byte[]> kafkaListenerContainerFactory() {
-        final ConcurrentKafkaListenerContainerFactory<String, byte[]> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory());
+	public KafkaConsumerConfig(
+			@Value("${kafka.bootstrapServers}") String bootstrapServers,
+			@Value("${kafka.consumer.groupId}") String groupId,
+			@Value("${kafka.consumer.autoOffsetReset}") String autoOffsetReset,
+			@Value("${kafka.consumer.maxPollRecords}") String maxPollRecords,
+			@Value("${kafka.consumer.enableAutoCommit}") String enableAutoCommit,
+			@Value("${kafka.consumer.fetchMaxBytes}") String fetchMaxBytes) {
+		this.bootstrapServers = bootstrapServers;
+		this.groupId = groupId;
+		this.autoOffsetReset = autoOffsetReset;
+		this.maxPollRecords = maxPollRecords;
+		this.enableAutoCommit = enableAutoCommit;
+		this.fetchMaxBytes = fetchMaxBytes;
+	}
 
-        return factory;
-    }
+	@Bean
+	public ConcurrentKafkaListenerContainerFactory<String, byte[]> kafkaListenerContainerFactory() {
+		final ConcurrentKafkaListenerContainerFactory<String, byte[]> factory = new ConcurrentKafkaListenerContainerFactory<>();
+		factory.setConsumerFactory(consumerFactory());
 
-    private ConsumerFactory<String, byte[]> consumerFactory() {
-        final Map<String, Object> properties = new HashMap<>();
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-        properties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, maxPollRecords);
-        properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, enableAutoCommit);
-        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, autoOffsetReset);
-        properties.put(ConsumerConfig.FETCH_MAX_BYTES_CONFIG, fetchMaxBytes);
-        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class);
+		return factory;
+	}
 
-        return new DefaultKafkaConsumerFactory<>(properties);
-    }
+	private ConsumerFactory<String, byte[]> consumerFactory() {
+		final Map<String, Object> properties = new HashMap<>();
+		properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+		properties.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+		properties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, maxPollRecords);
+		properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, enableAutoCommit);
+		properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, autoOffsetReset);
+		properties.put(ConsumerConfig.FETCH_MAX_BYTES_CONFIG, fetchMaxBytes);
+		properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+		properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class);
+
+		return new DefaultKafkaConsumerFactory<>(properties);
+	}
 }

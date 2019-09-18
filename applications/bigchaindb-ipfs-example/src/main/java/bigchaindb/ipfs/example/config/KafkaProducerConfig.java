@@ -19,44 +19,60 @@ import java.util.Map;
 @Configuration
 public class KafkaProducerConfig {
 
-    @Value("${spring.kafka.bootstrapServers}")
-    private String bootstrapServers;
+	@Value("${kafka.bootstrapServers}")
+	private String bootstrapServers;
 
-    @Value("${spring.kafka.producer.acks}")
-    private String acks;
+	@Value("${kafka.producer.acks}")
+	private String acks;
 
-    @Value("${spring.kafka.producer.retries}")
-    private String retries;
+	@Value("${kafka.producer.retries}")
+	private String retries;
 
-    @Value("${spring.kafka.producer.batchSize}")
-    private String batchSize;
+	@Value("${kafka.producer.batchSize}")
+	private String batchSize;
 
-    @Value("${spring.kafka.producer.lingerMs}")
-    private String lingerMs;
+	@Value("${kafka.producer.lingerMs}")
+	private String lingerMs;
 
-    @Value("${spring.kafka.producer.bufferMemory}")
-    private String bufferMemory;
+	@Value("${kafka.producer.bufferMemory}")
+	private String bufferMemory;
 
-    @Value("${spring.kafka.producer.maxRequestSize}")
-    private String maxRequestSize;
+	@Value("${kafka.producer.maxRequestSize}")
+	private String maxRequestSize;
 
-    @Bean
-    public KafkaTemplate<String, byte[]> kafkaTemplate() {
-        return new KafkaTemplate<>(producerFactory());
-    }
+	public KafkaProducerConfig(@Value("${kafka.bootstrapServers}") String bootstrapServers,
+							   @Value("${kafka.producer.acks}") String acks,
+							   @Value("${kafka.producer.retries}") String retries,
+							   @Value("${kafka.producer.batchSize}") String batchSize,
+							   @Value("${kafka.producer.lingerMs}") String lingerMs,
+							   @Value("${kafka.producer.bufferMemory}") String bufferMemory,
+							   @Value("${kafka.producer.maxRequestSize}") String maxRequestSize) {
+		this.bootstrapServers = bootstrapServers;
+		this.acks = acks;
+		this.retries = retries;
+		this.batchSize = batchSize;
+		this.lingerMs = lingerMs;
+		this.bufferMemory = bufferMemory;
+		this.maxRequestSize = maxRequestSize;
+	}
 
-    private ProducerFactory<String, byte[]> producerFactory() {
-        final Map<String, Object> properties = new HashMap<>();
-        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        properties.put(ProducerConfig.ACKS_CONFIG, acks);
-        properties.put(ProducerConfig.RETRIES_CONFIG, retries);
-        properties.put(ProducerConfig.BATCH_SIZE_CONFIG, batchSize);
-        properties.put(ProducerConfig.LINGER_MS_CONFIG, lingerMs);
-        properties.put(ProducerConfig.BUFFER_MEMORY_CONFIG, bufferMemory);
-        properties.put(ProducerConfig.MAX_REQUEST_SIZE_CONFIG, maxRequestSize);
-        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class);
+	@Bean
+	public KafkaTemplate<String, byte[]> kafkaTemplate() {
+		return new KafkaTemplate<>(producerFactory());
+	}
 
-        return new DefaultKafkaProducerFactory<>(properties);
-    }
+	private ProducerFactory<String, byte[]> producerFactory() {
+		final Map<String, Object> properties = new HashMap<>();
+		properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+		properties.put(ProducerConfig.ACKS_CONFIG, acks);
+		properties.put(ProducerConfig.RETRIES_CONFIG, retries);
+		properties.put(ProducerConfig.BATCH_SIZE_CONFIG, batchSize);
+		properties.put(ProducerConfig.LINGER_MS_CONFIG, lingerMs);
+		properties.put(ProducerConfig.BUFFER_MEMORY_CONFIG, bufferMemory);
+		properties.put(ProducerConfig.MAX_REQUEST_SIZE_CONFIG, maxRequestSize);
+		properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+		properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class);
+
+		return new DefaultKafkaProducerFactory<>(properties);
+	}
 }

@@ -31,7 +31,7 @@
         <!-- Lombok -->
         <lombok.version>1.18.8</lombok.version>
 
-        <!-- Spring Kafka -->
+        <!-- Spring Cloud -->
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
 
         <!-- BigchainDB -->
