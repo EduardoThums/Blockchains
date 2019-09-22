@@ -16,10 +16,6 @@ kafka:
     bufferMemory: 33554432
     maxRequestSize: 33554432
 
-# IPFS PROPERTIES
-ipfs:
-  url: /ip4/127.0.0.1/tcp/5001
-
 # BIGCHAINDB PROPERTIES
 bigchaindb:
   peer0:
@@ -33,3 +29,12 @@ bigchaindb:
   keyPair:
     directoryPath: src/main/resources/keypair
     privateKeyFileName: privateKey.key
+
+# SWARM PROPERTIES
+swarm:
+  value: swarmClient
+  url: http://localhost:8501/bzz
+
+# MOCKED FILE PATH
+default.video.path: /home/eduardo/Downloads/video.mp4
+

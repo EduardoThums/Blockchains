@@ -1,0 +1,35 @@
+package bigchaindb.ipfs.example.service.kafka;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+
+/**
+ * @author eduardo.thums
+ */
+@Service
+public class ProduceRecordService {
+
+	private static final String VIDEO_PATH = "/home/eduardo/Downloads/video.mp4";
+
+	private String kafkaTopic;
+
+	private KafkaTemplate<String, byte[]> kafkaTemplate;
+
+	public ProduceRecordService(@Value("${kafka.topic}") String kafkaTopic,
+								KafkaTemplate<String, byte[]> kafkaTemplate) {
+		this.kafkaTopic = kafkaTopic;
+		this.kafkaTemplate = kafkaTemplate;
+	}
+
+	public void produceRecord() throws IOException {
+		final File file = new File(VIDEO_PATH);
+		final byte[] record = Files.readAllBytes(file.toPath());
+
+		this.kafkaTemplate.send(kafkaTopic, record);
+	}
+}

@@ -1,6 +1,6 @@
-package bigchaindb.ipfs.example.controller.bigchaindb;
+package bigchaindb.swarm.example.controller.bigchaindb;
 
-import bigchaindb.ipfs.example.service.bigchaindb.FindTransactionByIdService;
+import bigchaindb.swarm.example.service.bigchaindb.FindTransactionByIdService;
 import com.bigchaindb.model.Transaction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

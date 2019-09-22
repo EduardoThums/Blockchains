@@ -20,6 +20,8 @@ kafka:
     lingerMs: 1
     bufferMemory: 33554432
     maxRequestSize: 33554432
+
+# MOCKED FILE PATH
 default.video.path: /home/eduardo/Downloads/video.mp4
 
 # FABRIC PROPERTIES
