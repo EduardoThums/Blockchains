@@ -1,5 +1,6 @@
 package bigchaindb.ipfs.example.service.kafka;
 
+import bigchaindb.ipfs.example.model.RecordModel;
 import bigchaindb.ipfs.example.service.bigchaindb.CreateTransactionService;
 import bigchaindb.ipfs.example.service.ipfs.UploadFileService;
 import bigchaindb.ipfs.example.util.HashGenerator;
@@ -28,11 +29,11 @@ public class ConsumeRecordService {
 	}
 
 	@KafkaListener(topics = "${kafka.topic}", groupId = "${kafka.consumer.groupId}")
-	public void consumeRecord(final ConsumerRecord<String, byte[]> record) throws Exception {
-		final String storageHash = uploadFileService.uploadFile(record.value());
-		final String contentHash = hashGenerator.generate(record.value());
+	public void consumeRecord(ConsumerRecord<String, RecordModel> record) throws Exception {
+		final String storageHash = uploadFileService.uploadFile(record.value().getVideoRecord());
+		final String contentHash = hashGenerator.generate(record.value().getVideoRecord());
 
-		createTransactionService.createTransaction(storageHash, contentHash)
+		createTransactionService.createTransaction(record.value().getCameraId(), storageHash, contentHash)
 				.forEach(transactionHash -> log.info("Transaction hash: {}", transactionHash));
 	}
 }

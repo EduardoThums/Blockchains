@@ -1,9 +1,7 @@
 package bigchaindb.ipfs.example.controller.kafka;
 
 import bigchaindb.ipfs.example.service.kafka.ProduceRecordService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -20,8 +18,8 @@ public class KafkaController {
 		this.produceRecordService = produceRecordService;
 	}
 
-	@PostMapping
-	public void produceRecord() throws IOException {
-		produceRecordService.produceRecord();
+	@PostMapping("/camera/{cameraId}")
+	public void produceRecord(@PathVariable("cameraId") Long cameraId, @RequestParam("videoPath") String videoPath) throws IOException {
+		produceRecordService.produceRecord(cameraId, videoPath);
 	}
 }
