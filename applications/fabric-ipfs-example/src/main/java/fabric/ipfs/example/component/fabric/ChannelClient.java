@@ -1,10 +1,7 @@
-package fabric.ipfs.example.component.client;
+package fabric.ipfs.example.component.fabric;
 
-import com.google.gson.Gson;
 import fabric.ipfs.example.component.chaincode.BaseChaincode;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.hyperledger.fabric.sdk.*;
 import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
 import org.hyperledger.fabric.sdk.exception.ProposalException;
@@ -12,19 +9,27 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
+/**
+ * @author eduardo.thums
+ */
 @Component
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public class ChannelClient {
 
 	private Channel channel;
 
 	private FabricClient fabricClient;
 
-	private final static Gson GSON = new Gson();
+	public ChannelClient() {
+	}
 
-	public Collection<ProposalResponse> sendTransactionProposal(final BaseChaincode baseChaincode) throws ProposalException, InvalidArgumentException {
+	ChannelClient(Channel channel, FabricClient fabricClient) {
+		this.channel = channel;
+		this.fabricClient = fabricClient;
+	}
+
+
+	public Collection<ProposalResponse> sendTransactionProposal(BaseChaincode baseChaincode) throws ProposalException, InvalidArgumentException {
 		final TransactionProposalRequest request = fabricClient.getInstance().newTransactionProposalRequest();
 		request.setChaincodeID(ChaincodeID
 				.newBuilder()
