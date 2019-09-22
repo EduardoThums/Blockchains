@@ -22,8 +22,8 @@ public class CreateTransactionService {
 		this.keyPairLoader = keyPairLoader;
 	}
 
-	public List<String> createTransaction(String storageHash, String contentHash) throws Exception {
-		final Map<String, String> assetData = mapAssetData(storageHash, contentHash);
+	public List<String> createTransaction(Long cameraId, String storageHash, String contentHash) throws Exception {
+		final Map<String, String> assetData = mapAssetData(cameraId, storageHash, contentHash);
 
 		return Collections.singletonList(BigchainDbTransactionBuilder
 				.init()
@@ -34,8 +34,9 @@ public class CreateTransactionService {
 				.getId());
 	}
 
-	private Map<String, String> mapAssetData(final String storageHash, final String contentHash) {
+	private Map<String, String> mapAssetData(Long cameraId, String storageHash, String contentHash) {
 		return new TreeMap<>() {{
+			put("cameraId", cameraId.toString());
 			put("storageHash", storageHash);
 			put("contentHash", contentHash);
 		}};

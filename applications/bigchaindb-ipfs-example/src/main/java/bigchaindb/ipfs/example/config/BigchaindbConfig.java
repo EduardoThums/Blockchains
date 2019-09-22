@@ -17,7 +17,7 @@ import java.util.Map;
  * @author eduardo.thums
  */
 @Configuration
-public class BigchaindbService {
+public class BigchaindbConfig {
 
 	private String peer0Url;
 
@@ -29,11 +29,11 @@ public class BigchaindbService {
 
 	private KeyPairLoader keyPairLoader;
 
-	public BigchaindbService(@Value("${bigchaindb.peer0.url}") String peer0Url,
-							 @Value("${bigchaindb.peer1.url}") String peer1Url,
-							 @Value("${bigchaindb.peer2.url}") String peer2Url,
-							 @Value("${bigchaindb.peer3.url}") String peer3Url,
-							 KeyPairLoader keyPairLoader) {
+	public BigchaindbConfig(@Value("${bigchaindb.peer0.url}") String peer0Url,
+							@Value("${bigchaindb.peer1.url}") String peer1Url,
+							@Value("${bigchaindb.peer2.url}") String peer2Url,
+							@Value("${bigchaindb.peer3.url}") String peer3Url,
+							KeyPairLoader keyPairLoader) {
 		this.peer0Url = peer0Url;
 		this.peer1Url = peer1Url;
 		this.peer2Url = peer2Url;
