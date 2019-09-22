@@ -23,14 +23,14 @@
     </repositories>
 
     <properties>
+        <!-- Spring Kafka -->
+        <spring-kafka.version>2.2.7.RELEASE</spring-kafka.version>
+
         <!-- Lombok -->
         <lombok.version>1.18.8</lombok.version>
 
         <!-- IPFS -->
         <ipfs.version>v1.2.2</ipfs.version>
-
-        <!-- Kafka -->
-        <kafka.version>2.2.1</kafka.version>
 
         <!-- Fabric -->
         <fabric.version>1.4.4</fabric.version>
@@ -43,10 +43,17 @@
     </properties>
 
     <dependencies>
-        <!-- Spring -->
+        <!-- Spring Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Kafka -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>${spring-kafka.version}</version>
         </dependency>
 
         <!-- Lombok -->
@@ -62,13 +69,6 @@
             <groupId>com.github.ipfs</groupId>
             <artifactId>java-ipfs-api</artifactId>
             <version>${ipfs.version}</version>
-        </dependency>
-
-        <!-- Kafka -->
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-            <version>${kafka.version}</version>
         </dependency>
 
         <!-- Fabric -->

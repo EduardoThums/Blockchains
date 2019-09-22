@@ -1,4 +1,4 @@
-package fabric.ipfs.example.component.client;
+package fabric.ipfs.example.component.fabric;
 
 import lombok.Getter;
 import org.hyperledger.fabric.sdk.Channel;
@@ -10,6 +10,9 @@ import org.hyperledger.fabric.sdk.security.CryptoSuite;
 
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * @author eduardo.thums
+ */
 @Getter
 public class FabricClient {
 
