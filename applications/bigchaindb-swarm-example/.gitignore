@@ -125,3 +125,5 @@ local.properties
 .recommenders/
 
 src/main/webapp/WEB-INF/jboss-web.xml
+
+src/main/resources/keypair/

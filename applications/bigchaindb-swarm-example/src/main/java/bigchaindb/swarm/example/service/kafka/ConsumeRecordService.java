@@ -1,5 +1,6 @@
 package bigchaindb.swarm.example.service.kafka;
 
+import bigchaindb.swarm.example.model.RecordModel;
 import bigchaindb.swarm.example.service.bigchaindb.CreateTransactionService;
 import bigchaindb.swarm.example.service.swarm.UploadFileService;
 import bigchaindb.swarm.example.util.HashGenerator;
@@ -28,11 +29,11 @@ public class ConsumeRecordService {
 	}
 
 	@KafkaListener(topics = "${kafka.topic}", groupId = "${kafka.consumer.groupId}")
-	public void consumeRecord(final ConsumerRecord<String, byte[]> record) throws Exception {
-		final String storageHash = uploadFileService.uploadFile(record.value());
-		final String contentHash = hashGenerator.generate(record.value());
+	public void consumeRecord(ConsumerRecord<String, RecordModel> record) throws Exception {
+		final String storageHash = uploadFileService.uploadFile(record.value().getValue());
+		final String contentHash = hashGenerator.generate(record.value().getValue());
 
-		createTransactionService.createTransaction(storageHash, contentHash)
+		createTransactionService.createTransaction(record.value().getCameraId(), storageHash, contentHash)
 				.forEach(transactionHash -> log.info("Transaction hash: {}", transactionHash));
 	}
 }
