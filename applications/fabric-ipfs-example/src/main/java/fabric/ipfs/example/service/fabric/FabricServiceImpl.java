@@ -68,15 +68,15 @@ public class FabricServiceImpl implements FabricService {
 
 		final Channel channel = channelClient.getChannel();
 		final Peer peer0 = fabricClient.getInstance().newPeer(FabricConfig.ORG1_PEER_0.getValue(), FabricConfig.ORG1_PEER_0_URL.getValue());
-		final Peer peer1 = fabricClient.getInstance().newPeer(FabricConfig.ORG1_PEER_1.getValue(), FabricConfig.ORG1_PEER_1_URL.getValue());
-		final Peer peer2 = fabricClient.getInstance().newPeer(FabricConfig.ORG1_PEER_2.getValue(), FabricConfig.ORG1_PEER_2_URL.getValue());
-		final Peer peer3 = fabricClient.getInstance().newPeer(FabricConfig.ORG1_PEER_3.getValue(), FabricConfig.ORG1_PEER_3_URL.getValue());
+//		final Peer peer1 = fabricClient.getInstance().newPeer(FabricConfig.ORG1_PEER_1.getValue(), FabricConfig.ORG1_PEER_1_URL.getValue());
+//		final Peer peer2 = fabricClient.getInstance().newPeer(FabricConfig.ORG1_PEER_2.getValue(), FabricConfig.ORG1_PEER_2_URL.getValue());
+//		final Peer peer3 = fabricClient.getInstance().newPeer(FabricConfig.ORG1_PEER_3.getValue(), FabricConfig.ORG1_PEER_3_URL.getValue());
 
 		final Orderer orderer = fabricClient.getInstance().newOrderer(FabricConfig.ORDERER_NAME.getValue(), FabricConfig.ORDERER_URL.getValue());
 		channel.addPeer(peer0);
-		channel.addPeer(peer1);
-		channel.addPeer(peer2);
-		channel.addPeer(peer3);
+//		channel.addPeer(peer1);
+//		channel.addPeer(peer2);
+//		channel.addPeer(peer3);
 
 		channel.addOrderer(orderer);
 		channel.initialize();
