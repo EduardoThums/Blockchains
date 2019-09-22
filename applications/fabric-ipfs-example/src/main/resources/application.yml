@@ -15,3 +15,7 @@ kafka:
     lingerMs: 1
     bufferMemory: 33554432
     maxRequestSize: 33554432
+
+# IPFS PROPERTIES
+ipfs:
+  url: /ip4/127.0.0.1/tcp/5001
