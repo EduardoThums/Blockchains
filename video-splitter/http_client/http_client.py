@@ -6,7 +6,5 @@ class HttpClient:
 
     @staticmethod
     def make_request(file_path):
-
-        file = open(file_path,OPEN_FILE_FORMAT)
-
+        file = open(file_path, OPEN_FILE_FORMAT)
         requests.post(DEFAULT_API_ROUTE, files={DEFAULT_PARAM_NAME: file})

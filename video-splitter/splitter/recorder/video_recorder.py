@@ -4,6 +4,7 @@ from constants.video_recorder_constants import STANDARD_DIMENSIONS, VIDEO_TYPES
 
 from splitter.video_splitter import VideoSplitter
 
+
 class VideoRecorder(VideoSplitter):
 
     def __init__(
@@ -24,8 +25,10 @@ class VideoRecorder(VideoSplitter):
         if output:
             super().release_output(output)
         # Specify the path and name of the video file as well as the encoding, fps and resolution
+        self.current_video_piece_filename = self.get_full_filename(time.time());
+
         return cv2.VideoWriter(
-            self.get_full_filename(time.time()),
+            self.current_video_piece_filename,
             self.get_encoding(self.file_extension),
             self.video_fps,
             self.get_dimensions(self.resolution))

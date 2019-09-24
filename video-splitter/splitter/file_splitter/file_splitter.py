@@ -19,7 +19,6 @@ class FileSplitter(VideoSplitter):
         self.current_next_interval_second = 0
         self.video_dimensions = (int(self.video_capture.get(cv2.CAP_PROP_FRAME_WIDTH)),
                                  int(self.video_capture.get(cv2.CAP_PROP_FRAME_HEIGHT)))
-        self.current_video_piece_filename = ''
 
     def get_output(self, output=None):
         if output:
