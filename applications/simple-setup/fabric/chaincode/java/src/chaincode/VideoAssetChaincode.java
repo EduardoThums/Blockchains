@@ -1,13 +1,18 @@
 package chaincode;
 
 import com.owlike.genson.Genson;
+import lombok.extern.slf4j.Slf4j;
 import org.hyperledger.fabric.contract.annotation.Transaction;
 import org.hyperledger.fabric.shim.ChaincodeBase;
 import org.hyperledger.fabric.shim.ChaincodeStub;
 import org.hyperledger.fabric.shim.ResponseUtils;
+import org.hyperledger.fabric.shim.ledger.KeyValue;
+import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class VideoAssetChaincode extends ChaincodeBase {
 
 	private static final Genson GENSON = new Genson();
@@ -18,14 +23,16 @@ public class VideoAssetChaincode extends ChaincodeBase {
 	}
 
 	@Override
-	public Response invoke(ChaincodeStub stub) {
+	public Response invoke(final ChaincodeStub stub) {
 		final List<String> params = stub.getParameters();
 
 		switch (stub.getFunction()) {
 			case "createVideoAsset":
-				return this.createVideoAsset(stub, params);
+				return createVideoAsset(stub, params);
 			case "queryByHash":
-				return this.queryByHash(stub, params);
+				return queryByHash(stub, params);
+			case "queryByCameraId":
+				return queryByCameraId(stub, params);
 			default:
 				return ResponseUtils.newErrorResponse(String.format("No such function %s exist", stub.getFunction()));
 		}
@@ -53,6 +60,18 @@ public class VideoAssetChaincode extends ChaincodeBase {
 		return ResponseUtils.newSuccessResponse(videoAssetState);
 	}
 
+	private Response queryByCameraId(final ChaincodeStub stub, final List<String> params) {
+		final long cameraId = Long.parseLong(params.get(0));
+		final String query = "{\"cameraId\": \"" + cameraId + "\"}";
+
+		final QueryResultsIterator<KeyValue> queryResult = stub.getQueryResult(query);
+
+		final List<String> result = new ArrayList<>();
+		queryResult.forEach(keyValue -> result.add(keyValue.getStringValue()));
+
+		return newSuccessResponse(result.toString());
+	}
+
 	// final String query = "{ \"selector\": { \"year\": { \"$gt\": " + params.get(0) + " } } }";
 
 	// 	LOGGER.info(query);
@@ -66,12 +85,14 @@ public class VideoAssetChaincode extends ChaincodeBase {
 	// 	return newSuccessResponse(result.toString());
 
 	private VideoAsset mapParamsToVideoAsset(final List<String> params) {
-		final String ipfsHash = params.get(0);
+		final String storageHash = params.get(0);
 		final String contentHash = params.get(1);
+		final Long cameraId = Long.parseLong(params.get(2));
 
 		return VideoAsset
 				.builder()
-				.ipfsHash(ipfsHash)
+				.cameraId(cameraId)
+				.storageHash(storageHash)
 				.contentHash(contentHash)
 				.build();
 	}

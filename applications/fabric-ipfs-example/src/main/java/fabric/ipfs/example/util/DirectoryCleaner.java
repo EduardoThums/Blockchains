@@ -3,6 +3,7 @@ package fabric.ipfs.example.util;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 
 /**
@@ -17,6 +18,7 @@ public class DirectoryCleaner {
 		this.fabricUserDirectory = fabricUserDirectory;
 	}
 
+	@PostConstruct
 	public void cleanUp() {
 		final File directory = new File(fabricUserDirectory);
 		deleteDirectory(directory);

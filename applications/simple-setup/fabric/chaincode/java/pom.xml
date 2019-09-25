@@ -20,12 +20,8 @@
         <!-- Genson -->
         <genson.version>1.6</genson.version>
 
-        <!-- Log -->
-        <log.version>1.8.0-beta4</log.version>
-
         <!-- Chaincode path location -->
         <chaincode.path.location>chaincode.VideoAssetChaincode</chaincode.path.location>
-
     </properties>
 
     <repositories>
@@ -47,13 +43,6 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
-        </dependency>
-
-        <!-- Log -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${log.version}</version>
         </dependency>
 
         <!-- Genson -->

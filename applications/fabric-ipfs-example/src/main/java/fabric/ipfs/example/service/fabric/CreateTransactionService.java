@@ -26,7 +26,7 @@ public class CreateTransactionService {
 	}
 
 	public List<String> createTransaction(Long cameraId, String storageHash, String contentHash) throws Exception {
-		final String[] arguments = {storageHash, contentHash};
+		final String[] arguments = {storageHash, contentHash, cameraId.toString()};
 		final BaseChaincodeFunction baseChaincodeFunction = new CreateVideoAssetFunction(arguments);
 		final BaseChaincode baseChaincode = new VideoAssetChaincode(baseChaincodeFunction);
 

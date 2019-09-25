@@ -74,8 +74,6 @@ public class FabricConfig {
 
 	@Bean
 	public ChannelClient channelClient() throws Exception {
-		directoryCleaner.cleanUp();
-
 		final FabricUserModel adminFabricUser = caClient.registerAdminUser();
 		final FabricClient fabricClient = new FabricClient(adminFabricUser);
 
