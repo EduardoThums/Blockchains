@@ -3,11 +3,12 @@ package chaincode;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 @Getter
 @Builder
-class VideoAsset {
+class VideoAsset implements Serializable {
 
 	private Instant starDate;
 
@@ -17,5 +18,5 @@ class VideoAsset {
 
 	private String contentHash;
 
-	private Long cameraId;
+	private long cameraId;
 }

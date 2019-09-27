@@ -40,6 +40,9 @@
 
         <!-- Guava -->
         <guava.version>28.0-jre</guava.version>
+
+        <!-- Genson -->
+        <genson.version>1.6</genson.version>
     </properties>
 
     <dependencies>
@@ -90,6 +93,13 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+
+        <!-- Genson -->
+        <dependency>
+            <groupId>com.owlike</groupId>
+            <artifactId>genson</artifactId>
+            <version>${genson.version}</version>
         </dependency>
     </dependencies>
 </project>

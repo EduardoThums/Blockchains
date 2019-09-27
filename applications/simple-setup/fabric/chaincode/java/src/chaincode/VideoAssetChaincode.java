@@ -1,7 +1,6 @@
 package chaincode;
 
 import com.owlike.genson.Genson;
-import lombok.extern.slf4j.Slf4j;
 import org.hyperledger.fabric.contract.annotation.Transaction;
 import org.hyperledger.fabric.shim.ChaincodeBase;
 import org.hyperledger.fabric.shim.ChaincodeStub;
@@ -9,13 +8,17 @@ import org.hyperledger.fabric.shim.ResponseUtils;
 import org.hyperledger.fabric.shim.ledger.KeyValue;
 import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 public class VideoAssetChaincode extends ChaincodeBase {
 
 	private static final Genson GENSON = new Genson();
+
+	private static final String SERIALIZED_OBJECT_SEPARATOR = "/";
 
 	@Override
 	public Response init(ChaincodeStub stub) {
@@ -57,37 +60,25 @@ public class VideoAssetChaincode extends ChaincodeBase {
 			return ResponseUtils.newErrorResponse(String.format("Video asset with hash: %s doesn't exit", key));
 		}
 
-		return ResponseUtils.newSuccessResponse(videoAssetState);
+		return ResponseUtils.newSuccessResponse();
 	}
 
 	private Response queryByCameraId(final ChaincodeStub stub, final List<String> params) {
 		final long cameraId = Long.parseLong(params.get(0));
-		final String query = "{\"cameraId\": \"" + cameraId + "\"}";
+		final String query = "{ \"selector\": { \"cameraId\": " + cameraId + " } }";
 
 		final QueryResultsIterator<KeyValue> queryResult = stub.getQueryResult(query);
 
 		final List<String> result = new ArrayList<>();
-		queryResult.forEach(keyValue -> result.add(keyValue.getStringValue()));
+		queryResult.forEach(keyValue -> result.add(keyValue.getStringValue() + SERIALIZED_OBJECT_SEPARATOR));
 
 		return newSuccessResponse(result.toString());
 	}
 
-	// final String query = "{ \"selector\": { \"year\": { \"$gt\": " + params.get(0) + " } } }";
-
-	// 	LOGGER.info(query);
-
-	// 	final QueryResultsIterator<KeyValue> queryResult = stub.getQueryResult(query);
-
-	// 	final List<String> result = new ArrayList<>();
-
-	// 	queryResult.forEach(keyValue -> result.add(keyValue.getStringValue()));
-
-	// 	return newSuccessResponse(result.toString());
-
 	private VideoAsset mapParamsToVideoAsset(final List<String> params) {
 		final String storageHash = params.get(0);
 		final String contentHash = params.get(1);
-		final Long cameraId = Long.parseLong(params.get(2));
+		final long cameraId = Long.parseLong(params.get(2));
 
 		return VideoAsset
 				.builder()

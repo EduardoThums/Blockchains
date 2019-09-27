@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.PostConstruct;
+
 /**
  * @author eduardo.thums
  */
@@ -70,6 +72,11 @@ public class FabricConfig {
 		this.ordererUrl = ordererUrl;
 		this.caClient = caClient;
 		this.directoryCleaner = directoryCleaner;
+	}
+
+	@PostConstruct
+	public void cleanFabricUserDirectory() {
+		directoryCleaner.cleanUp();
 	}
 
 	@Bean
