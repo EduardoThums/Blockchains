@@ -5,6 +5,7 @@ import fabric.ipfs.example.component.chaincode.BaseChaincodeFunction;
 import fabric.ipfs.example.component.chaincode.videoasset.VideoAssetChaincode;
 import fabric.ipfs.example.component.chaincode.videoasset.function.CreateVideoAssetFunction;
 import fabric.ipfs.example.component.fabric.ChannelClient;
+import fabric.ipfs.example.model.VideoAssetModel;
 import org.hyperledger.fabric.sdk.ChaincodeResponse;
 import org.hyperledger.fabric.sdk.ProposalResponse;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,8 @@ public class CreateTransactionService {
 		this.channelClient = channelClient;
 	}
 
-	public List<String> createTransaction(Long cameraId, String storageHash, String contentHash) throws Exception {
-		final String[] arguments = {storageHash, contentHash, cameraId.toString()};
+	public List<String> createTransaction(final VideoAssetModel videoAssetModel) throws Exception {
+		final String[] arguments = videoAssetModel.toArguments();
 		final BaseChaincodeFunction baseChaincodeFunction = new CreateVideoAssetFunction(arguments);
 		final BaseChaincode baseChaincode = new VideoAssetChaincode(baseChaincodeFunction);
 

@@ -4,15 +4,12 @@ import fabric.ipfs.example.component.fabric.CaClient;
 import fabric.ipfs.example.component.fabric.ChannelClient;
 import fabric.ipfs.example.component.fabric.FabricClient;
 import fabric.ipfs.example.model.FabricUserModel;
-import fabric.ipfs.example.util.DirectoryCleaner;
 import org.hyperledger.fabric.sdk.Channel;
 import org.hyperledger.fabric.sdk.Orderer;
 import org.hyperledger.fabric.sdk.Peer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.PostConstruct;
 
 /**
  * @author eduardo.thums
@@ -44,8 +41,6 @@ public class FabricConfig {
 
 	private CaClient caClient;
 
-	private DirectoryCleaner directoryCleaner;
-
 	public FabricConfig(@Value("${fabric.channel.name}") String channelName,
 						@Value("${fabric.org1.peer0.name}") String org1Peer0,
 						@Value("${fabric.org1.peer0.url}") String org1Peer0Url,
@@ -57,8 +52,7 @@ public class FabricConfig {
 						@Value("${fabric.org1.peer3.url}") String org1Peer3Url,
 						@Value("${fabric.orderer.name}") String ordererName,
 						@Value("${fabric.orderer.url}") String ordererUrl,
-						CaClient caClient,
-						DirectoryCleaner directoryCleaner) {
+						CaClient caClient) {
 		this.channelName = channelName;
 		this.org1Peer0 = org1Peer0;
 		this.org1Peer0Url = org1Peer0Url;
@@ -71,12 +65,6 @@ public class FabricConfig {
 		this.ordererName = ordererName;
 		this.ordererUrl = ordererUrl;
 		this.caClient = caClient;
-		this.directoryCleaner = directoryCleaner;
-	}
-
-	@PostConstruct
-	public void cleanFabricUserDirectory() {
-		directoryCleaner.cleanUp();
 	}
 
 	@Bean

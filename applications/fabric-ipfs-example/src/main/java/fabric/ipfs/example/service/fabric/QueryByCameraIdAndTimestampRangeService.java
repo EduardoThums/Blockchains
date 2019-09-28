@@ -6,8 +6,9 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import fabric.ipfs.example.component.chaincode.BaseChaincode;
 import fabric.ipfs.example.component.chaincode.BaseChaincodeFunction;
 import fabric.ipfs.example.component.chaincode.videoasset.VideoAssetChaincode;
-import fabric.ipfs.example.component.chaincode.videoasset.function.QueryByCameraIdFunction;
+import fabric.ipfs.example.component.chaincode.videoasset.function.QueryByCameraIdAndTimestampRangeFunction;
 import fabric.ipfs.example.component.fabric.ChannelClient;
+import fabric.ipfs.example.controller.fabric.request.QueryByTimestampRequest;
 import fabric.ipfs.example.model.VideoAssetModel;
 import org.hyperledger.fabric.sdk.ChaincodeResponse;
 import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
@@ -22,21 +23,21 @@ import java.util.List;
  * @author eduardo.thums
  */
 @Service
-public class QueryByCameraIdService {
+public class QueryByCameraIdAndTimestampRangeService {
 
 	private ChannelClient channelClient;
 
 	private ObjectMapper objectMapper;
 
-	public QueryByCameraIdService(ChannelClient channelClient) {
+	public QueryByCameraIdAndTimestampRangeService(ChannelClient channelClient) {
 		this.channelClient = channelClient;
 		this.objectMapper = new ObjectMapper();
 		objectMapper.registerModule(new JavaTimeModule());
 	}
 
-	public List<VideoAssetModel> queryByCameraId(Long cameraId) throws ProposalException, InvalidArgumentException, JsonProcessingException {
-		final String[] arguments = {cameraId.toString()};
-		final BaseChaincodeFunction baseChaincodeFunction = new QueryByCameraIdFunction(arguments);
+	public List<VideoAssetModel> queryByCameraIdAndTimestampRange(final long cameraId, final QueryByTimestampRequest request) throws ProposalException, InvalidArgumentException, JsonProcessingException {
+		final String[] arguments = {String.valueOf(cameraId), String.valueOf(request.getStartDate()), String.valueOf(request.getEndDate())};
+		final BaseChaincodeFunction baseChaincodeFunction = new QueryByCameraIdAndTimestampRangeFunction(arguments);
 		final BaseChaincode baseChaincode = new VideoAssetChaincode(baseChaincodeFunction);
 
 		//MODO GAMBETINHA

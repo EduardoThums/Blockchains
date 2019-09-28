@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.util.stream.Stream;
 
 /**
  * @author eduardo.thums
@@ -25,4 +26,14 @@ public class VideoAssetModel {
 	private String contentHash;
 
 	private long cameraId;
+
+	public String[] toArguments() {
+		return Stream.of(
+				this.starDate.toString(),
+				this.endDate.toString(),
+				this.storageHash,
+				this.contentHash,
+				String.valueOf(this.cameraId))
+				.toArray(String[]::new);
+	}
 }

@@ -49,7 +49,7 @@ fabric:
     peer3:
       name: peer3.org1.example.com
       url: grpc://localhost:10051
-  userDirectoryPath: src/main/resources/user/org1
+  userDirectoryPath: src/main/resources/user
 
 # IPFS PROPERTIES
 ipfs:

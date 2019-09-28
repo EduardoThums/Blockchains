@@ -1,13 +1,17 @@
 package fabric.ipfs.example.controller.fabric;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import fabric.ipfs.example.controller.fabric.request.QueryByTimestampRequest;
 import fabric.ipfs.example.model.VideoAssetModel;
 import fabric.ipfs.example.service.fabric.FindTransactionByHash;
+import fabric.ipfs.example.service.fabric.QueryByCameraIdAndTimestampRangeService;
 import fabric.ipfs.example.service.fabric.QueryByCameraIdService;
 import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
 import org.hyperledger.fabric.sdk.exception.ProposalException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,9 +22,12 @@ public class FabricController {
 
 	private QueryByCameraIdService queryByCameraIdService;
 
-	public FabricController(FindTransactionByHash findTransactionByHash, QueryByCameraIdService queryByCameraIdService) {
+	private QueryByCameraIdAndTimestampRangeService queryByCameraIdAndTimestampRangeService;
+
+	public FabricController(FindTransactionByHash findTransactionByHash, QueryByCameraIdService queryByCameraIdService, QueryByCameraIdAndTimestampRangeService queryByCameraIdAndTimestampRangeService) {
 		this.findTransactionByHash = findTransactionByHash;
 		this.queryByCameraIdService = queryByCameraIdService;
+		this.queryByCameraIdAndTimestampRangeService = queryByCameraIdAndTimestampRangeService;
 	}
 
 	@GetMapping
@@ -28,8 +35,14 @@ public class FabricController {
 		return ResponseEntity.ok(findTransactionByHash.findByHash(hash));
 	}
 
-	@GetMapping("/camera/{cameraId}")
-	public ResponseEntity<List<VideoAssetModel>> findByHash(@PathVariable("cameraId") Long cameraId) throws InvalidArgumentException, ProposalException {
+	@GetMapping("/find-by-camera-id/{cameraId}")
+	public ResponseEntity<List<VideoAssetModel>> findByCameraId(@PathVariable("cameraId") Long cameraId) throws InvalidArgumentException, ProposalException, JsonProcessingException {
 		return ResponseEntity.ok(queryByCameraIdService.queryByCameraId(cameraId));
+	}
+
+	@GetMapping("/find-by-camera-id-and-timestamp-range/{cameraId}")
+	public ResponseEntity<List<VideoAssetModel>> findByCameraIdAndTimestampRange(@PathVariable("cameraId") final long cameraId,
+																				 @Valid @RequestBody final QueryByTimestampRequest request) throws InvalidArgumentException, ProposalException, JsonProcessingException {
+		return ResponseEntity.ok(queryByCameraIdAndTimestampRangeService.queryByCameraIdAndTimestampRange(cameraId, request));
 	}
 }

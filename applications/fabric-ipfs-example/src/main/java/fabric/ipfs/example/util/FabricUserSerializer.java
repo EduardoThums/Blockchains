@@ -21,7 +21,7 @@ public class FabricUserSerializer {
 	}
 
 	public FabricUserModel writeFabricUser(final FabricUserModel fabricUserModel) throws Exception {
-		final String directoryPath = fabricUserDirectory + fabricUserModel.getAffiliation();
+		final String directoryPath = fabricUserDirectory + "/" + fabricUserModel.getAffiliation();
 		final File directory = new File(directoryPath);
 
 		if (!directory.exists()) {

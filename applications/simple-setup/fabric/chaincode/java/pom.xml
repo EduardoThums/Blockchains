@@ -17,8 +17,11 @@
         <!-- Lombok -->
         <lombok.version>1.18.8</lombok.version>
 
-        <!-- Genson -->
-        <genson.version>1.6</genson.version>
+        <!-- Jackson Databind -->
+        <jackson-databind.version>2.10.0.pr3</jackson-databind.version>
+
+        <!-- Jackson Datatype -->
+        <jackson-datatype-jsr310.version>2.10.0.pr3</jackson-datatype-jsr310.version>
 
         <!-- Chaincode path location -->
         <chaincode.path.location>chaincode.VideoAssetChaincode</chaincode.path.location>
@@ -45,11 +48,11 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Genson -->
+        <!-- Jackson Databind -->
         <dependency>
-            <groupId>com.owlike</groupId>
-            <artifactId>genson</artifactId>
-            <version>${genson.version}</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
         </dependency>
 
         <!-- Fabric Chaincode -->
@@ -66,6 +69,12 @@
             <scope>compile</scope>
         </dependency>
 
+        <!-- Jackson Datatype -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson-datatype-jsr310.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <sourceDirectory>src</sourceDirectory>
