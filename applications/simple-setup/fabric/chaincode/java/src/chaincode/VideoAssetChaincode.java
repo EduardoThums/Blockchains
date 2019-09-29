@@ -1,8 +1,7 @@
 package chaincode;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.google.gson.Gson;
 import org.hyperledger.fabric.Logger;
 import org.hyperledger.fabric.contract.annotation.Transaction;
 import org.hyperledger.fabric.shim.ChaincodeBase;
@@ -14,16 +13,17 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class VideoAssetChaincode extends ChaincodeBase {
 
 	private final static Logger LOGGER = Logger.getLogger(VideoAssetChaincode.class.getName());
 
-	private ObjectMapper objectMapper;
+	private Gson gson;
 
 	private VideoAssetChaincode() {
-		this.objectMapper = new ObjectMapper();
-		this.objectMapper.registerModule(new JavaTimeModule());
+		this.gson = new Gson();
 	}
 
 	@Override
@@ -68,10 +68,12 @@ public class VideoAssetChaincode extends ChaincodeBase {
 		final VideoAsset videoAsset = mapParamsToVideoAsset(params);
 		LOGGER.info(videoAsset.getStarDate().toString());
 
-		final String videoAssetState = objectMapper.writeValueAsString(videoAsset);
+//		final String videoAssetState = objectMapper.writeValueAsString(videoAsset);
+		final String videoAssetState = gson.toJson(videoAsset);
 		LOGGER.info(videoAssetState);
 
-		final VideoAsset deserializedVideoAsset = objectMapper.readValue(videoAssetState, VideoAsset.class);
+//		final VideoAsset deserializedVideoAsset = objectMapper.readValue(videoAssetState, VideoAsset.class);
+		final VideoAsset deserializedVideoAsset = gson.fromJson(videoAssetState, VideoAsset.class);
 		LOGGER.info(deserializedVideoAsset.getStarDate().toString());
 
 		stub.putStringState(key, videoAssetState);
@@ -96,10 +98,11 @@ public class VideoAssetChaincode extends ChaincodeBase {
 
 		final QueryResultsIterator<KeyValue> queryResult = stub.getQueryResult(query);
 
-		final List<String> videoAssetList = new ArrayList<>();
-		queryResult.forEach(keyValue -> videoAssetList.add(keyValue.getStringValue()));
+		final List<String> videoAssetList = StreamSupport.stream(queryResult.spliterator(), false)
+				.map(KeyValue::getStringValue)
+				.collect(Collectors.toList());
 
-		return newSuccessResponse(objectMapper.writeValueAsString(new VideoAssetWrapper(videoAssetList)));
+		return newSuccessResponse(videoAssetList.toString());
 	}
 
 	private Response queryByCameraIdAndTimestampRange(final ChaincodeStub stub, final List<String> params) throws JsonProcessingException {
@@ -114,7 +117,8 @@ public class VideoAssetChaincode extends ChaincodeBase {
 		final List<String> videoAssetList = new ArrayList<>();
 		queryResult.forEach(keyValue -> videoAssetList.add(keyValue.getStringValue()));
 
-		return newSuccessResponse(objectMapper.writeValueAsString(new VideoAssetWrapper(videoAssetList)));
+//		return newSuccessResponse(objectMapper.writeValueAsString(new VideoAssetWrapper(videoAssetList)));
+		return newSuccessResponse();
 	}
 
 	private VideoAsset mapParamsToVideoAsset(final List<String> params) {

@@ -1,6 +1,5 @@
 package fabric.ipfs.example.service.fabric;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import fabric.ipfs.example.component.chaincode.BaseChaincode;
@@ -9,14 +8,14 @@ import fabric.ipfs.example.component.chaincode.videoasset.VideoAssetChaincode;
 import fabric.ipfs.example.component.chaincode.videoasset.function.QueryByCameraIdFunction;
 import fabric.ipfs.example.component.fabric.ChannelClient;
 import fabric.ipfs.example.model.VideoAssetModel;
-import org.hyperledger.fabric.sdk.ChaincodeResponse;
 import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
 import org.hyperledger.fabric.sdk.exception.ProposalException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author eduardo.thums
@@ -31,30 +30,22 @@ public class QueryByCameraIdService {
 	public QueryByCameraIdService(ChannelClient channelClient) {
 		this.channelClient = channelClient;
 		this.objectMapper = new ObjectMapper();
-		objectMapper.registerModule(new JavaTimeModule());
+		this.objectMapper.registerModule(new JavaTimeModule());
 	}
 
-	public List<VideoAssetModel> queryByCameraId(Long cameraId) throws ProposalException, InvalidArgumentException, JsonProcessingException {
+	public List<VideoAssetModel> queryByCameraId(Long cameraId) throws ProposalException, InvalidArgumentException, IOException, ClassNotFoundException {
 		final String[] arguments = {cameraId.toString()};
 		final BaseChaincodeFunction baseChaincodeFunction = new QueryByCameraIdFunction(arguments);
 		final BaseChaincode baseChaincode = new VideoAssetChaincode(baseChaincodeFunction);
 
-		//MODO GAMBETINHA
-		final String response = channelClient.queryByChaincode(baseChaincode)
+		final String response = Objects.requireNonNull(channelClient.queryByChaincode(baseChaincode)
 				.stream()
-				.map(ChaincodeResponse::getMessage)
 				.findFirst()
-				.get()
-				.replace("[", "")
-				.replace("]", "");
+				.orElse(null))
+				.getMessage();
 
-		final List<String> responseList = new ArrayList<>(Arrays.asList(response.split("/")));
-		final List<VideoAssetModel> videoAssetModels = new ArrayList<>();
+		final VideoAssetModel[] videoAssetModels = objectMapper.readValue(response, VideoAssetModel[].class);
 
-		for (String videoAssetSerialized : responseList) {
-			videoAssetModels.add(objectMapper.readValue(videoAssetSerialized, VideoAssetModel.class));
-		}
-
-		return videoAssetModels;
+		return Arrays.asList(videoAssetModels);
 	}
 }

@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -36,7 +37,7 @@ public class FabricController {
 	}
 
 	@GetMapping("/find-by-camera-id/{cameraId}")
-	public ResponseEntity<List<VideoAssetModel>> findByCameraId(@PathVariable("cameraId") Long cameraId) throws InvalidArgumentException, ProposalException, JsonProcessingException {
+	public ResponseEntity<List<VideoAssetModel>> findByCameraId(@PathVariable("cameraId") Long cameraId) throws InvalidArgumentException, ProposalException, IOException, ClassNotFoundException {
 		return ResponseEntity.ok(queryByCameraIdService.queryByCameraId(cameraId));
 	}
 
