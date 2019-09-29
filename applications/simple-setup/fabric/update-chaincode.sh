@@ -1,7 +1,5 @@
 #!/bin/bash
 
-CHAINCODE_VERSION=$1
+CHAINCODE_VERSION=$(docker ps -a | awk '($2 ~ /dev-peer.*.*.*/)' | wc -l)
 
-. scripts/clean-util.sh
-
-docker exec cli scripts/chaincode-util.sh $CHAINCODE_VERSION
+docker exec cli scripts/chaincode-util.sh 1.$CHAINCODE_VERSION

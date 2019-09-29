@@ -10,16 +10,19 @@ import fabric.ipfs.example.component.chaincode.videoasset.function.QueryByCamera
 import fabric.ipfs.example.component.fabric.ChannelClient;
 import fabric.ipfs.example.controller.fabric.request.QueryByTimestampRequest;
 import fabric.ipfs.example.model.VideoAssetModel;
+import lombok.extern.slf4j.Slf4j;
 import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
 import org.hyperledger.fabric.sdk.exception.ProposalException;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 /**
  * @author eduardo.thums
  */
+@Slf4j
 @Service
 public class QueryByCameraIdAndTimestampRangeService {
 
@@ -30,7 +33,7 @@ public class QueryByCameraIdAndTimestampRangeService {
 	public QueryByCameraIdAndTimestampRangeService(ChannelClient channelClient) {
 		this.channelClient = channelClient;
 		this.objectMapper = new ObjectMapper();
-		objectMapper.registerModule(new JavaTimeModule());
+		this.objectMapper.registerModule(new JavaTimeModule());
 	}
 
 	public List<VideoAssetModel> queryByCameraIdAndTimestampRange(long cameraId, QueryByTimestampRequest request) throws ProposalException, InvalidArgumentException, JsonProcessingException {
@@ -38,30 +41,14 @@ public class QueryByCameraIdAndTimestampRangeService {
 		final BaseChaincodeFunction baseChaincodeFunction = new QueryByCameraIdAndTimestampRangeFunction(arguments);
 		final BaseChaincode baseChaincode = new VideoAssetChaincode(baseChaincodeFunction);
 
-		//MODO GAMBETINHA
-//		final String response = channelClient.queryByChaincode(baseChaincode)
-//				.stream()
-//				.map(ChaincodeResponse::getMessage)
-//				.findFirst()
-//				.get()
-//				.replace("[", "")
-//				.replace("]", "");
-
 		final String response = Objects.requireNonNull(channelClient.queryByChaincode(baseChaincode)
 				.stream()
 				.findFirst()
 				.orElse(null))
 				.getMessage();
 
-//		return objectMapper.readValue(response, VideoAssetWrapperModel.class).getVideoAssetModels();
+		final VideoAssetModel[] videoAssetModels = objectMapper.readValue(response, VideoAssetModel[].class);
 
-		return null;
-//		final List<VideoAssetModel> videoAssetModels = new ArrayList<>();
-//
-//		for (String videoAssetSerialized : wrapper.getVideoAssetModels()) {
-//			videoAssetModels.add(objectMapper.readValue(videoAssetSerialized, VideoAssetModel.class));
-//		}
-
-//		return videoAssetModels;
+		return Arrays.asList(videoAssetModels);
 	}
 }

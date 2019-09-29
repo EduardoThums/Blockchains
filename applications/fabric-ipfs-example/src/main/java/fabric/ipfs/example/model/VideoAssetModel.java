@@ -29,8 +29,8 @@ public class VideoAssetModel {
 
 	public String[] toArguments() {
 		return Stream.of(
-				this.starDate.toString(),
-				this.endDate.toString(),
+				String.valueOf(this.starDate.getEpochSecond()),
+				String.valueOf(this.endDate.getEpochSecond()),
 				this.storageHash,
 				this.contentHash,
 				String.valueOf(this.cameraId))

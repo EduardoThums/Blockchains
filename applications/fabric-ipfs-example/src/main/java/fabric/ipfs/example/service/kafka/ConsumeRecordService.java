@@ -37,21 +37,12 @@ public class ConsumeRecordService {
 		final String storageHash = uploadFileService.uploadFile(record.value().getVideoRecord());
 		final String contentHash = hashGenerator.generate(record.value().getVideoRecord());
 
-		log.info("Instant now value: {}", Instant.now().toString());
-
 		final VideoAssetModel videoAssetModel = new VideoAssetModel();
 		videoAssetModel.setStarDate(Instant.now());
 		videoAssetModel.setEndDate(Instant.now().plus(Duration.ofHours(10)));
 		videoAssetModel.setCameraId(record.value().getCameraId());
 		videoAssetModel.setStorageHash(storageHash);
 		videoAssetModel.setContentHash(contentHash);
-//				.builder()
-//				.starDate()
-//				.endDate()
-//				.cameraId(record.value().getCameraId())
-//				.storageHash(storageHash)
-//				.contentHash(contentHash)
-//				.build();
 
 		createTransactionService.createTransaction(videoAssetModel)
 				.forEach(transactionHash -> log.info("Transaction hash: {}", transactionHash));

@@ -1,0 +1,12 @@
+{
+  "index": {
+    "fields": [
+      "cameraId",
+      "startDate"
+    ]
+  },
+  "ddoc": "camera_id_start_date_doc",
+  "name": "camera_id_start_date_index",
+  "type": "json"
+}
+

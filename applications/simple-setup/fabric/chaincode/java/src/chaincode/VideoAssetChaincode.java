@@ -1,6 +1,5 @@
 package chaincode;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import org.hyperledger.fabric.Logger;
 import org.hyperledger.fabric.contract.annotation.Transaction;
@@ -11,7 +10,6 @@ import org.hyperledger.fabric.shim.ledger.KeyValue;
 import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -37,36 +35,24 @@ public class VideoAssetChaincode extends ChaincodeBase {
 
 		switch (stub.getFunction()) {
 			case "createVideoAsset":
-				try {
-					return createVideoAsset(stub, params);
-				} catch (JsonProcessingException e) {
-					e.printStackTrace();
-				}
+				return createVideoAsset(stub, params);
 			case "queryByHash":
 				return queryByHash(stub, params);
 			case "queryByCameraId":
-				try {
-					return queryByCameraId(stub, params);
-				} catch (JsonProcessingException e) {
-					e.printStackTrace();
-				}
+				return queryByCameraId(stub, params);
 			case "queryByCameraIdAndTimestampRange":
-				try {
-					return queryByCameraIdAndTimestampRange(stub, params);
-				} catch (JsonProcessingException e) {
-					e.printStackTrace();
-				}
+				return queryByCameraIdAndTimestampRange(stub, params);
 			default:
 				return ResponseUtils.newErrorResponse(String.format("No such function %s exist", stub.getFunction()));
 		}
 	}
 
 	@Transaction
-	private Response createVideoAsset(final ChaincodeStub stub, final List<String> params) throws JsonProcessingException {
+	private Response createVideoAsset(final ChaincodeStub stub, final List<String> params) {
 		final String key = params.get(2);
 
 		final VideoAsset videoAsset = mapParamsToVideoAsset(params);
-		LOGGER.info(videoAsset.getStarDate().toString());
+		LOGGER.info(String.valueOf(videoAsset.getStarDate()));
 
 //		final String videoAssetState = objectMapper.writeValueAsString(videoAsset);
 		final String videoAssetState = gson.toJson(videoAsset);
@@ -74,14 +60,14 @@ public class VideoAssetChaincode extends ChaincodeBase {
 
 //		final VideoAsset deserializedVideoAsset = objectMapper.readValue(videoAssetState, VideoAsset.class);
 		final VideoAsset deserializedVideoAsset = gson.fromJson(videoAssetState, VideoAsset.class);
-		LOGGER.info(deserializedVideoAsset.getStarDate().toString());
+		LOGGER.info(String.valueOf(deserializedVideoAsset.getStarDate()));
 
 		stub.putStringState(key, videoAssetState);
 
 		return ResponseUtils.newSuccessResponse(videoAssetState);
 	}
 
-	private Response queryByHash(final ChaincodeStub stub, final List<String> params) {
+	private Response queryByHash(ChaincodeStub stub, List<String> params) {
 		final String key = params.get(0);
 		final String videoAssetState = stub.getStringState(key);
 
@@ -92,42 +78,33 @@ public class VideoAssetChaincode extends ChaincodeBase {
 		return ResponseUtils.newSuccessResponse();
 	}
 
-	private Response queryByCameraId(final ChaincodeStub stub, final List<String> params) throws JsonProcessingException {
+	private Response queryByCameraId(final ChaincodeStub stub, final List<String> params) {
 		final long cameraId = Long.parseLong(params.get(0));
 		final String query = "{ \"selector\": { \"cameraId\": " + cameraId + " } }";
 
-		final QueryResultsIterator<KeyValue> queryResult = stub.getQueryResult(query);
+		LOGGER.info(query);
 
-		final List<String> videoAssetList = StreamSupport.stream(queryResult.spliterator(), false)
-				.map(KeyValue::getStringValue)
-				.collect(Collectors.toList());
-
-		return newSuccessResponse(videoAssetList.toString());
+		return newSuccessResponse(getQueryResult(stub, query));
 	}
 
-	private Response queryByCameraIdAndTimestampRange(final ChaincodeStub stub, final List<String> params) throws JsonProcessingException {
+	private Response queryByCameraIdAndTimestampRange(ChaincodeStub stub, List<String> params) {
 		final long cameraId = Long.parseLong(params.get(0));
 		final Instant startDate = Instant.parse(params.get(1));
 		final Instant endDate = Instant.parse(params.get(2));
 
-//		final String query = "{ \"selector\": { \"cameraId\": " + cameraId + ", \"startDate\": { \"$gte\": " + startDate + " }, \"endDate\": { \"$lte\": " + endDate + " } } }";
-		final String query = "{ \"selector\": {\"cameraId\": { \"$lte\": " + cameraId + " } } }";
-		final QueryResultsIterator<KeyValue> queryResult = stub.getQueryResult(query);
+		final String query = "{ \"selector\": { \"cameraId\": " + cameraId + ", \"startDate\": { \"$gte\": " + startDate + " } }, \"sort\": [{\"startDate\"}] }";
 
-		final List<String> videoAssetList = new ArrayList<>();
-		queryResult.forEach(keyValue -> videoAssetList.add(keyValue.getStringValue()));
+		LOGGER.info(query);
 
-//		return newSuccessResponse(objectMapper.writeValueAsString(new VideoAssetWrapper(videoAssetList)));
-		return newSuccessResponse();
+		final String response = getQueryResult(stub, query);
+		LOGGER.info(response);
+
+		return newSuccessResponse(getQueryResult(stub, query));
 	}
 
-	private VideoAsset mapParamsToVideoAsset(final List<String> params) {
-		final Instant startDate = Instant.parse(params.get(0));
-		final Instant endDate = Instant.parse(params.get(1));
-
-		LOGGER.info(startDate.toString());
-		LOGGER.info(endDate.toString());
-
+	private VideoAsset mapParamsToVideoAsset(List<String> params) {
+		final long startDate = Long.parseLong(params.get(0));
+		final long endDate = Long.parseLong(params.get(1));
 		final String storageHash = params.get(2);
 		final String contentHash = params.get(3);
 		final long cameraId = Long.parseLong(params.get(4));
@@ -140,6 +117,15 @@ public class VideoAssetChaincode extends ChaincodeBase {
 				.contentHash(contentHash)
 				.cameraId(cameraId)
 				.build();
+	}
+
+	private String getQueryResult(ChaincodeStub stub, String query) {
+		final QueryResultsIterator<KeyValue> queryResult = stub.getQueryResult(query);
+
+		return StreamSupport.stream(queryResult.spliterator(), false)
+				.map(KeyValue::getStringValue)
+				.collect(Collectors.toList())
+				.toString();
 	}
 
 	public static void main(String[] args) {

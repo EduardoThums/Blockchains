@@ -1,6 +1,0 @@
-{
-    "index":{"fields":["starDate","endDate", "cameraId"]},
-    "ddoc":"indexVideoAssetDoc", 
-    "name":"indexVideoAsset",
-    "type":"json"
-}

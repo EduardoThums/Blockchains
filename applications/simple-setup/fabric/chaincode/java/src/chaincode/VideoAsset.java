@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 @Getter
 @Builder
@@ -14,11 +13,11 @@ import java.time.Instant;
 @NoArgsConstructor
 class VideoAsset implements Serializable {
 
-	private static final long serialVersionUID = -2196623511234325761L;
+	private static final long serialVersionUID = 1162978438007020979L;
 
-	private Instant starDate;
+	private long starDate;
 
-	private Instant endDate;
+	private long endDate;
 
 	private String storageHash;
 
