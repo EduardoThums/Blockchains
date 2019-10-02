@@ -38,7 +38,7 @@ public class ConsumeRecordService {
 		final String contentHash = hashGenerator.generate(record.value().getVideoRecord());
 
 		final VideoAssetModel videoAssetModel = new VideoAssetModel();
-		videoAssetModel.setStarDate(Instant.now());
+		videoAssetModel.setStartDate(Instant.now());
 		videoAssetModel.setEndDate(Instant.now().plus(Duration.ofHours(10)));
 		videoAssetModel.setCameraId(record.value().getCameraId());
 		videoAssetModel.setStorageHash(storageHash);

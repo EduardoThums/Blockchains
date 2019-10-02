@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 @AllArgsConstructor
 public class VideoAssetModel {
 
-	private Instant starDate;
+	private Instant startDate;
 
 	private Instant endDate;
 
@@ -29,7 +29,7 @@ public class VideoAssetModel {
 
 	public String[] toArguments() {
 		return Stream.of(
-				String.valueOf(this.starDate.getEpochSecond()),
+				String.valueOf(this.startDate.getEpochSecond()),
 				String.valueOf(this.endDate.getEpochSecond()),
 				this.storageHash,
 				this.contentHash,

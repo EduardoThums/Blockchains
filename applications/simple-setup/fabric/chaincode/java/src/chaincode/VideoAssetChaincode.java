@@ -9,7 +9,6 @@ import org.hyperledger.fabric.shim.ResponseUtils;
 import org.hyperledger.fabric.shim.ledger.KeyValue;
 import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -50,17 +49,7 @@ public class VideoAssetChaincode extends ChaincodeBase {
 	@Transaction
 	private Response createVideoAsset(final ChaincodeStub stub, final List<String> params) {
 		final String key = params.get(2);
-
-		final VideoAsset videoAsset = mapParamsToVideoAsset(params);
-		LOGGER.info(String.valueOf(videoAsset.getStarDate()));
-
-//		final String videoAssetState = objectMapper.writeValueAsString(videoAsset);
-		final String videoAssetState = gson.toJson(videoAsset);
-		LOGGER.info(videoAssetState);
-
-//		final VideoAsset deserializedVideoAsset = objectMapper.readValue(videoAssetState, VideoAsset.class);
-		final VideoAsset deserializedVideoAsset = gson.fromJson(videoAssetState, VideoAsset.class);
-		LOGGER.info(String.valueOf(deserializedVideoAsset.getStarDate()));
+		final String videoAssetState = gson.toJson(mapParamsToVideoAsset(params));
 
 		stub.putStringState(key, videoAssetState);
 
@@ -82,22 +71,18 @@ public class VideoAssetChaincode extends ChaincodeBase {
 		final long cameraId = Long.parseLong(params.get(0));
 		final String query = "{ \"selector\": { \"cameraId\": " + cameraId + " } }";
 
-		LOGGER.info(query);
-
 		return newSuccessResponse(getQueryResult(stub, query));
 	}
 
 	private Response queryByCameraIdAndTimestampRange(ChaincodeStub stub, List<String> params) {
 		final long cameraId = Long.parseLong(params.get(0));
-		final Instant startDate = Instant.parse(params.get(1));
-		final Instant endDate = Instant.parse(params.get(2));
+		final long startDate = Long.parseLong(params.get(1));
+		final long endDate = Long.parseLong(params.get(2));
 
-		final String query = "{ \"selector\": { \"cameraId\": " + cameraId + ", \"startDate\": { \"$gte\": " + startDate + " } }, \"sort\": [{\"startDate\"}] }";
-
-		LOGGER.info(query);
-
-		final String response = getQueryResult(stub, query);
-		LOGGER.info(response);
+		final String query = String.format("{ \"selector\": { \"cameraId\": %d , \"startDate\": { \"$gte\": %d }, \"endDate\": { \"$lte\": %d} }, \"sort\": [\"startDate\"] }",
+				cameraId,
+				startDate,
+				endDate);
 
 		return newSuccessResponse(getQueryResult(stub, query));
 	}
@@ -111,7 +96,7 @@ public class VideoAssetChaincode extends ChaincodeBase {
 
 		return VideoAsset
 				.builder()
-				.starDate(startDate)
+				.startDate(startDate)
 				.endDate(endDate)
 				.storageHash(storageHash)
 				.contentHash(contentHash)

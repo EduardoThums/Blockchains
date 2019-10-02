@@ -15,9 +15,11 @@ import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
 import org.hyperledger.fabric.sdk.exception.ProposalException;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 /**
  * @author eduardo.thums
@@ -37,7 +39,7 @@ public class QueryByCameraIdAndTimestampRangeService {
 	}
 
 	public List<VideoAssetModel> queryByCameraIdAndTimestampRange(long cameraId, QueryByTimestampRequest request) throws ProposalException, InvalidArgumentException, JsonProcessingException {
-		final String[] arguments = {String.valueOf(cameraId), String.valueOf(request.getStartDate()), String.valueOf(request.getEndDate())};
+		final String[] arguments = getFunctionArguments(cameraId, request.getStartDate(), request.getEndDate());
 		final BaseChaincodeFunction baseChaincodeFunction = new QueryByCameraIdAndTimestampRangeFunction(arguments);
 		final BaseChaincode baseChaincode = new VideoAssetChaincode(baseChaincodeFunction);
 
@@ -50,5 +52,13 @@ public class QueryByCameraIdAndTimestampRangeService {
 		final VideoAssetModel[] videoAssetModels = objectMapper.readValue(response, VideoAssetModel[].class);
 
 		return Arrays.asList(videoAssetModels);
+	}
+
+	private String[] getFunctionArguments(long cameraId, Instant startDate, Instant endDate) {
+		return Stream.of(
+				String.valueOf(cameraId),
+				String.valueOf(startDate.getEpochSecond()),
+				String.valueOf(endDate.getEpochSecond()))
+				.toArray(String[]::new);
 	}
 }

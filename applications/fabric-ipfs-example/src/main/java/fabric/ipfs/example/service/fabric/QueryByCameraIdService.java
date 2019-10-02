@@ -1,6 +1,7 @@
 package fabric.ipfs.example.service.fabric;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import fabric.ipfs.example.component.chaincode.BaseChaincode;
 import fabric.ipfs.example.component.chaincode.BaseChaincodeFunction;
 import fabric.ipfs.example.component.chaincode.videoasset.VideoAssetChaincode;
@@ -29,7 +30,7 @@ public class QueryByCameraIdService {
 	public QueryByCameraIdService(ChannelClient channelClient) {
 		this.channelClient = channelClient;
 		this.objectMapper = new ObjectMapper();
-		this.objectMapper.findAndRegisterModules();
+		this.objectMapper.registerModule(new JavaTimeModule());
 	}
 
 	public List<VideoAssetModel> queryByCameraId(Long cameraId) throws ProposalException, InvalidArgumentException, IOException, ClassNotFoundException {

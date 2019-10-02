@@ -13,9 +13,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 class VideoAsset implements Serializable {
 
-	private static final long serialVersionUID = 1162978438007020979L;
+	private static final long serialVersionUID = 4404946398219053518L;
 
-	private long starDate;
+	private long startDate;
 
 	private long endDate;
 
