@@ -12,28 +12,27 @@ import java.util.Collection;
 /**
  * @author eduardo.thums
  */
-@Component
 @Getter
+@Component
 public class ChannelClient {
+
+	private static final String CHAINCODE_VERSION = "3.0";
 
 	private Channel channel;
 
 	private FabricClient fabricClient;
-
-	public ChannelClient() {
-	}
 
 	ChannelClient(Channel channel, FabricClient fabricClient) {
 		this.channel = channel;
 		this.fabricClient = fabricClient;
 	}
 
-
 	public Collection<ProposalResponse> sendTransactionProposal(BaseChaincode baseChaincode) throws ProposalException, InvalidArgumentException {
 		final TransactionProposalRequest request = fabricClient.getInstance().newTransactionProposalRequest();
 		request.setChaincodeID(ChaincodeID
 				.newBuilder()
 				.setName(baseChaincode.getName())
+				.setVersion(CHAINCODE_VERSION)
 				.build());
 		request.setFcn(baseChaincode.getFunction().getName());
 		request.setArgs(baseChaincode.getFunction().getArguments());
@@ -51,6 +50,7 @@ public class ChannelClient {
 		request.setChaincodeID(ChaincodeID
 				.newBuilder()
 				.setName(baseChaincode.getName())
+				.setVersion(CHAINCODE_VERSION)
 				.build());
 		request.setFcn(baseChaincode.getFunction().getName());
 		request.setArgs(baseChaincode.getFunction().getArguments());

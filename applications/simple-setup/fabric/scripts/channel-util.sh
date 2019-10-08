@@ -3,7 +3,6 @@
 CHANNEL_NAME="$1"
 CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/java/"
 CHAINCODE_LANGUAGE="java"
-
 CHAINCODE_NAME="videoassetcc"
 
 COUNTER=1
@@ -46,8 +45,8 @@ updateAnchorPeers 0
 
 ## Install chaincode on peer0.org1
 echo "Installing chaincode on all peers"
-installChaincode 0
+installChaincode 0 1.0
 
 # Instantiate chaincode on peer0.org1
 echo "Instantiating chaincode on peer0.org1..."
-instantiateChaincode 0
+instantiateChaincode 0 1.0

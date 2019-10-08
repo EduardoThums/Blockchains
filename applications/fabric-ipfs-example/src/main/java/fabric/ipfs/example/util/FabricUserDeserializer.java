@@ -21,7 +21,7 @@ public class FabricUserDeserializer {
 	}
 
 	public FabricUserModel readFabricUser(final String affiliation, final String username) throws Exception {
-		final String filePath = fabricUserDirectory + affiliation + "/" + username + ".ser";
+		final String filePath = fabricUserDirectory + "/" + affiliation + "/" + username + ".ser";
 		final File file = new File(filePath);
 
 		if (!file.exists()) {

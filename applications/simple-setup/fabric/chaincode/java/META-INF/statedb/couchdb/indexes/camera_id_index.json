@@ -1,0 +1,11 @@
+{
+  "index": {
+    "fields": [
+      "cameraId"
+    ]
+  },
+  "ddoc": "camera_id_doc",
+  "name": "camera_id_index",
+  "type": "json"
+}
+

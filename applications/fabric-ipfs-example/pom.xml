@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fabric.ipfs.example</groupId>
-    <artifactId>fabric.ipfs.example</artifactId>
+    <artifactId>fabric-ipfs-example</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <parent>
@@ -40,6 +40,15 @@
 
         <!-- Guava -->
         <guava.version>28.0-jre</guava.version>
+
+        <!-- Jackson Databind -->
+        <jackson-databind.version>2.10.0.pr3</jackson-databind.version>
+
+        <!-- Jackson Datatype -->
+        <jackson-datatype-jsr310.version>2.10.0.pr3</jackson-datatype-jsr310.version>
+
+        <!-- Jackson Core -->
+        <jackson-core.version>2.10.0.pr3</jackson-core.version>
     </properties>
 
     <dependencies>
@@ -90,6 +99,27 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+
+        <!-- Jackson Databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
+
+        <!-- Jackson Datatype -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson-datatype-jsr310.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson-core.version}</version>
         </dependency>
     </dependencies>
 </project>

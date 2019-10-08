@@ -14,7 +14,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class RecordModel implements Serializable {
 
-	private Long cameraId;
+	private static final long serialVersionUID = 6893060907025723304L;
+
+	private long cameraId;
 
 	private byte[] videoRecord;
 

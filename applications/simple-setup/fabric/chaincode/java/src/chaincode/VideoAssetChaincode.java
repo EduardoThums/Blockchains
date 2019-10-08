@@ -1,16 +1,27 @@
 package chaincode;
 
-import com.owlike.genson.Genson;
+import com.google.gson.Gson;
+import org.hyperledger.fabric.Logger;
 import org.hyperledger.fabric.contract.annotation.Transaction;
 import org.hyperledger.fabric.shim.ChaincodeBase;
 import org.hyperledger.fabric.shim.ChaincodeStub;
 import org.hyperledger.fabric.shim.ResponseUtils;
+import org.hyperledger.fabric.shim.ledger.KeyValue;
+import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class VideoAssetChaincode extends ChaincodeBase {
 
-	private static final Genson GENSON = new Genson();
+	private final static Logger LOGGER = Logger.getLogger(VideoAssetChaincode.class.getName());
+
+	private Gson gson;
+
+	private VideoAssetChaincode() {
+		this.gson = new Gson();
+	}
 
 	@Override
 	public Response init(ChaincodeStub stub) {
@@ -18,14 +29,18 @@ public class VideoAssetChaincode extends ChaincodeBase {
 	}
 
 	@Override
-	public Response invoke(ChaincodeStub stub) {
+	public Response invoke(final ChaincodeStub stub) {
 		final List<String> params = stub.getParameters();
 
 		switch (stub.getFunction()) {
 			case "createVideoAsset":
-				return this.createVideoAsset(stub, params);
+				return createVideoAsset(stub, params);
 			case "queryByHash":
-				return this.queryByHash(stub, params);
+				return queryByHash(stub, params);
+			case "queryByCameraId":
+				return queryByCameraId(stub, params);
+			case "queryByCameraIdAndTimestampRange":
+				return queryByCameraIdAndTimestampRange(stub, params);
 			default:
 				return ResponseUtils.newErrorResponse(String.format("No such function %s exist", stub.getFunction()));
 		}
@@ -33,16 +48,15 @@ public class VideoAssetChaincode extends ChaincodeBase {
 
 	@Transaction
 	private Response createVideoAsset(final ChaincodeStub stub, final List<String> params) {
-		final String key = params.get(0);
-		final VideoAsset videoAsset = mapParamsToVideoAsset(params);
-		final String videoAssetState = GENSON.serialize(videoAsset);
+		final String key = params.get(2);
+		final String videoAssetState = gson.toJson(mapParamsToVideoAsset(params));
 
 		stub.putStringState(key, videoAssetState);
 
 		return ResponseUtils.newSuccessResponse(videoAssetState);
 	}
 
-	private Response queryByHash(final ChaincodeStub stub, final List<String> params) {
+	private Response queryByHash(ChaincodeStub stub, List<String> params) {
 		final String key = params.get(0);
 		final String videoAssetState = stub.getStringState(key);
 
@@ -50,30 +64,53 @@ public class VideoAssetChaincode extends ChaincodeBase {
 			return ResponseUtils.newErrorResponse(String.format("Video asset with hash: %s doesn't exit", key));
 		}
 
-		return ResponseUtils.newSuccessResponse(videoAssetState);
+		return ResponseUtils.newSuccessResponse();
 	}
 
-	// final String query = "{ \"selector\": { \"year\": { \"$gt\": " + params.get(0) + " } } }";
+	private Response queryByCameraId(final ChaincodeStub stub, final List<String> params) {
+		final long cameraId = Long.parseLong(params.get(0));
+		final String query = "{ \"selector\": { \"cameraId\": " + cameraId + " } }";
 
-	// 	LOGGER.info(query);
+		return newSuccessResponse(getQueryResult(stub, query));
+	}
 
-	// 	final QueryResultsIterator<KeyValue> queryResult = stub.getQueryResult(query);
+	private Response queryByCameraIdAndTimestampRange(ChaincodeStub stub, List<String> params) {
+		final long cameraId = Long.parseLong(params.get(0));
+		final long startDate = Long.parseLong(params.get(1));
+		final long endDate = Long.parseLong(params.get(2));
 
-	// 	final List<String> result = new ArrayList<>();
+		final String query = String.format("{ \"selector\": { \"cameraId\": %d , \"startDate\": { \"$gte\": %d }, \"endDate\": { \"$lte\": %d} }, \"sort\": [\"startDate\"] }",
+				cameraId,
+				startDate,
+				endDate);
 
-	// 	queryResult.forEach(keyValue -> result.add(keyValue.getStringValue()));
+		return newSuccessResponse(getQueryResult(stub, query));
+	}
 
-	// 	return newSuccessResponse(result.toString());
-
-	private VideoAsset mapParamsToVideoAsset(final List<String> params) {
-		final String ipfsHash = params.get(0);
-		final String contentHash = params.get(1);
+	private VideoAsset mapParamsToVideoAsset(List<String> params) {
+		final long startDate = Long.parseLong(params.get(0));
+		final long endDate = Long.parseLong(params.get(1));
+		final String storageHash = params.get(2);
+		final String contentHash = params.get(3);
+		final long cameraId = Long.parseLong(params.get(4));
 
 		return VideoAsset
 				.builder()
-				.ipfsHash(ipfsHash)
+				.startDate(startDate)
+				.endDate(endDate)
+				.storageHash(storageHash)
 				.contentHash(contentHash)
+				.cameraId(cameraId)
 				.build();
+	}
+
+	private String getQueryResult(ChaincodeStub stub, String query) {
+		final QueryResultsIterator<KeyValue> queryResult = stub.getQueryResult(query);
+
+		return StreamSupport.stream(queryResult.spliterator(), false)
+				.map(KeyValue::getStringValue)
+				.collect(Collectors.toList())
+				.toString();
 	}
 
 	public static void main(String[] args) {
