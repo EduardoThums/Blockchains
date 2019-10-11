@@ -1,0 +1,1 @@
+export { VideoExcerptService } from './video-excerpt.service';
