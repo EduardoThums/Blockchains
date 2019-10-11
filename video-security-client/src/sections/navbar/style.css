@@ -1,0 +1,20 @@
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	height: 10vh;
+	width: 100vw;
+	background-color: #3F5772;
+	align-items: center;
+	padding: 0 2vw;
+}
+
+.navbar .logo__area {
+	display: flex;
+	align-items: center;
+}
+
+.navbar .logo__area .app-title {
+	text-transform: uppercase;
+	color: #fff;
+	letter-spacing: 2px;
+}
