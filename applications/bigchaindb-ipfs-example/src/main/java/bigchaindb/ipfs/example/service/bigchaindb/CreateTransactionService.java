@@ -2,13 +2,13 @@ package bigchaindb.ipfs.example.service.bigchaindb;
 
 import bigchaindb.ipfs.example.model.VideoAssetModel;
 import bigchaindb.ipfs.example.util.KeyPairLoader;
+import bigchaindb.ipfs.example.util.VideoAssetDeserializer;
 import com.bigchaindb.builders.BigchainDbTransactionBuilder;
 import com.bigchaindb.constants.Operations;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.TreeMap;
 
 /**
  * @author eduardo.thums
@@ -25,7 +25,8 @@ public class CreateTransactionService {
 	public List<String> createTransaction(VideoAssetModel videoAssetModel) throws Exception {
 		return Collections.singletonList(BigchainDbTransactionBuilder
 				.init()
-				.addAssets(videoAssetModel.mapToMapObject(), TreeMap.class)
+				.addAssetDataClass(VideoAssetModel.class, new VideoAssetDeserializer())
+				.addAssets(videoAssetModel, VideoAssetModel.class)
 				.operation(Operations.CREATE)
 				.buildAndSign(keyPairLoader.readPublicKey(), keyPairLoader.readPrivateKey())
 				.sendTransaction()

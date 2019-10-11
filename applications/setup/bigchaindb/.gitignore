@@ -1,0 +1,12 @@
+/bigchaindb
+/logs
+/mongodb_docker1
+/mongodb_docker2
+/mongodb_docker3
+/mongodb_docker4
+/tendermint_config
+/tendermint_docker1
+/tendermint_docker2
+/tendermint_docker3
+/tendermint_docker4
+Vagrantfile

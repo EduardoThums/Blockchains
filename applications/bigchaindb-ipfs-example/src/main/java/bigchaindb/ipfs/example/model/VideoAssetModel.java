@@ -1,36 +1,39 @@
 package bigchaindb.ipfs.example.model;
 
-import lombok.Builder;
 import lombok.Getter;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.time.Instant;
-import java.util.Map;
-import java.util.TreeMap;
+import java.io.Serializable;
 
 /**
  * @author eduardo.thums
  */
 @Getter
-@Builder
-public class VideoAssetModel {
+//@AllArgsConstructor
+public class VideoAssetModel implements Serializable {
 
-	private Instant startDate;
+	private static final long serialVersionUID = -9061180728548775137L;
 
-	private Instant endDate;
+	public VideoAssetModel(Long startDate, Long endDate, String storageHash, String contentHash, Long cameraId) {
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.storageHash = storageHash;
+		this.contentHash = contentHash;
+		this.cameraId = cameraId;
+	}
 
+	@Field("startDate")
+	private Long startDate;
+
+	@Field("endDate")
+	private Long endDate;
+
+	@Field("storageHash")
 	private String storageHash;
 
+	@Field("contentHash")
 	private String contentHash;
 
-	private long cameraId;
-
-	public Map<String, String> mapToMapObject() {
-		return new TreeMap<>() {{
-			put("startDate", String.valueOf(startDate.getEpochSecond()));
-			put("endDate", String.valueOf(endDate.getEpochSecond()));
-			put("storageHash", storageHash);
-			put("contentHash", contentHash);
-			put("cameraId", String.valueOf(cameraId));
-		}};
-	}
+	@Field("cameraId")
+	private Long cameraId;
 }

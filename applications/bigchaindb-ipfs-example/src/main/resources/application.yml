@@ -1,3 +1,10 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 32769
+      database: bigchain
+
 # KAFKA PROPERTIES
 kafka:
   bootstrapServers: localhost:9092
@@ -23,13 +30,13 @@ ipfs:
 # BIGCHAINDB PROPERTIES
 bigchaindb:
   peer0:
-    url: http://localhost:9984
+    url: http://localhost:32815
   peer1:
-    url: http://localhost:33199
+    url: http://localhost:32809
   peer2:
-    url: http://localhost:33205
+    url: http://localhost:32803
   peer3:
-    url: http://localhost:33211
+    url: http://localhost:32797
   keyPair:
     directoryPath: src/main/resources/keypair
     privateKeyFileName: privateKey.key
