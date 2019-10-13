@@ -1,10 +1,7 @@
 package bigchaindb.ipfs.example.controller.bigchaindb;
 
 import bigchaindb.ipfs.example.model.VideoAssetModel;
-import bigchaindb.ipfs.example.service.bigchaindb.FindTransactionByIdService;
-import bigchaindb.ipfs.example.service.bigchaindb.QueryByAssetIdService;
-import bigchaindb.ipfs.example.service.bigchaindb.QueryByStartAndEndDateRangeService;
-import bigchaindb.ipfs.example.service.bigchaindb.QueryByStartDateGreaterThanService;
+import bigchaindb.ipfs.example.service.bigchaindb.*;
 import com.bigchaindb.model.Transaction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,11 +24,14 @@ public class BigchaindbController {
 
 	private QueryByStartAndEndDateRangeService queryByStartAndEndDateRangeService;
 
-	public BigchaindbController(FindTransactionByIdService findTransactionByIdService, QueryByAssetIdService queryByAssetIdService, QueryByStartDateGreaterThanService queryByStartDateGreaterThanService, QueryByStartAndEndDateRangeService queryByStartAndEndDateRangeService) {
+	private QueryAssetByCameraIdAndStartAndEndDateRangeService queryAssetByCameraIdAndStartAndEndDateRangeService;
+
+	public BigchaindbController(FindTransactionByIdService findTransactionByIdService, QueryByAssetIdService queryByAssetIdService, QueryByStartDateGreaterThanService queryByStartDateGreaterThanService, QueryByStartAndEndDateRangeService queryByStartAndEndDateRangeService, QueryAssetByCameraIdAndStartAndEndDateRangeService queryAssetByCameraIdAndStartAndEndDateRangeService) {
 		this.findTransactionByIdService = findTransactionByIdService;
 		this.queryByAssetIdService = queryByAssetIdService;
 		this.queryByStartDateGreaterThanService = queryByStartDateGreaterThanService;
 		this.queryByStartAndEndDateRangeService = queryByStartAndEndDateRangeService;
+		this.queryAssetByCameraIdAndStartAndEndDateRangeService = queryAssetByCameraIdAndStartAndEndDateRangeService;
 	}
 
 	@GetMapping
@@ -52,5 +52,12 @@ public class BigchaindbController {
 	@GetMapping("/find-by-date-range")
 	public ResponseEntity<List<VideoAssetModel>> queryByStartAndEndDateRange(@RequestParam("startDate") Long startDate, @RequestParam("endDate") Long endDate) {
 		return ResponseEntity.ok(queryByStartAndEndDateRangeService.queryByStartAndEndDateRange(startDate, endDate));
+	}
+
+	@GetMapping("/find-by-camera-id-and-date-range/{cameraId}")
+	public ResponseEntity<List<VideoAssetModel>> queryAssetByCameraIdAndStartAndEndDateRange(@PathVariable("cameraId") Long cameraId,
+	                                                                                         @RequestParam("startDate") Long startDate,
+	                                                                                         @RequestParam("endDate") Long endDate) {
+		return ResponseEntity.ok(queryAssetByCameraIdAndStartAndEndDateRangeService.queryAssetByCameraIdAndStartAndEndDateRange(cameraId, startDate, endDate));
 	}
 }

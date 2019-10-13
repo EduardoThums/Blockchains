@@ -2,7 +2,7 @@ spring:
   data:
     mongodb:
       host: localhost
-      port: 32769
+      port: 32841
       database: bigchain
 
 # KAFKA PROPERTIES
@@ -30,13 +30,13 @@ ipfs:
 # BIGCHAINDB PROPERTIES
 bigchaindb:
   peer0:
-    url: http://localhost:32815
+    url: http://localhost:32870
   peer1:
-    url: http://localhost:32809
+    url: http://localhost:32876
   peer2:
-    url: http://localhost:32803
+    url: http://localhost:32882
   peer3:
-    url: http://localhost:32797
+    url: http://localhost:32886
   keyPair:
     directoryPath: src/main/resources/keypair
     privateKeyFileName: privateKey.key

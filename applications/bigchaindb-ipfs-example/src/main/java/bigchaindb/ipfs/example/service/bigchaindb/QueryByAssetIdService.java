@@ -1,9 +1,9 @@
 package bigchaindb.ipfs.example.service.bigchaindb;
 
-import bigchaindb.ipfs.example.model.AssetModel;
+import bigchaindb.ipfs.example.exception.InvalidVideoAssetException;
 import bigchaindb.ipfs.example.model.VideoAssetModel;
+import bigchaindb.ipfs.example.projection.AssetProjection;
 import bigchaindb.ipfs.example.repository.VideoAssetRepository;
-import com.google.gson.Gson;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,19 +12,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class QueryByAssetIdService {
 
-	private Gson gson;
-
 	private VideoAssetRepository videoAssetRepository;
 
 	public QueryByAssetIdService(VideoAssetRepository videoAssetRepository) {
-		this.gson = new Gson();
 		this.videoAssetRepository = videoAssetRepository;
 	}
 
 	public VideoAssetModel queryByAssetById(String id) {
-		final AssetModel assetModel = videoAssetRepository.findById(id);
-
-		return assetModel.getData();
-//		return gson.fromJson(json, VideoAssetModel.class);
+		return videoAssetRepository.findById(id)
+				.map(AssetProjection::getData)
+				.orElseThrow(InvalidVideoAssetException::new);
 	}
 }

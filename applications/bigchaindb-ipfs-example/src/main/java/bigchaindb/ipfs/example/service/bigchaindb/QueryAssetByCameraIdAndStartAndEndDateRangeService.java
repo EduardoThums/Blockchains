@@ -12,16 +12,16 @@ import java.util.stream.Collectors;
  * @author eduardo.thums
  */
 @Service
-public class QueryByStartDateGreaterThanService {
+public class QueryAssetByCameraIdAndStartAndEndDateRangeService {
 
 	private VideoAssetRepository videoAssetRepository;
 
-	public QueryByStartDateGreaterThanService(VideoAssetRepository videoAssetRepository) {
+	public QueryAssetByCameraIdAndStartAndEndDateRangeService(VideoAssetRepository videoAssetRepository) {
 		this.videoAssetRepository = videoAssetRepository;
 	}
 
-	public List<VideoAssetModel> queryByStartDateGreaterThanService(Long startDate) {
-		return videoAssetRepository.findByStartDateGreaterThan(startDate)
+	public List<VideoAssetModel> queryAssetByCameraIdAndStartAndEndDateRange(Long cameraId, Long startDate, Long endDate) {
+		return videoAssetRepository.findByCameraIdAndStartDateAndEndDateRange(cameraId, startDate, endDate)
 				.stream()
 				.map(AssetProjection::getData)
 				.collect(Collectors.toList());
