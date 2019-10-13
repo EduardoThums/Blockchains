@@ -37,15 +37,6 @@ public class ConsumeRecordService {
 		final String storageHash = uploadFileService.uploadFile(record.value().getVideoRecord());
 		final String contentHash = hashGenerator.generate(record.value().getVideoRecord());
 
-//		final VideoAssetModel videoAssetModel = VideoAssetModel
-//				.builder()
-//				.startDate(Instant.now().getEpochSecond())
-//				.endDate(Instant.now().plus(Duration.ofHours(10)).getEpochSecond())
-//				.storageHash(storageHash)
-//				.contentHash(contentHash)
-//				.cameraId(record.value().getCameraId())
-//				.build();
-
 		final VideoAssetModel videoAssetModel = new VideoAssetModel(
 				Instant.now().getEpochSecond(),
 				Instant.now().plus(Duration.ofHours(10)).getEpochSecond(),
