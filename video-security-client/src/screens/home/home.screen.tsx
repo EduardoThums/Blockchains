@@ -3,6 +3,7 @@ import { Navbar } from '../../sections';
 import './style.css';
 import { VideoExcerptService } from '../../services';
 import { getUnixTime } from 'date-fns';
+import { Picker } from '../../components';
 
 export const Home: React.FC = () => {
 	const [startDate, setStartDate] = useState<string>("");
@@ -16,30 +17,22 @@ export const Home: React.FC = () => {
 		const video = videoExcerptService.getVideoExcerpt(instantFromStartDate, instantFromEndDate);
 	}
 
-	return <form className='home' onSubmit={handleOnSubmit}>
-		<Navbar />
-		<div className='time-picker'>
-			<div className='picker'>
-				<label className="custom-input__label">Start</label>
-				<input
-					className="custom-input"
+	return (
+		<form className='home' onSubmit={handleOnSubmit}>
+			<Navbar />
+			<div className='time-picker'>
+				<Picker
+					label='Início'
 					value={startDate}
 					onChange={e => setStartDate(e.currentTarget.value)}
-					type='datetime-local'
-					name=''
-					id='' />
-			</div>
-			<div className='picker'>
-				<label className="custom-input__label">End</label>
-				<input
-					className="custom-input"
+				/>
+				<Picker
+					label='Fim'
 					value={endDate}
 					onChange={e => setEndDate(e.currentTarget.value)}
-					type='datetime-local'
-					name=''
-					id='' />
+				/>
 			</div>
-		</div>
-		<button className="submit-button" type="submit">Ok</button>
-	</form>
+			<button className="submit-button" type="submit">Ok</button>
+		</form>
+	)
 };
