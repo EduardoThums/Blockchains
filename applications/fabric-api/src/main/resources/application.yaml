@@ -1,0 +1,12 @@
+server:
+  port: 10100
+kafka:
+  bootstrapServers: localhost:9092
+  topic:
+    ipfs: ipfs-fabric-topic
+  consumer:
+    groupId: fabric
+    autoOffsetReset: earliest
+    maxPollRecords: 1
+    enableAutoCommit: false
+    fetchMaxBytes: 33554432
