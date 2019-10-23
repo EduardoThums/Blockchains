@@ -30,6 +30,13 @@ public class ConsumeRecordModelService {
 
 		recordModel.setStorageHash(storageHash);
 
-		produceRecordModelService.produceRecord(recordModel);
+		final RecordModel newRecordModel = new RecordModel(
+				recordModel.getCameraId(),
+				recordModel.getStartDate(),
+				recordModel.getEndDate(),
+				recordModel.getContentHash(),
+				storageHash);
+
+		produceRecordModelService.produceRecord(newRecordModel);
 	}
 }

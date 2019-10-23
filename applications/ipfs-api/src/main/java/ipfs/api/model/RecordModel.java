@@ -14,7 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class RecordModel implements Serializable {
 
-	private static final long serialVersionUID = -4031108935149295704L;
+	private static final long serialVersionUID = 6541580349079241682L;
 
 	private Long cameraId;
 
@@ -27,4 +27,12 @@ public class RecordModel implements Serializable {
 	private String contentHash;
 
 	private String storageHash;
+
+	public RecordModel(Long cameraId, Long startDate, Long endDate, String contentHash, String storageHash) {
+		this.cameraId = cameraId;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.contentHash = contentHash;
+		this.storageHash = storageHash;
+	}
 }

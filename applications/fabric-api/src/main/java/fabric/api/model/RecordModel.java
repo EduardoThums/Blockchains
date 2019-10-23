@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.stream.Stream;
 
 /**
  * @author eduardo.thums
@@ -22,9 +23,17 @@ public class RecordModel implements Serializable {
 
 	private Long endDate;
 
-	private byte[] file;
-
 	private String contentHash;
 
 	private String storageHash;
+
+	public String[] toArguments() {
+		return Stream.of(
+				this.startDate.toString(),
+				this.endDate.toString(),
+				this.storageHash,
+				this.contentHash,
+				this.cameraId.toString())
+				.toArray(String[]::new);
+	}
 }

@@ -14,6 +14,9 @@
         <!-- Spring Kafka -->
         <spring-kafka.version>2.3.1.RELEASE</spring-kafka.version>
 
+        <!-- Fabric -->
+        <fabric.version>1.4.4</fabric.version>
+
         <!-- Lombok -->
         <lombok.version>1.18.10</lombok.version>
 
@@ -35,6 +38,13 @@
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
             <version>${spring-kafka.version}</version>
+        </dependency>
+
+        <!-- Fabric -->
+        <dependency>
+            <groupId>org.hyperledger.fabric-sdk-java</groupId>
+            <artifactId>fabric-sdk-java</artifactId>
+            <version>${fabric.version}</version>
         </dependency>
 
         <!-- Lombok -->
