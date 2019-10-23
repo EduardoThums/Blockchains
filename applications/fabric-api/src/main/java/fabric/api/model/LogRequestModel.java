@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 /**
  * @author eduardo.thums
@@ -19,7 +18,7 @@ public class LogRequestModel implements Serializable {
 
 	private static final long serialVersionUID = -2034777658486321845L;
 
-	private Instant startDate;
+	private Long startDate;
 
-	private Instant endDate;
+	private Long endDate;
 }

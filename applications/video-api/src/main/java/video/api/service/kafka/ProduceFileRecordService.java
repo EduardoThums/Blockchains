@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import video.api.model.RecordModel;
 import video.api.util.HashGenerator;
 
-import java.time.Instant;
-
 /**
  * @author eduardo.thums
  */
@@ -30,9 +28,7 @@ public class ProduceFileRecordService {
 		this.hashGenerator = hashGenerator;
 	}
 
-	public void produceFileRecord(Long cameraId, Long startDate, Long endDate, Long milliLogStartDate, byte[] file) {
-		final Instant logStartDate = Instant.ofEpochMilli(milliLogStartDate);
-
+	public void produceFileRecord(Long cameraId, Long startDate, Long endDate, Long logStartDate, byte[] file) {
 		final RecordModel recordModel = new RecordModel(cameraId, startDate, endDate, logStartDate, file, hashGenerator.generateHash(file));
 
 		kafkaTemplate.send(kafkaTopic, recordModel);

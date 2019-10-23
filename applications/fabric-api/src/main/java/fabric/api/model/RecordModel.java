@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.stream.Stream;
 
 /**
@@ -22,7 +21,7 @@ public class RecordModel implements Serializable {
 
 	private Long endDate;
 
-	private Instant logStartDate;
+	private Long logStartDate;
 
 	private String contentHash;
 

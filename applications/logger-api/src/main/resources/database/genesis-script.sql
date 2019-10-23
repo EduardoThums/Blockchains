@@ -1,8 +1,7 @@
 create table log (
 	id int primary key,
-	start_date timestamp,
-	end_date timestamp,
-	uuid varchar(512)
+	start_date bigint,
+	end_date bigint
 );
 
 CREATE SEQUENCE log_id_seq

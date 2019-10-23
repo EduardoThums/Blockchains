@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.Instant;
 
 /**
  * @author eduardo.thums
@@ -23,7 +22,7 @@ public class RecordModel implements Serializable {
 
 	private Long endDate;
 
-	private Instant logStartDate;
+	private Long logStartDate;
 
 	private byte[] file;
 
@@ -31,7 +30,7 @@ public class RecordModel implements Serializable {
 
 	private String storageHash;
 
-	public RecordModel(Long cameraId, Long startDate, Long endDate, Instant logStartDate, String contentHash, String storageHash) {
+	public RecordModel(Long cameraId, Long startDate, Long endDate, Long logStartDate, String contentHash, String storageHash) {
 		this.cameraId = cameraId;
 		this.startDate = startDate;
 		this.endDate = endDate;

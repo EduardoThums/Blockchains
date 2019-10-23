@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.Instant;
 
 /**
  * @author eduardo.thums
@@ -20,11 +19,11 @@ public class LogEntity {
 	@GeneratedValue(generator = "log_id_seq", strategy = GenerationType.SEQUENCE)
 	private Long id;
 
-	private Instant startDate;
+	private Long startDate;
 
-	private Instant endDate;
+	private Long endDate;
 
-	public LogEntity(Instant startDate, Instant endDate) {
+	public LogEntity(Long startDate, Long endDate) {
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}

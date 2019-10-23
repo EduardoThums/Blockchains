@@ -30,7 +30,7 @@ public class ConsumeRecordModelService {
 		createTransactionService.createTransaction(record.value())
 				.forEach(transactionId -> log.info("Transaction ID: {}", transactionId));
 
-		final Instant logEndDate = Instant.now();
+		final Long logEndDate = Instant.now().toEpochMilli();
 
 		produceLogRequestModelService.produceLogRequestModel(record.value().getLogStartDate(), logEndDate);
 	}

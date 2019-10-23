@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-
 /**
  * @author eduardo.thums
  */
@@ -23,7 +21,7 @@ public class ProduceLogRequestModelService {
 		this.kafkaTemplate = kafkaTemplate;
 	}
 
-	void produceLogRequestModel(Instant startDate, Instant endDate) {
+	void produceLogRequestModel(Long startDate, Long endDate) {
 		kafkaTemplate.send(kafkaTopic, new LogRequestModel(startDate, endDate));
 	}
 }
