@@ -2,16 +2,15 @@ package fabric.api.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.stream.Stream;
 
 /**
  * @author eduardo.thums
  */
 @Getter
-@Setter
 @NoArgsConstructor
 public class RecordModel implements Serializable {
 
@@ -22,6 +21,8 @@ public class RecordModel implements Serializable {
 	private Long startDate;
 
 	private Long endDate;
+
+	private Instant logStartDate;
 
 	private String contentHash;
 

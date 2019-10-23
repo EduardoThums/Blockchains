@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+
+  loggerapi:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: loggerapi
+      POSTGRES_PASSWORD: loggerapi

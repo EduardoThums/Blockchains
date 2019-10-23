@@ -26,7 +26,8 @@ public class UploadController {
 	public void uploadFile(@RequestParam("cameraId") Long cameraId,
 	                       @RequestParam("startDate") Long startDate,
 	                       @RequestParam("endDate") Long endDate,
+	                       @RequestParam("logStartDate") Long logStartDate,
 	                       @RequestParam("file") MultipartFile file) throws IOException {
-		produceFileRecordService.produceFileRecord(cameraId, startDate, endDate, file.getBytes());
+		produceFileRecordService.produceFileRecord(cameraId, startDate, endDate, logStartDate, file.getBytes());
 	}
 }

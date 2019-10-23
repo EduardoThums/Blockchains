@@ -7,6 +7,14 @@ kafka:
   bootstrapServers: localhost:9092
   topic:
     ipfs: ipfs-fabric-topic
+    logger: fabric-logger-topic
+  producer:
+    acks: all
+    retries: 0
+    batchSize: 16384
+    lingerMs: 1
+    bufferMemory: 33554432
+    maxRequestSize: 33554432
   consumer:
     groupId: fabric
     autoOffsetReset: earliest

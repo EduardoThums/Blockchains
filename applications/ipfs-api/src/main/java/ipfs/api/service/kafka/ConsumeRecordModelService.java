@@ -34,6 +34,7 @@ public class ConsumeRecordModelService {
 				recordModel.getCameraId(),
 				recordModel.getStartDate(),
 				recordModel.getEndDate(),
+				recordModel.getLogStartDate(),
 				recordModel.getContentHash(),
 				storageHash);
 
