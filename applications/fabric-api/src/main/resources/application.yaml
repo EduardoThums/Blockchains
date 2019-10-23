@@ -2,12 +2,12 @@ spring:
   main:
     allow-bean-definition-overriding: true
 server:
-  port: 10100
+  port: 8082
 kafka:
   bootstrapServers: localhost:9092
   topic:
-    ipfs: ipfs-fabric-topic
-    logger: fabric-logger-topic
+    distributedStorage: distributed-storage-blockchain-topic
+    logger: blockchain-logger-topic
   producer:
     acks: all
     retries: 0

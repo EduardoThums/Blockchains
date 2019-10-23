@@ -7,7 +7,7 @@ spring:
 kafka:
   bootstrapServers: localhost:9092
   topic:
-    ipfs: video-ipfs-topic
+    distributedStorage: video-distributed-storage-topic
   producer:
     acks: all
     retries: 0

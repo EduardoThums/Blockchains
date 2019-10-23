@@ -1,5 +1,5 @@
 server:
-  port: 11110
+  port: 8083
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -15,7 +15,7 @@ spring:
 kafka:
   bootstrapServers: localhost:9092
   topic:
-    fabric: fabric-logger-topic
+    blockchain: blockchain-logger-topic
   consumer:
     groupId: logger
     autoOffsetReset: earliest

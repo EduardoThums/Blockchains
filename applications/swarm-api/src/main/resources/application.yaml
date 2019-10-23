@@ -1,9 +1,12 @@
 server:
   port: 8081
+swarm:
+  value: swarmClient
+  url: http://localhost:8501/bzz
 kafka:
   bootstrapServers: localhost:9092
   topic:
-    video: video-blockchain-topic
+    video: video-distributed-storage-topic
     blockchain: distributed-storage-blockchain-topic
   producer:
     acks: all
@@ -13,10 +16,8 @@ kafka:
     bufferMemory: 33554432
     maxRequestSize: 33554432
   consumer:
-    groupId: ipfs
+    groupId: swarm
     autoOffsetReset: earliest
     maxPollRecords: 1
     enableAutoCommit: false
     fetchMaxBytes: 33554432
-ipfs:
-  url: /ip4/127.0.0.1/tcp/5001

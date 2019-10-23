@@ -25,12 +25,15 @@ public class ConsumeRecordModelService {
 		this.produceLogRequestModelService = produceLogRequestModelService;
 	}
 
-	@KafkaListener(topics = "${kafka.topic.ipfs}", groupId = "${kafka.consumer.groupId}")
+	@KafkaListener(topics = "${kafka.topic.distributedStorage}", groupId = "${kafka.consumer.groupId}")
 	public void consumeRecord(ConsumerRecord<String, RecordModel> record) throws Exception {
 		createTransactionService.createTransaction(record.value())
 				.forEach(transactionId -> log.info("Transaction ID: {}", transactionId));
 
 		final Long logEndDate = Instant.now().toEpochMilli();
+
+		log.info("Start date in milliseconds: {}", record.value().getLogStartDate());
+		log.info("End date in milliseconds: {}", logEndDate);
 
 		produceLogRequestModelService.produceLogRequestModel(record.value().getLogStartDate(), logEndDate);
 	}

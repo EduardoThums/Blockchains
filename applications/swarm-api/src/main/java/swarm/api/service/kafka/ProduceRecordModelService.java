@@ -1,9 +1,9 @@
-package ipfs.api.service.kafka;
+package swarm.api.service.kafka;
 
-import ipfs.api.model.RecordModel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import swarm.api.model.RecordModel;
 
 /**
  * @author eduardo.thums

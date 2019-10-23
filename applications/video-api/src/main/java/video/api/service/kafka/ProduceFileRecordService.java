@@ -20,7 +20,7 @@ public class ProduceFileRecordService {
 
 	private HashGenerator hashGenerator;
 
-	public ProduceFileRecordService(@Value("${kafka.topic.ipfs}") String kafkaTopic,
+	public ProduceFileRecordService(@Value("${kafka.topic.distributedStorage}") String kafkaTopic,
 	                                KafkaTemplate<String, RecordModel> kafkaTemplate,
 	                                HashGenerator hashGenerator) {
 		this.kafkaTopic = kafkaTopic;

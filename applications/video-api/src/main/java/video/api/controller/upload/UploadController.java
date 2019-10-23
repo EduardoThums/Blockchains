@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import video.api.service.kafka.ProduceFileRecordService;
 
 import java.io.IOException;
+import java.time.Instant;
 
 /**
  * @author eduardo.thums
@@ -28,6 +29,7 @@ public class UploadController {
 	                       @RequestParam("endDate") Long endDate,
 	                       @RequestParam("logStartDate") Long logStartDate,
 	                       @RequestParam("file") MultipartFile file) throws IOException {
-		produceFileRecordService.produceFileRecord(cameraId, startDate, endDate, logStartDate, file.getBytes());
+		final Long milliLogStartDate = Instant.now().toEpochMilli();
+		produceFileRecordService.produceFileRecord(cameraId, startDate, endDate, milliLogStartDate, file.getBytes());
 	}
 }

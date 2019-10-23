@@ -18,7 +18,7 @@ public class ConsumeLogRequestModelService {
 		this.saveLogService = saveLogService;
 	}
 
-	@KafkaListener(topics = "${kafka.topic.fabric}", groupId = "${kafka.consumer.groupId}")
+	@KafkaListener(topics = "${kafka.topic.blockchain}", groupId = "${kafka.consumer.groupId}")
 	public void consumeRecord(ConsumerRecord<String, LogRequestModel> record) throws Exception {
 		saveLogService.saveLogEntity(record.value());
 	}
