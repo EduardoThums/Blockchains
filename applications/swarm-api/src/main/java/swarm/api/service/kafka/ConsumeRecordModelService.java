@@ -24,7 +24,7 @@ public class ConsumeRecordModelService {
 	}
 
 	@KafkaListener(topics = "${kafka.topic.video}", groupId = "${kafka.consumer.groupId}")
-	public void consumeRecord(ConsumerRecord<String, RecordModel> record) throws Exception {
+	public void consumeRecord(ConsumerRecord<String, RecordModel> record) {
 		final RecordModel recordModel = record.value();
 		final String storageHash = uploadFileService.uploadFile(recordModel.getFile());
 

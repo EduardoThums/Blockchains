@@ -3,7 +3,7 @@ server:
 kafka:
   bootstrapServers: localhost:9092
   topic:
-    video: video-blockchain-topic
+    video: video-distributed-storage-topic
     blockchain: distributed-storage-blockchain-topic
   producer:
     acks: all
