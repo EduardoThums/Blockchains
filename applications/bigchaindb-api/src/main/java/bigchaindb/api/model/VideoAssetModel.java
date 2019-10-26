@@ -12,15 +12,15 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class VideoAssetModel implements Serializable {
 
-	private static final long serialVersionUID = -9061180728548775137L;
+	private static final long serialVersionUID = -984572621813149325L;
 
-	private Long startDate;
+	private long cameraId;
 
-	private Long endDate;
+	private long startDate;
+
+	private long endDate;
 
 	private String storageHash;
 
 	private String contentHash;
-
-	private Long cameraId;
 }

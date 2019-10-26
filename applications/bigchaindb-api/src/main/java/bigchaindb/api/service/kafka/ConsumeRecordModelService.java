@@ -32,9 +32,6 @@ public class ConsumeRecordModelService {
 
 		final Long logEndDate = Instant.now().toEpochMilli();
 
-		log.info("Start date in milliseconds: {}", record.value().getLogStartDate());
-		log.info("End date in milliseconds: {}", logEndDate);
-
 		produceLogRequestModelService.produceLogRequestModel(record.value().getLogStartDate(), logEndDate);
 	}
 }

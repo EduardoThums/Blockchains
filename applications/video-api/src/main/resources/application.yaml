@@ -18,4 +18,4 @@ kafka:
 feign:
   blockchain:
     value: blockchainClient
-    url: http://localhost:8082
+    url: http://localhost:8082/api

@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.stream.Stream;
 
 /**
  * @author eduardo.thums
@@ -13,27 +12,17 @@ import java.util.stream.Stream;
 @NoArgsConstructor
 public class RecordModel implements Serializable {
 
-	private static final long serialVersionUID = 2951898870905124036L;
+	private static final long serialVersionUID = -3805170559012124637L;
 
-	private Long cameraId;
+	private long cameraId;
 
-	private Long startDate;
+	private long startDate;
 
-	private Long endDate;
+	private long endDate;
 
-	private Long logStartDate;
+	private long logStartDate;
 
 	private String contentHash;
 
 	private String storageHash;
-
-	public String[] toArguments() {
-		return Stream.of(
-				this.startDate.toString(),
-				this.endDate.toString(),
-				this.storageHash,
-				this.contentHash,
-				this.cameraId.toString())
-				.toArray(String[]::new);
-	}
 }

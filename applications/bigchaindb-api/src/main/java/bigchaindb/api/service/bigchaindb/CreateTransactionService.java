@@ -25,7 +25,6 @@ public class CreateTransactionService {
 	public List<String> createTransaction(RecordModel recordModel) throws Exception {
 		return Collections.singletonList(BigchainDbTransactionBuilder
 				.init()
-//				.addAssetDataClass(VideoAssetModel.class, new VideoAssetDeserializer())
 				.addAssets(toVideoAssetModel(recordModel), VideoAssetModel.class)
 				.operation(Operations.CREATE)
 				.buildAndSign(keyPairLoader.readPublicKey(), keyPairLoader.readPrivateKey())
@@ -35,10 +34,10 @@ public class CreateTransactionService {
 
 	private VideoAssetModel toVideoAssetModel(RecordModel recordModel) {
 		return new VideoAssetModel(
+				recordModel.getCameraId(),
 				recordModel.getStartDate(),
 				recordModel.getEndDate(),
 				recordModel.getStorageHash(),
-				recordModel.getContentHash(),
-				recordModel.getCameraId());
+				recordModel.getContentHash());
 	}
 }
