@@ -19,6 +19,9 @@
         <!-- Spring Kafka -->
         <spring-kafka.version>2.3.1.RELEASE</spring-kafka.version>
 
+        <!-- Spring Cloud OpenFeign -->
+        <spring-cloud.version>Finchley.SR2</spring-cloud.version>
+
         <!-- Lombok -->
         <lombok.version>1.18.10</lombok.version>
 
@@ -40,6 +43,12 @@
             <version>${spring-kafka.version}</version>
         </dependency>
 
+        <!-- Spring Cloud OpenFeign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -55,4 +64,16 @@
             <version>${commons-codec.version}</version>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

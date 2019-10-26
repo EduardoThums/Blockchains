@@ -15,3 +15,7 @@ kafka:
     lingerMs: 1
     bufferMemory: 33554432
     maxRequestSize: 33554432
+feign:
+  blockchain:
+    value: blockchainClient
+    url: http://localhost:8082
