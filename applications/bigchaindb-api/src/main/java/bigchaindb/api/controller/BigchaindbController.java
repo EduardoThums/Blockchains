@@ -23,8 +23,9 @@ public class BigchaindbController {
 	@GetMapping("/cameraId/{cameraId}")
 	public ResponseEntity<List<VideoAssetModel>> queryByCameraIdAndTimestampRange(@PathVariable("cameraId") long cameraId,
 	                                                                              @RequestParam("startDate") long startDate,
-	                                                                              @RequestParam("endDate") long endDate) {
+	                                                                              @RequestParam("endDate") long endDate,
+	                                                                              @RequestParam("logStartDate") long logStartDate) {
 
-		return ResponseEntity.ok(queryByCameraIdAndTimestampRangeService.queryByCameraIdAndTimestampRange(cameraId, startDate, endDate));
+		return ResponseEntity.ok(queryByCameraIdAndTimestampRangeService.queryByCameraIdAndTimestampRange(cameraId, startDate, endDate, logStartDate));
 	}
 }

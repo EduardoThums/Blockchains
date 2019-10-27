@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import video.api.model.VideoAssetModel;
 import video.api.service.blockchain.QueryByCameraIdAndTimestampRangeService;
 
+import java.time.Instant;
 import java.util.List;
 
 /**
@@ -26,7 +27,8 @@ public class QueryController {
 	                                                                              @RequestParam("endDate") long endDate,
 	                                                                              @RequestParam("logStartDate") long logStartDate) {
 
-		return ResponseEntity.ok(queryByCameraIdAndTimestampRangeService.queryByCameraIdAndTimestampRange(cameraId, startDate, endDate, logStartDate));
+		final long milliLogStartDate = Instant.now().toEpochMilli();
+		return ResponseEntity.ok(queryByCameraIdAndTimestampRangeService.queryByCameraIdAndTimestampRange(cameraId, startDate, endDate, milliLogStartDate));
 	}
 }
 
