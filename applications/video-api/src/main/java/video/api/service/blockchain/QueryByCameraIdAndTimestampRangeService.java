@@ -18,7 +18,7 @@ public class QueryByCameraIdAndTimestampRangeService {
 		this.blockchainClient = blockchainClient;
 	}
 
-	public List<VideoAssetModel> queryByCameraIdAndTimestampRange(long cameraId, long startDate, long endDate) {
-		return blockchainClient.queryByCameraIdAndTimestampRange(cameraId, startDate, endDate);
+	public List<VideoAssetModel> queryByCameraIdAndTimestampRange(long cameraId, long startDate, long endDate, long logStartDate) {
+		return blockchainClient.queryByCameraIdAndTimestampRange(cameraId, startDate, endDate, logStartDate);
 	}
 }

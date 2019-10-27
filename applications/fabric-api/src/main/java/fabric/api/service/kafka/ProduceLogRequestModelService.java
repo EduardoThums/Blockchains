@@ -21,7 +21,7 @@ public class ProduceLogRequestModelService {
 		this.kafkaTemplate = kafkaTemplate;
 	}
 
-	void produceLogRequestModel(Long startDate, Long endDate) {
+	public void produceLogRequestModel(Long startDate, Long endDate) {
 		kafkaTemplate.send(kafkaTopic, new LogRequestModel(startDate, endDate));
 	}
 }

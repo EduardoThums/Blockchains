@@ -18,5 +18,6 @@ public interface BlockchainClient {
 	@RequestMapping(method = RequestMethod.GET, value = "/blockchain/cameraId/{cameraId}")
 	List<VideoAssetModel> queryByCameraIdAndTimestampRange(@PathVariable("cameraId") long cameraId,
 	                                                       @RequestParam("startDate") long startDate,
-	                                                       @RequestParam("endDate") long endDate);
+	                                                       @RequestParam("endDate") long endDate,
+	                                                       @RequestParam("logStartDate") long logStartDate);
 }

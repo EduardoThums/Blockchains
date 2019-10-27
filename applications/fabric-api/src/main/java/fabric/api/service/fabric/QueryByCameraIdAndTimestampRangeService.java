@@ -9,11 +9,13 @@ import fabric.api.component.chaincode.videoasset.function.QueryByCameraIdAndTime
 import fabric.api.component.fabric.ChannelClient;
 import fabric.api.exception.InvalidProposalResponseException;
 import fabric.api.model.VideoAssetModel;
+import fabric.api.service.kafka.ProduceLogRequestModelService;
 import lombok.extern.slf4j.Slf4j;
 import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
 import org.hyperledger.fabric.sdk.exception.ProposalException;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -28,14 +30,17 @@ public class QueryByCameraIdAndTimestampRangeService {
 
 	private ChannelClient channelClient;
 
+	private ProduceLogRequestModelService produceLogRequestModelService;
+
 	private ObjectMapper objectMapper;
 
-	public QueryByCameraIdAndTimestampRangeService(ChannelClient channelClient) {
+	public QueryByCameraIdAndTimestampRangeService(ChannelClient channelClient, ProduceLogRequestModelService produceLogRequestModelService) {
 		this.channelClient = channelClient;
+		this.produceLogRequestModelService = produceLogRequestModelService;
 		this.objectMapper = new ObjectMapper();
 	}
 
-	public List<VideoAssetModel> queryByCameraIdAndTimestampRange(long cameraId, long startDate, long endDate) throws ProposalException, InvalidArgumentException, JsonProcessingException {
+	public List<VideoAssetModel> queryByCameraIdAndTimestampRange(long cameraId, long startDate, long endDate, long logStartDate) throws ProposalException, InvalidArgumentException, JsonProcessingException {
 		final String[] arguments = mapArguments(cameraId, startDate, endDate);
 		final BaseChaincodeFunction baseChaincodeFunction = new QueryByCameraIdAndTimestampRangeFunction(arguments);
 		final BaseChaincode baseChaincode = new VideoAssetChaincode(baseChaincodeFunction);
@@ -45,6 +50,10 @@ public class QueryByCameraIdAndTimestampRangeService {
 				.findFirst()
 				.orElseThrow(InvalidProposalResponseException::new)
 				.getMessage());
+
+		final Long logEndDate = Instant.now().toEpochMilli();
+
+		produceLogRequestModelService.produceLogRequestModel(logStartDate, logEndDate);
 
 		return Arrays.asList(objectMapper.readValue(response, VideoAssetModel[].class));
 	}

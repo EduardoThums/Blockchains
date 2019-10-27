@@ -26,8 +26,9 @@ public class FabricController {
 	@GetMapping("/cameraId/{cameraId}")
 	public ResponseEntity<List<VideoAssetModel>> queryByCameraIdAndTimestampRange(@PathVariable("cameraId") long cameraId,
 	                                                                              @RequestParam("startDate") long startDate,
-	                                                                              @RequestParam("endDate") long endDate) throws JsonProcessingException, ProposalException, InvalidArgumentException {
+	                                                                              @RequestParam("endDate") long endDate,
+	                                                                              @RequestParam("logStartDate") long logStartDate) throws JsonProcessingException, ProposalException, InvalidArgumentException {
 
-		return ResponseEntity.ok(queryByCameraIdAndTimestampRangeService.queryByCameraIdAndTimestampRange(cameraId, startDate, endDate));
+		return ResponseEntity.ok(queryByCameraIdAndTimestampRangeService.queryByCameraIdAndTimestampRange(cameraId, startDate, endDate, logStartDate));
 	}
 }

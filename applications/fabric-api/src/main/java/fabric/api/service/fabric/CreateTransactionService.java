@@ -33,10 +33,6 @@ public class CreateTransactionService {
 		final BaseChaincodeFunction baseChaincodeFunction = new CreateVideoAssetFunction(arguments);
 		final BaseChaincode baseChaincode = new VideoAssetChaincode(baseChaincodeFunction);
 
-		log.info("Camera ID: {}", recordModel.getCameraId());
-		log.info("Start date: {}", recordModel.getStartDate());
-		log.info("End date: {}", recordModel.getEndDate());
-
 		final Collection<ProposalResponse> proposalResponses = channelClient.sendTransactionProposal(baseChaincode);
 
 		return proposalResponses
