@@ -1,0 +1,12 @@
+version: '2'
+services:
+
+  ipfs0:
+    container_name: ipfs0 
+    image: ipfs/go-ipfs:$IMAGE_TAG
+    ports:
+      - 4001:4001
+      - 5001:5001
+      - 9091:9090
+    user: "ipfs"
+    command: [ "daemon", "--enable-pubsub-experiment" ]
