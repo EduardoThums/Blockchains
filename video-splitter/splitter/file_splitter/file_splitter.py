@@ -23,6 +23,7 @@ class FileSplitter(VideoSplitter):
     def get_output(self, output=None):
         if output:
             super().release_output(output)
+            self.starting_interval_seconds = self.next_interval_seconds
 
         # Specify the path and name of the video file as well as the encoding, fps and resolution
         filename = str.format(
@@ -53,8 +54,10 @@ class FileSplitter(VideoSplitter):
 
     def increase_next_interval(self):
         self.current_next_interval_second += self.fragments_time_interval_in_seconds
+        self.next_interval_seconds = self.starting_interval_seconds + self.fragments_time_interval_in_seconds
 
     def split(self):
+        self.starting_interval_seconds = time.time()
         output = self.get_output()
         self.increase_next_interval()
 
@@ -66,6 +69,7 @@ class FileSplitter(VideoSplitter):
             else:
                 break
 
+        self.increase_next_interval()
         super().release_output(output)
         self.video_capture.release()
         cv2.destroyAllWindows()
