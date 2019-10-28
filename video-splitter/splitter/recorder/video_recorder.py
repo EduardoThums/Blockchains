@@ -24,8 +24,9 @@ class VideoRecorder(VideoSplitter):
     def get_output(self, output=None):
         if output:
             super().release_output(output)
-        # Specify the path and name of the video file as well as the encoding, fps and resolution
-        self.current_video_piece_filename = self.get_full_filename(time.time());
+            self.starting_interval_seconds = time.time()
+
+        self.current_video_piece_filename = self.get_full_filename(time.time())
 
         return cv2.VideoWriter(
             self.current_video_piece_filename,
@@ -34,7 +35,7 @@ class VideoRecorder(VideoSplitter):
             self.get_dimensions(self.resolution))
 
     def get_full_filename(self, starting_datime):
-        final_datetime = starting_datime + self.fragments_time_interval_in_seconds;
+        final_datetime = starting_datime + self.fragments_time_interval_in_seconds
 
         starting_datetime_text = str(time.strftime('%d-%m-%Y - %H.%M.%S', time.localtime(starting_datime)))
         final_datetime_text = str(time.strftime('%d-%m-%Y - %H.%M.%S', time.localtime(final_datetime)))
@@ -69,17 +70,18 @@ class VideoRecorder(VideoSplitter):
 
     def record_video(self):
         output = self.get_output()
-        next_time = time.time() + self.fragments_time_interval_in_seconds
+        self.starting_interval_seconds = time.time()
+        self.next_interval_seconds = self.starting_interval_seconds + self.fragments_time_interval_in_seconds
         counter = 1
 
         while True:
-            if time.time() > next_time:
+            if time.time() > self.next_interval_seconds:
                 if counter >= self.number_of_records:
                     break
 
                 counter += 1
-                next_time += self.fragments_time_interval_in_seconds
                 output = self.get_output(output)
+                self.next_interval_seconds += self.fragments_time_interval_in_seconds
 
             # Capture frame-by-frame
             ret, frame = self.video_capture.read()

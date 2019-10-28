@@ -10,6 +10,6 @@ STANDARD_DIMENSIONS = {
 # Types of Codes: http://www.fourcc.org/codecs.php
 VIDEO_TYPES = {
     'avi': 'XVID',
-    #'mp4': 'H264',
+    # 'mp4': 'H264',
     'mp4': 'mp4v',
 }
