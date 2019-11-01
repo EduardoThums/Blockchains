@@ -76,15 +76,15 @@ public class FabricConfig {
 
 		final Channel channel = channelClient.getChannel();
 		final Peer peer0 = fabricClient.getInstance().newPeer(org1Peer0, org1Peer0Url);
-//		final Peer peer1 = fabricClient.getInstance().newPeer(org1Peer1, org1Peer1Url);
-//		final Peer peer2 = fabricClient.getInstance().newPeer(org1Peer2, org1Peer2Url);
-//		final Peer peer3 = fabricClient.getInstance().newPeer(org1Peer3, org1Peer3Url);
+		final Peer peer1 = fabricClient.getInstance().newPeer(org1Peer1, org1Peer1Url);
+		final Peer peer2 = fabricClient.getInstance().newPeer(org1Peer2, org1Peer2Url);
+		final Peer peer3 = fabricClient.getInstance().newPeer(org1Peer3, org1Peer3Url);
 
 		final Orderer orderer = fabricClient.getInstance().newOrderer(ordererName, ordererUrl);
 		channel.addPeer(peer0);
-//		channel.addPeer(peer1);
-//		channel.addPeer(peer2);
-//		channel.addPeer(peer3);
+		channel.addPeer(peer1);
+		channel.addPeer(peer2);
+		channel.addPeer(peer3);
 
 		channel.addOrderer(orderer);
 		channel.initialize();

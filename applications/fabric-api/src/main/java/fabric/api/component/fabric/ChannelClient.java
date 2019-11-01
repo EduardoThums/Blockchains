@@ -37,6 +37,7 @@ public class ChannelClient {
 		request.setFcn(baseChaincode.getFunction().getName());
 		request.setArgs(baseChaincode.getFunction().getArguments());
 		request.setChaincodeLanguage(TransactionRequest.Type.JAVA);
+		//TODO: Change proposal time to 8000 milliseconds when test with production environment
 		request.setProposalWaitTime(2000);
 
 		final Collection<ProposalResponse> response = channel.sendTransactionProposal(request, channel.getPeers());

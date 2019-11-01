@@ -4,8 +4,8 @@ spring:
 server:
   port: 8082
 kafka:
-  # bootstrapServers: localhost:9092 # Development Kafka brokers
-  bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka Brokers
+  bootstrapServers: localhost:9092 # Development Kafka brokers
+  #  bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka Brokers
   topic:
     distributedStorage: distributed-storage-blockchain-topic
     logger: blockchain-logger-topic
