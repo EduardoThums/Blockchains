@@ -51,8 +51,8 @@ public class BigchaindbConfig {
 				createBaseConnection(peer3Url));
 
 		BigchainDbConfigBuilder
-				.baseUrl(peer0Url)
-//				.addConnections(connections)
+//				.baseUrl(peer0Url)
+				.addConnections(connections)
 				.setTimeout(60000)
 				.setup();
 	}
