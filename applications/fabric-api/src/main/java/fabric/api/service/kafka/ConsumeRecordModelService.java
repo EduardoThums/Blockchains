@@ -28,8 +28,7 @@ public class ConsumeRecordModelService {
 	@KafkaListener(topics = "${kafka.topic.distributedStorage}", groupId = "${kafka.consumer.groupId}")
 	public void consumeRecord(ConsumerRecord<String, RecordModel> record) throws Exception {
 		//TODO: Remove log when run tests with production environment
-		createTransactionService.createTransaction(record.value())
-				.forEach(transactionId -> log.info("Transaction ID: {}", transactionId));
+		createTransactionService.createTransaction(record.value());
 
 		final Long logEndDate = Instant.now().toEpochMilli();
 
