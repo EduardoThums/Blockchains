@@ -40,7 +40,6 @@ public class ChannelClient {
 		//TODO: Change proposal time to 8000 milliseconds when test with production environment
 		request.setProposalWaitTime(8000);
 
-		//Teste
 		final Collection<ProposalResponse> response = channel.sendTransactionProposal(request, channel.getPeers());
 		channel.sendTransaction(response);
 
