@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/loggerapi
+    url: jdbc:postgresql://localhost:5433/loggerapi
     username: loggerapi
     password: loggerapi
   jpa:
@@ -13,7 +13,8 @@ spring:
           lob:
             non_contextual_creation: true
 kafka:
-  bootstrapServers: localhost:9092
+# bootstrapServers: localhost:9092 # Development Kafka brokers
+  bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka Brokers
   topic:
     blockchain: blockchain-logger-topic
   consumer:

@@ -1,19 +1,16 @@
 #!/bin/bash
 
-# Constants
-TOPIC_NAME=producer-topic
+VIDEO_DISTRIBUTED_TOPIC=video-distributed-storage-topic
+DISTRIBUTED_STORAGE_BLOCKCHAIN_TOPIC=distributed-storage-blockchain-topic
+BLOCKCHAIN_LOGGER_TOPIC=blockchain-logger-topic
 
-# Import util scrips
 . scripts/clean-util.sh
 . scripts/topic-util.sh
 
-# Remove old kafka network
 removeContainers
 
-# Builsk new kafka network
 docker-compose up -d
 
-sleep 20
-
-# Create producer topic
-createTopic
+createTopic $VIDEO_DISTRIBUTED_TOPIC
+createTopic $DISTRIBUTED_STORAGE_BLOCKCHAIN_TOPIC
+createTopic $BLOCKCHAIN_LOGGER_TOPIC

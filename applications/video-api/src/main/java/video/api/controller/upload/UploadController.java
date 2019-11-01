@@ -29,7 +29,6 @@ public class UploadController {
 	                       @RequestParam("endDate") Long endDate,
 	                       @RequestParam("logStartDate") Long logStartDate,
 	                       @RequestParam("file") MultipartFile file) throws IOException {
-		final Long milliLogStartDate = Instant.now().toEpochMilli();
-		produceFileRecordService.produceFileRecord(cameraId, startDate, endDate, milliLogStartDate, file.getBytes());
+		produceFileRecordService.produceFileRecord(cameraId, startDate, endDate, logStartDate, file.getBytes());
 	}
 }
