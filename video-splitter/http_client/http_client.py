@@ -14,9 +14,6 @@ class HttpClient:
         file = open(file_path, OPEN_FILE_FORMAT)
         log_start_date = int(round(time.time() * 1000))
 
-        print(starting_interval_timestamp)
-        print(next_interval_timestamp)
-
         route_with_params = route.format(DEFAULT_CAMERA_ID,
                                          starting_interval_timestamp,
                                          next_interval_timestamp,
