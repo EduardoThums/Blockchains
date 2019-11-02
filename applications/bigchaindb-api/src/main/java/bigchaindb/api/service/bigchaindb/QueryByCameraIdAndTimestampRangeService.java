@@ -6,10 +6,8 @@ import bigchaindb.api.repository.VideoAssetRepository;
 import bigchaindb.api.service.file.GetFilesByHashListService;
 import bigchaindb.api.service.file.GetFilesByHashListSwarmServiceImpl;
 import bigchaindb.api.service.kafka.ProduceLogRequestModelService;
-import com.google.common.io.Files;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
@@ -46,19 +44,10 @@ public class QueryByCameraIdAndTimestampRangeService {
 
 		final List<byte[]> videoList = getFilesByHashListService.getFilesByHashList(storageHashList);
 
-		writeVideosOnLocalFiles(videoList);
-
 		final Long logEndDate = Instant.now().toEpochMilli();
 
 		produceLogRequestModelService.produceLogRequestModel(logStartDate, logEndDate);
 
 		return videoAssetModels;
-	}
-
-	private void writeVideosOnLocalFiles(List<byte[]> videoList) throws IOException {
-		for (int index = 0; index < videoList.size(); index++) {
-			final File file = new File("/home/eduardo/Videos/videos-record/video-" + index + ".mp4");
-			Files.write(videoList.get(index), file);
-		}
 	}
 }

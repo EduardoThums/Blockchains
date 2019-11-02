@@ -1,7 +1,6 @@
 package fabric.api.service.fabric;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.io.Files;
 import fabric.api.component.chaincode.BaseChaincode;
 import fabric.api.component.chaincode.BaseChaincodeFunction;
 import fabric.api.component.chaincode.videoasset.VideoAssetChaincode;
@@ -17,7 +16,6 @@ import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
 import org.hyperledger.fabric.sdk.exception.ProposalException;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.Arrays;
@@ -68,8 +66,6 @@ public class QueryByCameraIdAndTimestampRangeService {
 
 		final List<byte[]> videoList = getFilesByHashListService.getFilesByHashList(storageHashList);
 
-		writeVideosOnLocalFiles(videoList);
-
 		final Long logEndDate = Instant.now().toEpochMilli();
 
 		produceLogRequestModelService.produceLogRequestModel(logStartDate, logEndDate);
@@ -83,13 +79,6 @@ public class QueryByCameraIdAndTimestampRangeService {
 				String.valueOf(startDate),
 				String.valueOf(endDate))
 				.toArray(String[]::new);
-	}
-
-	private void writeVideosOnLocalFiles(List<byte[]> videoList) throws IOException {
-		for (int index = 0; index < videoList.size(); index++) {
-			final File file = new File("/home/eduardo/Videos/videos-record/video-" + index + ".mp4");
-			Files.write(videoList.get(index), file);
-		}
 	}
 }
 
