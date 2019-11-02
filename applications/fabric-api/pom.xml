@@ -18,12 +18,26 @@
         <!-- Spring Kafka -->
         <spring-kafka.version>2.3.1.RELEASE</spring-kafka.version>
 
+        <!-- Spring Cloud OpenFeign -->
+        <spring-cloud-starter-openfeign.version>2.1.3.RELEASE</spring-cloud-starter-openfeign.version>
+
         <!-- Fabric -->
         <fabric.version>1.4.4</fabric.version>
 
         <!-- Lombok -->
         <lombok.version>1.18.10</lombok.version>
+
+        <!-- IPFS -->
+        <ipfs.version>v1.2.2</ipfs.version>
     </properties>
+
+    <repositories>
+        <!-- IPFS -->
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <!-- Spring Web -->
@@ -39,6 +53,13 @@
             <version>${spring-kafka.version}</version>
         </dependency>
 
+        <!-- Spring Cloud OpenFeign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>${spring-cloud-starter-openfeign.version}</version>
+        </dependency>
+
         <!-- Fabric -->
         <dependency>
             <groupId>org.hyperledger.fabric-sdk-java</groupId>
@@ -52,6 +73,13 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <!-- IPFS -->
+        <dependency>
+            <groupId>com.github.ipfs</groupId>
+            <artifactId>java-ipfs-api</artifactId>
+            <version>${ipfs.version}</version>
         </dependency>
     </dependencies>
 </project>

@@ -50,3 +50,8 @@ fabric:
       name: peer3.org1.example.com
       url: grpc://localhost:10051
   userDirectoryPath: src/main/resources/user
+swarm:
+  value: blockchain-swarm-client
+  url: http://localhost:8501/bzz
+ipfs:
+  url: /ip4/127.0.0.1/tcp/5001
