@@ -4,8 +4,8 @@ swarm:
   value: swarmClient
   url: http://localhost:8501/bzz
 kafka:
-  #  bootstrapServers: localhost:9092 # Development Kafka brokers
-  bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka brokers
+  bootstrapServers: localhost:9092 # Development Kafka brokers
+  #  bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka brokers
   topic:
     video: video-distributed-storage-topic
     blockchain: distributed-storage-blockchain-topic
