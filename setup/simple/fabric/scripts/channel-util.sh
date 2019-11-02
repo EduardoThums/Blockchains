@@ -10,7 +10,6 @@ MAX_RETRY=10
 DELAY=3
 TIMEOUT=10
 
-#Import peer utils
 . scripts/peer-util.sh
 
 createChannel() {
@@ -31,22 +30,17 @@ joinChannel () {
 	echo
 }
 
-## Create channel
 echo "Creating channel..."
 createChannel
 
-## Join all the peers to the channel
 echo "Having all peers join the channel..."
 joinChannel
 
-## Set the anchor peers for each org in the channel
 echo "Updating anchor peers for org1..."
 updateAnchorPeers 0
 
-## Install chaincode on peer0.org1
 echo "Installing chaincode on all peers"
 installChaincode 0 1.0
 
-# Instantiate chaincode on peer0.org1
 echo "Instantiating chaincode on peer0.org1..."
 instantiateChaincode 0 1.0

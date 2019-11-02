@@ -1,14 +1,8 @@
 #!/bin/bash
 
 CHANNEL_NAME="$1"
-# Path to java new fabcar chaincode
 CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/java/"
 CHAINCODE_LANGUAGE="java"
-
-# Path to golang new fabcar chaincode
-# CC_SRC_PATH="github.com/chaincode/go/"
-# CHAINCODE_LANGUAGE="golang"
-
 CHAINCODE_NAME="videoassetcc"
 
 COUNTER=1
@@ -16,7 +10,6 @@ MAX_RETRY=10
 DELAY=3
 TIMEOUT=10
 
-#Import peer utils
 . scripts/peer-util.sh
 
 createChannel() {
@@ -45,38 +38,23 @@ installChaincodeOnAllPeers () {
 	done
 }
 
-## Create channel
+instantiateChaincodeOnAllPeers(){
+	for peer in 0 1; do
+	instantiateChaincode $peer
+	done
+}
+
 echo "Creating channel..."
 createChannel
 
-## Join all the peers to the channel
 echo "Having all peers join the channel..."
 joinChannel
 
-## Set the anchor peers for each org in the channel
 echo "Updating anchor peers for org1..."
 updateAnchorPeers 0
 
-## Install chaincode on peer0.org1
-echo "Installing chaincode on all peers"
+echo "Installing chaincode on all peers..."
 installChaincodeOnAllPeers
 
-# Instantiate chaincode on peer0.org1
-echo "Instantiating chaincode on peer0.org1..."
-instantiateChaincode 0
-
-# # Query chaincode on peer0.org1
-# echo "Querying chaincode on peer0.org1..."
-# chaincodeQuery 0 1 100
-
-# # Invoke chaincode on peer0.org1 and peer0.org2
-# echo "Sending invoke transaction on peer0.org1 peer0.org2..."
-# chaincodeInvoke 0 1 0 2
-
-# ## Install chaincode on peer1.org2
-# echo "Installing chaincode on peer1.org2..."
-# installChaincode 1 2
-
-# # Query on chaincode on peer1.org2, check if the result is 90
-# echo "Querying chaincode on peer1.org2..."
-# chaincodeQuery 1 2 90
+echo "Instantiating chaincode on all peers..."
+instantiateChaincodeOnAllPeers

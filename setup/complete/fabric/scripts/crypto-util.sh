@@ -1,7 +1,6 @@
 #!/bin/bash
-# export PATH=${PWD}/./bin:${PWD}:$PATH
 
-function generateCerts() {
+generateCerts() {
   echo "##########################################################"
   echo "##### Generate certificates using cryptogen tool #########"
   echo "##########################################################"
@@ -19,7 +18,7 @@ function generateCerts() {
   fi 
 }
 
-function generateChannelArtifacts() {
+generateChannelArtifacts() {
   echo "##########################################################"
   echo "#########  Generating Orderer Genesis block ##############"
   echo "##########################################################"
@@ -57,6 +56,6 @@ function generateChannelArtifacts() {
   fi
 }
 
-function exportPrivateCaKey(){
+exportPrivateCaKey(){
   export BYFN_CA1_PRIVATE_KEY=$(cd ./crypto-config/peerOrganizations/org1.example.com/ca && ls *_sk)
 }

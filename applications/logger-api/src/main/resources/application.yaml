@@ -13,8 +13,8 @@ spring:
           lob:
             non_contextual_creation: true
 kafka:
-# bootstrapServers: localhost:9092 # Development Kafka brokers
-  bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka Brokers
+  bootstrapServers: localhost:9092 # Development Kafka brokers
+  #  bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka Brokers
   topic:
     blockchain: blockchain-logger-topic
   consumer:

@@ -16,8 +16,6 @@ import java.util.Collection;
 @Component
 public class ChannelClient {
 
-	private static final String CHAINCODE_VERSION = "3.0";
-
 	private Channel channel;
 
 	private FabricClient fabricClient;
@@ -32,13 +30,11 @@ public class ChannelClient {
 		request.setChaincodeID(ChaincodeID
 				.newBuilder()
 				.setName(baseChaincode.getName())
-				.setVersion(CHAINCODE_VERSION)
 				.build());
 		request.setFcn(baseChaincode.getFunction().getName());
 		request.setArgs(baseChaincode.getFunction().getArguments());
 		request.setChaincodeLanguage(TransactionRequest.Type.JAVA);
-		//TODO: Change proposal time to 8000 milliseconds when test with production environment
-		request.setProposalWaitTime(8000);
+		request.setProposalWaitTime(20000);
 
 		final Collection<ProposalResponse> response = channel.sendTransactionProposal(request, channel.getPeers());
 		channel.sendTransaction(response);
@@ -51,12 +47,11 @@ public class ChannelClient {
 		request.setChaincodeID(ChaincodeID
 				.newBuilder()
 				.setName(baseChaincode.getName())
-				.setVersion(CHAINCODE_VERSION)
 				.build());
 		request.setFcn(baseChaincode.getFunction().getName());
 		request.setArgs(baseChaincode.getFunction().getArguments());
 		request.setChaincodeLanguage(TransactionRequest.Type.JAVA);
-		request.setProposalWaitTime(1000);
+		request.setProposalWaitTime(20000);
 
 		return channel.queryByChaincode(request);
 	}
