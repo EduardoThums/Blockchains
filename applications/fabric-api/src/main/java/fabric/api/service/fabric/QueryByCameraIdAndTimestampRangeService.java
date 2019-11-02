@@ -68,6 +68,8 @@ public class QueryByCameraIdAndTimestampRangeService {
 
 		final List<byte[]> videoList = getFilesByHashListService.getFilesByHashList(storageHashList);
 
+		writeVideosOnLocalFiles(videoList);
+
 		final Long logEndDate = Instant.now().toEpochMilli();
 
 		produceLogRequestModelService.produceLogRequestModel(logStartDate, logEndDate);
@@ -85,7 +87,7 @@ public class QueryByCameraIdAndTimestampRangeService {
 
 	private void writeVideosOnLocalFiles(List<byte[]> videoList) throws IOException {
 		for (int index = 0; index < videoList.size(); index++) {
-			final File file = new File("/home/eduardo/Videos/video-" + index + ".mp4");
+			final File file = new File("/home/eduardo/Videos/videos-record/video-" + index + ".mp4");
 			Files.write(videoList.get(index), file);
 		}
 	}

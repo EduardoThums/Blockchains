@@ -5,6 +5,7 @@ import bigchaindb.api.service.bigchaindb.QueryByCameraIdAndTimestampRangeService
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class BigchaindbController {
 	public ResponseEntity<List<VideoAssetModel>> queryByCameraIdAndTimestampRange(@PathVariable("cameraId") long cameraId,
 	                                                                              @RequestParam("startDate") long startDate,
 	                                                                              @RequestParam("endDate") long endDate,
-	                                                                              @RequestParam("logStartDate") long logStartDate) {
+	                                                                              @RequestParam("logStartDate") long logStartDate) throws IOException {
 
 		return ResponseEntity.ok(queryByCameraIdAndTimestampRangeService.queryByCameraIdAndTimestampRange(cameraId, startDate, endDate, logStartDate));
 	}

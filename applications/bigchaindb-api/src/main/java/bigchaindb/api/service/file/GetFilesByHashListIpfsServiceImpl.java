@@ -1,4 +1,4 @@
-package fabric.api.service.file;
+package bigchaindb.api.service.file;
 
 import io.ipfs.api.IPFS;
 import io.ipfs.multihash.Multihash;

@@ -3,9 +3,14 @@ package bigchaindb.api.service.bigchaindb;
 import bigchaindb.api.model.VideoAssetModel;
 import bigchaindb.api.projection.AssetProjection;
 import bigchaindb.api.repository.VideoAssetRepository;
+import bigchaindb.api.service.file.GetFilesByHashListService;
+import bigchaindb.api.service.file.GetFilesByHashListSwarmServiceImpl;
 import bigchaindb.api.service.kafka.ProduceLogRequestModelService;
+import com.google.common.io.Files;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,21 +25,40 @@ public class QueryByCameraIdAndTimestampRangeService {
 
 	private ProduceLogRequestModelService produceLogRequestModelService;
 
-	public QueryByCameraIdAndTimestampRangeService(VideoAssetRepository videoAssetRepository, ProduceLogRequestModelService produceLogRequestModelService) {
+	private GetFilesByHashListService getFilesByHashListService;
+
+	public QueryByCameraIdAndTimestampRangeService(VideoAssetRepository videoAssetRepository, ProduceLogRequestModelService produceLogRequestModelService, GetFilesByHashListSwarmServiceImpl getFilesByHashListService) {
 		this.videoAssetRepository = videoAssetRepository;
 		this.produceLogRequestModelService = produceLogRequestModelService;
+		this.getFilesByHashListService = getFilesByHashListService;
 	}
 
-	public List<VideoAssetModel> queryByCameraIdAndTimestampRange(long cameraId, long startDate, long endDate, long logStartDate) {
+	public List<VideoAssetModel> queryByCameraIdAndTimestampRange(long cameraId, long startDate, long endDate, long logStartDate) throws IOException {
 		final List<VideoAssetModel> videoAssetModels = videoAssetRepository.findByCameraIdAndStartDateAndEndDateRange(cameraId, startDate, endDate)
 				.stream()
 				.map(AssetProjection::getData)
 				.collect(Collectors.toList());
+
+		final List<String> storageHashList = videoAssetModels
+				.stream()
+				.map(VideoAssetModel::getStorageHash)
+				.collect(Collectors.toList());
+
+		final List<byte[]> videoList = getFilesByHashListService.getFilesByHashList(storageHashList);
+
+		writeVideosOnLocalFiles(videoList);
 
 		final Long logEndDate = Instant.now().toEpochMilli();
 
 		produceLogRequestModelService.produceLogRequestModel(logStartDate, logEndDate);
 
 		return videoAssetModels;
+	}
+
+	private void writeVideosOnLocalFiles(List<byte[]> videoList) throws IOException {
+		for (int index = 0; index < videoList.size(); index++) {
+			final File file = new File("/home/eduardo/Videos/videos-record/video-" + index + ".mp4");
+			Files.write(videoList.get(index), file);
+		}
 	}
 }
