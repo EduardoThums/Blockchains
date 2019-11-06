@@ -1,6 +1,7 @@
 import os
 
 from http_client.http_client import HttpClient
+from utils.timestamp_utils import TimestampUtils
 
 
 class VideoSplitter:
@@ -15,15 +16,10 @@ class VideoSplitter:
 
     def release_output(self, output):
         output.release()
-        HttpClient.make_request(self.get_miliseconds(self.starting_interval_seconds),
-                                self.get_miliseconds(self.next_interval_seconds),
+        HttpClient.make_request(TimestampUtils.get_miliseconds(self.starting_interval_seconds),
+                                TimestampUtils.get_miliseconds(self.next_interval_seconds),
                                 self.current_video_piece_filename)
         self.delete_file()
-
-
-    def get_miliseconds(self, seconds):
-        return int(round(seconds * 1000))
-
 
     def delete_file(self):
         os.remove(self.current_video_piece_filename)
