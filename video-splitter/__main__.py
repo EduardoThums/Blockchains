@@ -9,4 +9,5 @@ if __name__ == '__main__':
 
     time.sleep(30)
 
+    print("Creating csv file")
     CsvWriter.write_log_csv_file()
