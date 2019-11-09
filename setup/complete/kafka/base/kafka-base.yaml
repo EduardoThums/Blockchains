@@ -14,8 +14,8 @@ services:
   kafka-base:
     image: confluentinc/cp-kafka:$IMAGE_TAG
     environment:
-      KAFKA_REPLICA_FETCH_MAX_BYTES:  33554432
-      KAFKA_MESSAGE_MAX_BYTES: 33554432
+      KAFKA_REPLICA_FETCH_MAX_BYTES: 90000000
+      KAFKA_MESSAGE_MAX_BYTES: 90000000
     network_mode: host
     extra_hosts:
       - "kafka-host:127.0.0.1"

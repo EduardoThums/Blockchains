@@ -31,6 +31,9 @@
 
         <!-- IPFS -->
         <ipfs.version>v1.2.2</ipfs.version>
+
+        <!-- Commons Coded -->
+        <commons-codec.version>1.11</commons-codec.version>
     </properties>
 
     <dependencies>
@@ -60,6 +63,13 @@
             <groupId>com.github.ipfs</groupId>
             <artifactId>java-ipfs-api</artifactId>
             <version>${ipfs.version}</version>
+        </dependency>
+
+        <!-- Commons Coded -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
         </dependency>
     </dependencies>
 </project>

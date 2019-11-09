@@ -24,6 +24,9 @@
 
         <!-- Spring Kafka -->
         <spring-kafka.version>2.3.1.RELEASE</spring-kafka.version>
+
+        <!-- Commons Coded -->
+        <commons-codec.version>1.11</commons-codec.version>
     </properties>
 
     <dependencies>
@@ -51,6 +54,13 @@
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
             <version>${spring-kafka.version}</version>
+        </dependency>
+
+        <!-- Commons Coded -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
         </dependency>
     </dependencies>
 

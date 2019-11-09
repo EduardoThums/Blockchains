@@ -1,9 +1,6 @@
 package fabric.api.config;
 
-import io.ipfs.api.IPFS;
-import io.ipfs.multiaddr.MultiAddress;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -18,8 +15,8 @@ public class IpfsConfig {
 		this.ipfsUrl = ipfsUrl;
 	}
 
-	@Bean
-	public IPFS ipfs() {
-		return new IPFS(new MultiAddress(ipfsUrl));
-	}
+//	@Bean
+//	public IPFS ipfs() {
+//		return new IPFS(new MultiAddress(ipfsUrl));
+//	}
 }

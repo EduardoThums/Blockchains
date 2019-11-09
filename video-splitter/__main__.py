@@ -1,5 +1,12 @@
-from splitter.file_splitter.file_splitter import FileSplitter
-from splitter.recorder.video_recorder import VideoRecorder
+import time
+
+from constants.video_sender_constants import VIDEO_FILE_PATH, VIDEO_FILE_SECONDS
+from csv_writer.csv_writer import CsvWriter
+from splitter.video_sender.video_sender import VideoSender
 
 if __name__ == '__main__':
-    FileSplitter('sample.mp4', 10).split()
+    VideoSender.send_file_multiple_times(VIDEO_FILE_PATH, VIDEO_FILE_SECONDS)
+
+    time.sleep(30)
+
+    CsvWriter.write_log_csv_file()
