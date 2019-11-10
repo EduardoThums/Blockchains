@@ -1,0 +1,20 @@
+import csv
+
+import requests
+
+from constants.http_client_constants import LOGGER_API_ROUTE
+from constants.video_sender_constants import TEST_FILE_PATH, CSV_FIELD_NAMES
+
+
+class CsvWriter:
+
+    @staticmethod
+    def write_log_csv_file():
+        log_list = requests.get(LOGGER_API_ROUTE).json()
+
+        with open(TEST_FILE_PATH, 'w') as write_file:
+            writer = csv.DictWriter(write_file, fieldnames=CSV_FIELD_NAMES)
+            writer.writeheader()
+
+            for dict_object in log_list:
+                writer.writerow(dict_object)

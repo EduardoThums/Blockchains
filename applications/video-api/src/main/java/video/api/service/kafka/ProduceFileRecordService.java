@@ -14,6 +14,8 @@ import video.api.util.HashGenerator;
 @Service
 public class ProduceFileRecordService {
 
+	private static RecordModel recordModel;
+
 	private String kafkaTopic;
 
 	private KafkaTemplate<String, RecordModel> kafkaTemplate;
@@ -29,8 +31,20 @@ public class ProduceFileRecordService {
 	}
 
 	public void produceFileRecord(Long cameraId, Long startDate, Long endDate, Long logStartDate, byte[] file) {
-		final RecordModel recordModel = new RecordModel(cameraId, startDate, endDate, logStartDate, file, hashGenerator.generateHash(file));
+		teste(cameraId, startDate, endDate, logStartDate, file);
 
 		kafkaTemplate.send(kafkaTopic, recordModel);
+	}
+
+	private void teste(Long cameraId, Long startDate, Long endDate, Long logStartDate, byte[] file) {
+		//se ja existe bota null e cria dnv
+		if (recordModel == null) {
+			recordModel = new RecordModel(cameraId, startDate, endDate, logStartDate, file, hashGenerator.generateHash(file));
+		} else {
+			recordModel.setCameraId(cameraId);
+			recordModel.setStartDate(cameraId);
+			recordModel.setEndDate(cameraId);
+			recordModel.setFile(file);
+		}
 	}
 }

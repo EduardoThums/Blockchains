@@ -1,11 +1,9 @@
 package fabric.api.service.file;
 
-import io.ipfs.api.IPFS;
-import io.ipfs.multihash.Multihash;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,20 +12,21 @@ import java.util.List;
 @Service
 public class GetFilesByHashListIpfsServiceImpl implements GetFilesByHashListService {
 
-	private IPFS ipfsClient;
-
-	public GetFilesByHashListIpfsServiceImpl(IPFS ipfsClient) {
-		this.ipfsClient = ipfsClient;
-	}
+//	private IPFS ipfsClient;
+//
+//	public GetFilesByHashListIpfsServiceImpl(IPFS ipfsClient) {
+//		this.ipfsClient = ipfsClient;
+//	}
 
 	@Override
 	public List<byte[]> getFilesByHashList(List<String> hashList) throws IOException {
-		final List<byte[]> videoList = new ArrayList<>();
-
-		for (String hash : hashList) {
-			videoList.add(ipfsClient.cat(Multihash.fromBase58(hash)));
-		}
-
-		return videoList;
+//		final List<byte[]> videoList = new ArrayList<>();
+//
+//		for (String hash : hashList) {
+//			videoList.add(ipfsClient.cat(Multihash.fromBase58(hash)));
+//		}
+//
+//		return videoList;
+		return Collections.emptyList();
 	}
 }

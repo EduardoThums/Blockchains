@@ -1,6 +1,7 @@
 package logger.api.domain.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 /**
  * @author eduardo.thums
  */
+@Getter
 @Entity
 @Table(name = "log")
 @NoArgsConstructor

@@ -1,25 +1,14 @@
 server:
-  port: 8083
+  port: ${PORT:8080}
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/loggerapi
-    username: loggerapi
-    password: loggerapi
+    url: jdbc:postgresql://ec2-107-21-102-221.compute-1.amazonaws.com:5432/dc56rv68c8pmup
+    username: tuujjhtgbwdpsa
+    password: 04fca1a8eb993af64710c6b1edca98602e796fdc23eced92ef9b00e7399b7ab9
   jpa:
     properties:
       hibernate:
         jdbc:
           lob:
             non_contextual_creation: true
-kafka:
-  bootstrapServers: localhost:9092 # Development Kafka brokers
-  #  bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka Brokers
-  topic:
-    blockchain: blockchain-logger-topic
-  consumer:
-    groupId: logger
-    autoOffsetReset: earliest
-    maxPollRecords: 1
-    enableAutoCommit: false
-    fetchMaxBytes: 33554432
