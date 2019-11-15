@@ -10,6 +10,7 @@ import org.hyperledger.fabric.shim.ledger.KeyValue;
 import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -48,7 +49,7 @@ public class VideoAssetChaincode extends ChaincodeBase {
 
 	@Transaction
 	private Response createVideoAsset(final ChaincodeStub stub, final List<String> params) {
-		final String key = params.get(2);
+		final String key = UUID.randomUUID().toString();
 		final String videoAssetState = gson.toJson(mapParamsToVideoAsset(params));
 
 		stub.putStringState(key, videoAssetState);

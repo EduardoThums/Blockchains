@@ -5,7 +5,6 @@ import bigchaindb.api.projection.AssetProjection;
 import bigchaindb.api.repository.VideoAssetRepository;
 import bigchaindb.api.service.file.GetFilesByHashListService;
 import bigchaindb.api.service.file.GetFilesByHashListSwarmServiceImpl;
-import bigchaindb.api.service.kafka.ProduceLogRequestModelService;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -21,13 +20,13 @@ public class QueryByCameraIdAndTimestampRangeService {
 
 	private VideoAssetRepository videoAssetRepository;
 
-	private ProduceLogRequestModelService produceLogRequestModelService;
+//	private ProduceLogRequestModelService produceLogRequestModelService;
 
 	private GetFilesByHashListService getFilesByHashListService;
 
-	public QueryByCameraIdAndTimestampRangeService(VideoAssetRepository videoAssetRepository, ProduceLogRequestModelService produceLogRequestModelService, GetFilesByHashListSwarmServiceImpl getFilesByHashListService) {
+	public QueryByCameraIdAndTimestampRangeService(VideoAssetRepository videoAssetRepository, GetFilesByHashListSwarmServiceImpl getFilesByHashListService) {
 		this.videoAssetRepository = videoAssetRepository;
-		this.produceLogRequestModelService = produceLogRequestModelService;
+//		this.produceLogRequestModelService = produceLogRequestModelService;
 		this.getFilesByHashListService = getFilesByHashListService;
 	}
 
@@ -45,8 +44,6 @@ public class QueryByCameraIdAndTimestampRangeService {
 		final List<byte[]> videoList = getFilesByHashListService.getFilesByHashList(storageHashList);
 
 		final Long logEndDate = Instant.now().toEpochMilli();
-
-		produceLogRequestModelService.produceLogRequestModel(logStartDate, logEndDate);
 
 		return videoAssetModels;
 	}

@@ -16,9 +16,11 @@ class VideoSplitter:
 
     def release_output(self, output):
         output.release()
+
         HttpClient.send_file(TimestampUtils.get_milliseconds(self.starting_interval_seconds),
                              TimestampUtils.get_milliseconds(self.next_interval_seconds),
                              self.current_video_piece_filename)
+
         self.delete_file()
 
     def delete_file(self):

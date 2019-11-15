@@ -3,7 +3,7 @@ import csv
 import requests
 
 from constants.http_client_constants import LOGGER_API_ROUTE
-from constants.video_sender_constants import TEST_FILE_PATH, CSV_FIELD_NAMES
+from constants.video_sender_constants import CSV_FIELD_NAMES, TEST_FILE_PATH
 
 
 class CsvWriter:

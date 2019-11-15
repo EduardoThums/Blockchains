@@ -1,13 +1,17 @@
 import time
 
-from constants.video_sender_constants import VIDEO_FILE_PATH, VIDEO_FILE_SECONDS
 from csv_writer.csv_writer import CsvWriter
+from http_client.http_client import HttpClient
 from splitter.video_sender.video_sender import VideoSender
 
 if __name__ == '__main__':
-    VideoSender.send_file_multiple_times(VIDEO_FILE_PATH, VIDEO_FILE_SECONDS)
+    # print("Sending videos to API...")
+    # VideoSender.send_file_multiple_times()
 
-    time.sleep(30)
+    print("Querying videos from API...")
+    HttpClient.search_video_interval(1573799711635, 1573799728078)
 
-    print("Creating csv file")
+    # time.sleep(20)
+
+    print("Creating CSV file...")
     CsvWriter.write_log_csv_file()

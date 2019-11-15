@@ -1,6 +1,8 @@
 OPEN_FILE_FORMAT = 'rb'
 
-DEFAULT_API_ROUTE = 'http://localhost:8080/api/'
+QUERY_API_ROUTE = 'http://localhost:8081/api/blockchain/cameraId/{}?startDate={}&endDate={}&logStartDate={}'
+
+UPLOAD_API_ROUTE = 'http://localhost:8080/api/upload?cameraId={}&startDate={}&endDate={}&logStartDate={}'
 
 DEFAULT_PARAM_NAME = "file"
 

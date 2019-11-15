@@ -1,9 +1,9 @@
-MINIMUM_NUMBER_OF_REPETITIONS_EXPECTED = 50
+MINIMUM_NUMBER_OF_REPETITIONS_EXPECTED = 10
 
-VIDEO_FILE_PATH = "videos/sample_1s.mp4"
+VIDEO_FILE_PATH = "videos/sample_32mb.mp4"
 
-VIDEO_FILE_SECONDS = 1
+TEST_FILE_PATH = "tests/test_32mb.csv"
 
-TEST_FILE_PATH = "tests/test_1s.csv"
+VIDEO_FILE_SECONDS = 120
 
 CSV_FIELD_NAMES = ["startDate", "endDate"]

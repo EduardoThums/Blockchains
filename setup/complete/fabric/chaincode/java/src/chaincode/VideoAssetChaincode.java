@@ -48,7 +48,7 @@ public class VideoAssetChaincode extends ChaincodeBase {
 
 	@Transaction
 	private Response createVideoAsset(final ChaincodeStub stub, final List<String> params) {
-		final String key = params.get(2);
+		final String key = params.get(0);
 		final String videoAssetState = gson.toJson(mapParamsToVideoAsset(params));
 
 		stub.putStringState(key, videoAssetState);
@@ -88,11 +88,11 @@ public class VideoAssetChaincode extends ChaincodeBase {
 	}
 
 	private VideoAsset mapParamsToVideoAsset(List<String> params) {
-		final long startDate = Long.parseLong(params.get(0));
-		final long endDate = Long.parseLong(params.get(1));
-		final String storageHash = params.get(2);
-		final String contentHash = params.get(3);
-		final long cameraId = Long.parseLong(params.get(4));
+		final long startDate = Long.parseLong(params.get(1));
+		final long endDate = Long.parseLong(params.get(2));
+		final String storageHash = params.get(3);
+		final String contentHash = params.get(4);
+		final long cameraId = Long.parseLong(params.get(5));
 
 		return VideoAsset
 				.builder()

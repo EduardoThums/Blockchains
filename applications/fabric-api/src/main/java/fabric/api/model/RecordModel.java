@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 /**
@@ -29,6 +30,7 @@ public class RecordModel implements Serializable {
 
 	public String[] toArguments() {
 		return Stream.of(
+				UUID.randomUUID().toString(),
 				this.startDate.toString(),
 				this.endDate.toString(),
 				this.storageHash,

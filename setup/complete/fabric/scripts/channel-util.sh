@@ -34,13 +34,7 @@ joinChannel () {
 
 installChaincodeOnAllPeers () {
 	for peer in 0 1 2 3; do
-	installChaincode $peer
-	done
-}
-
-instantiateChaincodeOnAllPeers(){
-	for peer in 0 1; do
-	instantiateChaincode $peer
+	installChaincode $peer 1.0
 	done
 }
 
@@ -50,11 +44,13 @@ createChannel
 echo "Having all peers join the channel..."
 joinChannel
 
-echo "Updating anchor peers for org1..."
-updateAnchorPeers 0
-
 echo "Installing chaincode on all peers..."
 installChaincodeOnAllPeers
 
-echo "Instantiating chaincode on all peers..."
-instantiateChaincodeOnAllPeers
+echo "Instantiating chaincode on peer0 peers..."
+instantiateChaincode 0
+
+echo "Update peer0 anchor..."
+updateAnchorPeers 0
+
+

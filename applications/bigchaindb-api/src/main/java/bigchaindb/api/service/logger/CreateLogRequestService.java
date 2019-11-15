@@ -1,6 +1,7 @@
-package fabric.api.service.logger;
+package bigchaindb.api.service.logger;
 
-import fabric.api.component.logger.LoggerClient;
+import bigchaindb.api.client.LoggerClient;
+import bigchaindb.api.model.LogRequestModel;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,6 +17,6 @@ public class CreateLogRequestService {
 	}
 
 	public void createLog(Long startDate, Long endDate) {
-//		loggerClient.createLog(new LogRequestModel(startDate, endDate));
+		loggerClient.createLog(new LogRequestModel(startDate, endDate));
 	}
 }
