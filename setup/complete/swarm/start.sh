@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PASSWORD=250820000aA
+PASSWORD=123
 IMAGE_TAG=latest
 
 docker stop swarm0
