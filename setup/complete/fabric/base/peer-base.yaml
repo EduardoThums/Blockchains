@@ -2,12 +2,12 @@ version: '2'
 
 services:
   ca-base:
-    image: hyperledger/fabric-ca:$IMAGE_TAG
+    image: hyperledger/fabric-ca:1.4.2
     environment:
       - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
 
   peer-base:
-    image: hyperledger/fabric-peer:$IMAGE_TAG
+    image: hyperledger/fabric-peer:1.4.2
     environment:
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=fabric_byfn
@@ -29,13 +29,13 @@ services:
     command: peer node start
 
   couchdb-base:
-    image: hyperledger/fabric-couchdb:$IMAGE_TAG
+    image: hyperledger/fabric-couchdb:0.4
     environment:
       - COUCHDB_USER=couchdb_username
       - COUCHDB_PASSWORD=couchdb_password
 
   orderer-base:
-    image: hyperledger/fabric-orderer:$IMAGE_TAG
+    image: hyperledger/fabric-orderer:1.4.2
     environment:
       - FABRIC_LOGGING_SPEC=INFO
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
