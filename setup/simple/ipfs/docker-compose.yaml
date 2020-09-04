@@ -2,8 +2,8 @@ version: '2'
 services:
 
   ipfs0:
-    container_name: ipfs0 
-    image: ipfs/go-ipfs:$IMAGE_TAG
+    container_name: ipfs0
+    image: ipfs/go-ipfs:v0.4.21
     ports:
       - 4001:4001
       - 5001:5001

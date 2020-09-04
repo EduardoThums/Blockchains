@@ -5,9 +5,9 @@ from csv_writer.csv_writer import CsvWriter
 from splitter.video_sender.video_sender import VideoSender
 
 if __name__ == '__main__':
-    VideoSender.send_file_multiple_times(VIDEO_FILE_PATH, VIDEO_FILE_SECONDS)
+    VideoSender.send_file_multiple_times()
 
     time.sleep(30)
 
-    print("Creating csv file")
-    CsvWriter.write_log_csv_file()
+    # print("Creating csv file")
+    # CsvWriter.write_log_csv_file()
