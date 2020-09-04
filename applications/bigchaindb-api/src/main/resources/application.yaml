@@ -27,7 +27,7 @@ kafka:
     fetchMaxBytes: 33554432
 bigchaindb:
   peer0:
-    url: http://localhost:32869
+    url: http://localhost:9984
   peer1:
     url: http://localhost:32875
   peer2:
