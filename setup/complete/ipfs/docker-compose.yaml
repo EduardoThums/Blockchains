@@ -3,7 +3,7 @@ services:
 
   ipfs0:
     container_name: ipfs0 
-    image: ipfs/go-ipfs:$IMAGE_TAG
+    image: ipfs/go-ipfs
     ports:
       - 4001:4001
       - 5001:5001

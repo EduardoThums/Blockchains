@@ -2,7 +2,7 @@ version: '2'
 
 services:
   zookeeper-base:
-    image: confluentinc/cp-zookeeper:$IMAGE_TAG
+    image: confluentinc/cp-zookeeper
     environment:
       ZOOKEEPER_TICK_TIME: 2000
       ZOOKEEPER_INIT_LIMIT: 5
@@ -12,7 +12,7 @@ services:
       - "kafka-host:127.0.0.1"
 
   kafka-base:
-    image: confluentinc/cp-kafka:$IMAGE_TAG
+    image: confluentinc/cp-kafka
     environment:
       KAFKA_REPLICA_FETCH_MAX_BYTES: 90000000
       KAFKA_MESSAGE_MAX_BYTES: 90000000
