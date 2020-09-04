@@ -1,5 +1,8 @@
 #!/bin/bash
 
+source scripts/peer-util.sh
+
+
 CHANNEL_NAME="$1"
 CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/java/"
 CHAINCODE_LANGUAGE="java"
@@ -10,37 +13,36 @@ MAX_RETRY=10
 DELAY=3
 TIMEOUT=10
 
-. scripts/peer-util.sh
-
-createChannel() {
+create_channel() {
 	setGlobals 0
 
 	peer channel create -o orderer.example.com:7050 -c $CHANNEL_NAME -f ./channel-artifacts/channel.tx >&log.txt
 	res=$?
 
-	cat log.txt
+	rm log.txt
+
 	verifyResult $res "Channel creation failed"
 	echo "===================== Channel '$CHANNEL_NAME' created ===================== "
 }
 
-joinChannel () {
-	joinChannelWithRetry 0
+join_channel () {
+	join_channel_with_retry 0
 	echo "===================== peer0.org1 joined channel '$CHANNEL_NAME' ===================== "
 	sleep $DELAY
 	echo
 }
 
 echo "Creating channel..."
-createChannel
+create_channel
 
 echo "Having all peers join the channel..."
-joinChannel
+join_channel
 
 echo "Updating anchor peers for org1..."
-updateAnchorPeers 0
+update_anchor_peers 0
 
 echo "Installing chaincode on all peers"
-installChaincode 0 1.0
+install_chaincode 0 1.0
 
 echo "Instantiating chaincode on peer0.org1..."
-instantiateChaincode 0 1.0
+instantiate_chaincode 0 1.0
