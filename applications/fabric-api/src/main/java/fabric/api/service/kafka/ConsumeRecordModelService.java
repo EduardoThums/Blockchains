@@ -31,8 +31,8 @@ public class ConsumeRecordModelService {
 		//TODO: Remove log when run tests with production environment
 		createTransactionService.createTransaction(record.value());
 
-		final Long logEndDate = Instant.now().toEpochMilli();
+//		final Long logEndDate = Instant.now().toEpochMilli();
 
-		createLogRequestService.createLog(record.value().getLogStartDate(), logEndDate);
+//		createLogRequestService.createLog(record.value().getLogStartDate(), logEndDate);
 	}
 }
