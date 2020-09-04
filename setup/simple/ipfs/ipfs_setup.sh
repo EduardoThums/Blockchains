@@ -1,11 +1,11 @@
 #!/bin/bash
 
-stop-ipfs () {
+stop_ipfs () {
     docker-compose -f ipfs/docker-compose.yaml down --volumes --remove-orphan
 }
 
-start-ipfs () {
-    stop-ipfs
+start_ipfs () {
+    stop_ipfs
 
     docker-compose -f ipfs/docker-compose.yaml up -d    
 }

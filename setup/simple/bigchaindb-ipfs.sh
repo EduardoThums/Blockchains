@@ -1,19 +1,22 @@
 #!/bin/bash
 
-source ipfs/ipfs-setup.sh
-source bigchaindb/bigchaindb-setup.sh
+source ipfs/ipfs_setup.sh
+source bigchaindb/bigchaindb_setup.sh
+source kafka/kafka_setup.sh
 
 CHOICE=$1
 
 case $CHOICE in
     start)
-        start-bigchaindb
-        start-ipfs
+        start_bigchaindb
+        start_ipfs
+        start_kafka
     ;;
     
     stop)
-        stop-bigchaindb
-        stop-ipfs
+        stop_bigchaindb
+        stop_ipfs
+        stop_kafka
     ;;
     
     *)
