@@ -2,7 +2,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
 server:
-  port: 8081
+  port: 8082
 kafka:
   bootstrapServers: localhost:9092 # Development Kafka brokers
 #  bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka Brokers

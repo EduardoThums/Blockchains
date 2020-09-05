@@ -5,8 +5,8 @@ spring:
       max-file-size: 800MB
       max-request-size: 815MB
 kafka:
-#  bootstrapServers: localhost:9092 # Development Kafka brokers
-  bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka Brokers
+  bootstrapServers: localhost:9092 # Development Kafka brokers
+#  bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka Brokers
   topic:
     blockchain: distributed-storage-blockchain-topic
   producer:
