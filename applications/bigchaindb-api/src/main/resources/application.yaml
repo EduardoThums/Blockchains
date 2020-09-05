@@ -2,13 +2,13 @@ spring:
   data:
     mongodb:
       host: localhost
-      port: 32841
+      port: 32956
       database: bigchain
 server:
   port: 8082
 kafka:
-  bootstrapServers: localhost:9092 # Development Kafka brokers
-  #  bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka brokers
+#  bootstrapServers: localhost:9092 # Development Kafka brokers
+  bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka brokers
   topic:
     distributedStorage: distributed-storage-blockchain-topic
     logger: blockchain-logger-topic
@@ -27,13 +27,13 @@ kafka:
     fetchMaxBytes: 33554432
 bigchaindb:
   peer0:
-    url: http://localhost:9984
+    url: http://localhost:33004
   peer1:
-    url: http://localhost:32875
+    url: http://localhost:32998
   peer2:
-    url: http://localhost:32881
+    url: http://localhost:32992
   peer3:
-    url: http://localhost:32887
+    url: http://localhost:32986
   keyPair:
     directoryPath: src/main/resources/keypair
     privateKeyFileName: privateKey.key

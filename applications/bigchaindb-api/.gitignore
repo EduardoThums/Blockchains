@@ -129,3 +129,5 @@ src/main/webapp/WEB-INF/jboss-web.xml
 setup/fabric-setup/chaincode/java/.idea
 setup/fabric-setup/crypto-config/.*
 setup/fabric-setup/channel-artifacts/.*
+src/main/resources/keypair/*
+!.gitkeep

@@ -4,8 +4,10 @@ spring:
       enabled: true
       max-file-size: 200MB
       max-request-size: 215MB
+server:
+  port: 8081
 kafka:
-  #  bootstrapServers: localhost:9092 # Development Kafka brokers
+#    bootstrapServers: localhost:9092 # Development Kafka brokers
   bootstrapServers: localhost:19092;localhost:29092;localhost:39092 # Production Kafka brokers
   topic:
     distributedStorage: video-distributed-storage-topic
@@ -19,4 +21,4 @@ kafka:
 feign:
   blockchain:
     value: blockchainClient
-    url: http://localhost:8081/api
+    url: http://localhost:8082/api
