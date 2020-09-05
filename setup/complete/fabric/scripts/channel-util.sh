@@ -34,13 +34,13 @@ joinChannel () {
 
 installChaincodeOnAllPeers () {
 	for peer in 0 1 2 3; do
-	installChaincode $peer
+	installChaincode $peer 1.0
 	done
 }
 
 instantiateChaincodeOnAllPeers(){
 	for peer in 0 1; do
-	instantiateChaincode $peer
+	instantiateChaincode $peer 1.0
 	done
 }
 

@@ -62,10 +62,11 @@ updateAnchorPeers() {
 
 installChaincode() {
   PEER=$1
+  CHAINCODE_VERSION=$2
   setGlobals $PEER
-  
+
   set -x
-  peer chaincode install -n $CHAINCODE_NAME -v 1.0 -l $CHAINCODE_LANGUAGE -p ${CC_SRC_PATH} >&log.txt
+  peer chaincode install -n $CHAINCODE_NAME -v $CHAINCODE_VERSION -l $CHAINCODE_LANGUAGE -p ${CC_SRC_PATH} >&log.txt
   res=$?
   set +x
   cat log.txt
@@ -77,10 +78,11 @@ installChaincode() {
 
 instantiateChaincode() {
   PEER=$1
+  CHAINCODE_VERSION=$2
   setGlobals $PEER
 
   set -x
-  peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n $CHAINCODE_NAME -l $CHAINCODE_LANGUAGE -v 1.0 -c '{"Args":["init"]}' -P "AND ('Org1MSP.peer')" >&log.txt
+  peer chaincode instantiate -o orderer.example.com:7050 -C $CHANNEL_NAME -n $CHAINCODE_NAME -l $CHAINCODE_LANGUAGE -v $CHAINCODE_VERSION -c '{"Args":["init"]}' -P "AND ('Org1MSP.peer')" >&log.txt
   res=$?
   set +x
   cat log.txt
