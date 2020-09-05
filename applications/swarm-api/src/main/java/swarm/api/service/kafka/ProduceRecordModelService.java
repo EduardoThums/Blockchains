@@ -37,7 +37,6 @@ public class ProduceRecordModelService {
 		final String storageHash = uploadFileService.uploadFile(file);
 		final String contentHash = hashGenerator.generateHash(file);
 
-
 		kafkaTemplate.send(kafkaTopic, new RecordModel(
 				cameraId,
 				startDate,

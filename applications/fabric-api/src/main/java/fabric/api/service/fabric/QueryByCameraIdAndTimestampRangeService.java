@@ -10,6 +10,7 @@ import fabric.api.exception.InvalidProposalResponseException;
 import fabric.api.model.VideoAssetModel;
 import fabric.api.service.file.GetFilesByHashListIpfsServiceImpl;
 import fabric.api.service.file.GetFilesByHashListService;
+import fabric.api.service.file.GetFilesByHashListSwarmServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.hyperledger.fabric.sdk.exception.InvalidArgumentException;
 import org.hyperledger.fabric.sdk.exception.ProposalException;
@@ -32,13 +33,11 @@ public class QueryByCameraIdAndTimestampRangeService {
 
 	private ChannelClient channelClient;
 
-//	private ProduceLogRequestModelService produceLogRequestModelService;
-
 	private GetFilesByHashListService getFilesByHashListService;
 
 	private ObjectMapper objectMapper;
 
-	public QueryByCameraIdAndTimestampRangeService(ChannelClient channelClient, GetFilesByHashListIpfsServiceImpl getFilesByHashListService) {
+	public QueryByCameraIdAndTimestampRangeService(ChannelClient channelClient, GetFilesByHashListSwarmServiceImpl getFilesByHashListService) {
 		this.channelClient = channelClient;
 		this.getFilesByHashListService = getFilesByHashListService;
 		this.objectMapper = new ObjectMapper();
@@ -63,10 +62,6 @@ public class QueryByCameraIdAndTimestampRangeService {
 				.collect(Collectors.toList());
 
 		final List<byte[]> videoList = getFilesByHashListService.getFilesByHashList(storageHashList);
-
-		final Long logEndDate = Instant.now().toEpochMilli();
-
-//		produceLogRequestModelService.produceLogRequestModel(logStartDate, logEndDate);
 
 		return videoAssetModels;
 	}

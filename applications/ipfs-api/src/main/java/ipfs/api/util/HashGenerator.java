@@ -1,6 +1,5 @@
 package ipfs.api.util;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 

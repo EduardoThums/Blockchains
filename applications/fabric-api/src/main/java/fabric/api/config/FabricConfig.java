@@ -82,9 +82,9 @@ public class FabricConfig {
 
 		final Orderer orderer = fabricClient.getInstance().newOrderer(ordererName, ordererUrl);
 		channel.addPeer(peer0);
-//		channel.addPeer(peer1);
-//		channel.addPeer(peer2);
-//		channel.addPeer(peer3);
+		channel.addPeer(peer1);
+		channel.addPeer(peer2);
+		channel.addPeer(peer3);
 
 		channel.addOrderer(orderer);
 		channel.initialize();

@@ -18,8 +18,8 @@ public class IpfsConfig {
 		this.ipfsUrl = ipfsUrl;
 	}
 
-	@Bean
-	public IPFS ipfs() {
-		return new IPFS(new MultiAddress(ipfsUrl));
-	}
+//	@Bean
+//	public IPFS ipfs() {
+//		return new IPFS(new MultiAddress(ipfsUrl));
+//	}
 }

@@ -1,6 +1,6 @@
 package swarm.api.util;
 
-import org.apache.commons.codec.digest.DigestUtils;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component;
 public class HashGenerator {
 
 	public String generateHash(byte[] file) {
-		return DigestUtils.sha256Hex(file);
+		return BCrypt.hashpw(new String(file), BCrypt.gensalt());
 	}
 }
