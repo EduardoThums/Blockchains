@@ -44,15 +44,15 @@ public class BigchaindbConfig {
 	@PostConstruct
 	public void createBigchaindbConnection() {
 		// Use multiple peers on production environment
-		final List<Connection> connections = Arrays.asList(
-				createBaseConnection(peer0Url),
-				createBaseConnection(peer1Url),
-				createBaseConnection(peer2Url),
-				createBaseConnection(peer3Url));
+//		final List<Connection> connections = Arrays.asList(
+//				createBaseConnection(peer0Url),
+//				createBaseConnection(peer1Url),
+//				createBaseConnection(peer2Url),
+//				createBaseConnection(peer3Url));
 
 		BigchainDbConfigBuilder
-//				.baseUrl(peer0Url)
-				.addConnections(connections)
+				.baseUrl(peer0Url)
+//				.addConnections(connections)
 				.setTimeout(60000)
 				.setup();
 	}
