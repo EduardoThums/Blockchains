@@ -51,6 +51,7 @@ public class ChannelClient {
 		request.setFcn(baseChaincode.getFunction().getName());
 		request.setArgs(baseChaincode.getFunction().getArguments());
 		request.setChaincodeLanguage(TransactionRequest.Type.JAVA);
+		request.setChaincodeVersion(baseChaincode.getVersion());
 		request.setProposalWaitTime(20000);
 
 		return channel.queryByChaincode(request);
