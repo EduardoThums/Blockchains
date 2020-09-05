@@ -48,7 +48,8 @@ public class VideoAssetChaincode extends ChaincodeBase {
 
 	@Transaction
 	private Response createVideoAsset(final ChaincodeStub stub, final List<String> params) {
-		final String key = params.get(2);
+		final String key = params.get(0);
+
 		final String videoAssetState = gson.toJson(mapParamsToVideoAsset(params));
 
 		stub.putStringState(key, videoAssetState);
@@ -57,7 +58,7 @@ public class VideoAssetChaincode extends ChaincodeBase {
 	}
 
 	private Response queryByHash(ChaincodeStub stub, List<String> params) {
-		final String key = params.get(0);
+		final String key = params.get(3);
 		final String videoAssetState = stub.getStringState(key);
 
 		if (videoAssetState.isEmpty()) {
@@ -107,10 +108,12 @@ public class VideoAssetChaincode extends ChaincodeBase {
 	private String getQueryResult(ChaincodeStub stub, String query) {
 		final QueryResultsIterator<KeyValue> queryResult = stub.getQueryResult(query);
 
-		return StreamSupport.stream(queryResult.spliterator(), false)
+		String result = StreamSupport.stream(queryResult.spliterator(), false)
 				.map(KeyValue::getStringValue)
 				.collect(Collectors.toList())
 				.toString();
+
+		return result;
 	}
 
 	public static void main(String[] args) {
