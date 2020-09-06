@@ -1,15 +1,20 @@
 version: '2'
 
 services:
-  bigchaindb.example.com:
+  bigchaindb0:
     image: bigchaindb/bigchaindb:all-in-one
-    container_name: bigchaindb.example.com
+    container_name: bigchaindb0
     volumes:
-      - $HOME/docker/volumes/bigchaindb/mongodb/data/db:/data/db
-      - $HOME/docker/volumes/bigchaindb/mongodb/data/configdb:/data/configdb
-      - $HOME/docker/volumes/bigchaindb/tendermint:/tendermint
+      - bigchaindb-mongodb-data:/data/db
+      - bigchaindb-mongodb-configdb:/data/configdb
+      - bigchaindb-tendermint:/tendermint
     ports:
       - 9984:9984
       - 9985:9985
       - 27017:27017
       - 26657:26657
+
+volumes:
+  bigchaindb-mongodb-data:
+  bigchaindb-mongodb-configdb:
+  bigchaindb-tendermint:

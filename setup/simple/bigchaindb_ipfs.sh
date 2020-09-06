@@ -9,14 +9,14 @@ CHOICE=$1
 case $CHOICE in
     start)
         start_bigchaindb
-        start_ipfs
-        start_kafka
+        # start_ipfs
+        # start_kafka
     ;;
     
     stop)
         stop_bigchaindb
-        stop_ipfs
-        stop_kafka
+        # stop_ipfs
+        # stop_kafka
     ;;
     
     *)
