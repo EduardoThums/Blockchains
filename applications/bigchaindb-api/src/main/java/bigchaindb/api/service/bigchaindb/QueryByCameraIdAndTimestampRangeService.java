@@ -21,13 +21,10 @@ public class QueryByCameraIdAndTimestampRangeService {
 
 	private VideoAssetRepository videoAssetRepository;
 
-	private ProduceLogRequestModelService produceLogRequestModelService;
-
 	private GetFilesByHashListService getFilesByHashListService;
 
-	public QueryByCameraIdAndTimestampRangeService(VideoAssetRepository videoAssetRepository, ProduceLogRequestModelService produceLogRequestModelService, GetFilesByHashListSwarmServiceImpl getFilesByHashListService) {
+	public QueryByCameraIdAndTimestampRangeService(VideoAssetRepository videoAssetRepository, GetFilesByHashListSwarmServiceImpl getFilesByHashListService) {
 		this.videoAssetRepository = videoAssetRepository;
-		this.produceLogRequestModelService = produceLogRequestModelService;
 		this.getFilesByHashListService = getFilesByHashListService;
 	}
 
@@ -45,8 +42,6 @@ public class QueryByCameraIdAndTimestampRangeService {
 		final List<byte[]> videoList = getFilesByHashListService.getFilesByHashList(storageHashList);
 
 		final Long logEndDate = Instant.now().toEpochMilli();
-
-		produceLogRequestModelService.produceLogRequestModel(logStartDate, logEndDate);
 
 		return videoAssetModels;
 	}
