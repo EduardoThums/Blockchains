@@ -1,9 +1,9 @@
 #!/bin/bash
 
-curl -fOL https://raw.githubusercontent.com/bigchaindb/bigchaindb/master/pkg/scripts/stack.sh
-curl -fOL https://raw.githubusercontent.com/bigchaindb/bigchaindb/master/pkg/scripts/unstack.sh
+sudo rm -rf bigchaindb/*
 
-mv stack.sh unstack.sh bigchaindb/
+curl -fL https://raw.githubusercontent.com/bigchaindb/bigchaindb/master/pkg/scripts/stack.sh -o bigchaindb/stack.sh
+curl -fL https://raw.githubusercontent.com/bigchaindb/bigchaindb/master/pkg/scripts/unstack.sh -o bigchaindb/unstack.sh
 
 chmod 777 bigchaindb/stack.sh
 chmod 777 bigchaindb/unstack.sh
