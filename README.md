@@ -4,11 +4,11 @@ Project to study and implement the best video storage model, using distribuited 
 
 ## :crystal_ball: Tecnologies
 
-* Blockchain
+* [Blockchain](https://bitcoin.org/bitcoin.pdf)
 * [Hypeledger Fabric](https://www.hyperledger.org/projects/fabric)
 * [BigchainDB](https://www.bigchaindb.com/)
 * [Apache Kafka](https://kafka.apache.org/)
-* Docker and Docker Compose
+* [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/)
 * [IPFS](https://ipfs.io/)
 * [Swarm](https://swarm.ethereum.org/)
 
@@ -18,5 +18,5 @@ This project have source from the Final Course Assignment, by the students Eduar
 between January and November of 2019. With the guidance of the Professor Alex Mulattieri Suarez Orozco.
 
 ## Contributors
-Eduardo Cristiano Thums\
-Leonardo Silveira Berllato
+[Eduardo Cristiano Thums](https://github.com/EduardoThums)\
+[Leonardo Silveira Berllato](https://github.com/LeonardoBerlatto)
