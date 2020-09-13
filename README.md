@@ -1,6 +1,6 @@
 #  About
 
-Project to study and implement the best video storage model, using distribuited system, Blockchain and streaming platform. 
+Project created with the goal for studying and implementing the best video storage model using distribuited systems, blockchain and event stream. 
 
 ## :crystal_ball: Tecnologies
 
@@ -14,9 +14,9 @@ Project to study and implement the best video storage model, using distribuited 
 
 ## :books: Origin
 
-This project have source from the Final Course Assignment, by the students Eduardo Cristiano Thums and Leonardo Silveira Berlatto, on the Instituto Federal de Educação, Ciência e Tecnologia - Campus Sapucaia do Sul, 
+This project has the source from the Final Course Assignment, by the students Eduardo Cristiano Thums and Leonardo Silveira Berlatto, on the Instituto Federal de Educação, Ciência e Tecnologia - Campus Sapucaia do Sul, 
 between January and November of 2019. With the guidance of the Professor Alex Mulattieri Suarez Orozco.
 
-## Contributors
+## :busts_in_silhouette: Contributors
 [Eduardo Cristiano Thums](https://github.com/EduardoThums)\
 [Leonardo Silveira Berllato](https://github.com/LeonardoBerlatto)
