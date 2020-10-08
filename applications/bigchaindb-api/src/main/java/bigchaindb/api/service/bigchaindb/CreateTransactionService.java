@@ -5,10 +5,12 @@ import bigchaindb.api.model.VideoAssetModel;
 import bigchaindb.api.util.KeyPairLoader;
 import com.bigchaindb.builders.BigchainDbTransactionBuilder;
 import com.bigchaindb.constants.Operations;
+import com.bigchaindb.model.Transaction;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author eduardo.thums
@@ -23,13 +25,14 @@ public class CreateTransactionService {
 	}
 
 	public List<String> createTransaction(RecordModel recordModel) throws Exception {
-		return Collections.singletonList(BigchainDbTransactionBuilder
+		List<Transaction> transactions = Collections.singletonList(BigchainDbTransactionBuilder
 				.init()
 				.addAssets(toVideoAssetModel(recordModel), VideoAssetModel.class)
 				.operation(Operations.CREATE)
 				.buildAndSign(keyPairLoader.readPublicKey(), keyPairLoader.readPrivateKey())
-				.sendTransaction()
-				.getId());
+				.sendTransaction());
+
+		return transactions.stream().map(Transaction::getId).collect(Collectors.toList());
 	}
 
 	private VideoAssetModel toVideoAssetModel(RecordModel recordModel) {

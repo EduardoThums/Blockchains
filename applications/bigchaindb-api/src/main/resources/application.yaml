@@ -2,7 +2,7 @@ spring:
   data:
     mongodb:
       host: localhost
-      port: 32956
+      port: 32973
       database: bigchain
 server:
   port: 8082
@@ -27,13 +27,13 @@ kafka:
     fetchMaxBytes: 33554432
 bigchaindb:
   peer0:
-    url: http://localhost:33004
+    url: http://localhost:33019
   peer1:
-    url: http://localhost:32998
+    url: http://localhost:33013
   peer2:
-    url: http://localhost:32992
+    url: http://localhost:33007
   peer3:
-    url: http://localhost:32986
+    url: http://localhost:33001
   keyPair:
     directoryPath: src/main/resources/keypair
     privateKeyFileName: privateKey.key
